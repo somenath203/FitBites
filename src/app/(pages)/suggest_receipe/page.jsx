@@ -1,3 +1,6 @@
+import { currentUser } from '@clerk/nextjs/server';
+import { redirect } from 'next/navigation';
+
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import {
@@ -13,7 +16,16 @@ import FormContainer from '@/app/_components/form/FormContainer';
 import { createNewReceipeSuggestion } from '@/server-actions/suggestReceipeServerActions';
 
 
-const page = () => {
+const page = async () => {
+
+  const currentLoggedInUser = await currentUser();
+
+  if(!currentLoggedInUser?.privateMetadata?.hasCompletedProfile) {
+  
+    redirect('/complete_profile');
+      
+  }
+
   return (
     <div className="mt-14">
 
@@ -38,11 +50,11 @@ const page = () => {
               </SelectTrigger>
 
               <SelectContent>
-                <SelectItem value="breakfast">Breakfast</SelectItem>
-                <SelectItem value="lunch">Lunch</SelectItem>
-                <SelectItem value="dinner">Dinner</SelectItem>
-                <SelectItem value="snack">Snack</SelectItem>
-                <SelectItem value="dessert">Dessert</SelectItem>
+                <SelectItem value="Breakfast">Breakfast</SelectItem>
+                <SelectItem value="Lunch">Lunch</SelectItem>
+                <SelectItem value="Dinner">Dinner</SelectItem>
+                <SelectItem value="Snack">Snack</SelectItem>
+                <SelectItem value="Dessert">Dessert</SelectItem>
               </SelectContent>
 
             </Select>

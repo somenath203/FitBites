@@ -61,9 +61,9 @@ const page = async () => {
                         </SelectTrigger>
 
                         <SelectContent>
-                            <SelectItem value="male">Male</SelectItem>
-                            <SelectItem value="female">Female</SelectItem>
-                            <SelectItem value="others">Others</SelectItem>
+                            <SelectItem value="Male">Male</SelectItem>
+                            <SelectItem value="Female">Female</SelectItem>
+                            <SelectItem value="Others">Others</SelectItem>
                         </SelectContent>
 
                     </Select>
@@ -112,11 +112,11 @@ const page = async () => {
                         </SelectTrigger>
 
                         <SelectContent>
-                            <SelectItem value="no exercise">Sedentary (no exercise)</SelectItem>
-                            <SelectItem value="light exercise">Lightly Active (light exercise)</SelectItem>
-                            <SelectItem value="moderate exercise">Moderately Active (modetate exercise)</SelectItem>
-                            <SelectItem value="hard exercise">Very Active (hard exercise)</SelectItem>
-                            <SelectItem value="very hard exercise">Super Active (very hard exercise)</SelectItem>
+                            <SelectItem value="No Exercise">Sedentary (no exercise)</SelectItem>
+                            <SelectItem value="Light Exercise">Lightly Active (light exercise)</SelectItem>
+                            <SelectItem value="Moderate Exercise">Moderately Active (modetate exercise)</SelectItem>
+                            <SelectItem value="Hard Exercise">Very Active (hard exercise)</SelectItem>
+                            <SelectItem value="Very Hard Exercise">Super Active (very hard exercise)</SelectItem>
                         </SelectContent>
 
                     </Select>

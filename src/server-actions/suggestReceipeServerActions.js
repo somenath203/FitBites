@@ -1,47 +1,15 @@
 'use server';
 
 import { currentUser } from '@clerk/nextjs/server';
-import { redirect } from 'next/navigation';
+
 import primsaClientConfig from '@/prismaClientConfig';
-
-
-const getAuthenticatedUser = async () => {
-
-    try {
-        
-        const user = await currentUser();
-
-
-        if (!user) {
-            throw new Error('you must be authenticated in order to access this route');
-        }
-
-        if(!user?.privateMetadata?.hasCompletedProfile) {
-            redirect('/complete_profile');
-        }
-
-
-        return user;
-
-
-    } catch (error) {
-
-        console.log(error);
-
-        return {
-            message: error?.message 
-        }
-
-    }
-
-}
 
 
 export const createNewReceipeSuggestion = async (prevState, formData) => {
 
     try {
 
-        const user = await getAuthenticatedUser();
+        const user = await currentUser();
 
         const rawData = Object.fromEntries(formData);
 
@@ -73,3 +41,30 @@ export const createNewReceipeSuggestion = async (prevState, formData) => {
     }
 
 }
+
+
+export const fetchAllReceipeSuggestionsCreatedByTheUser = async () => {
+    
+    try {
+
+        const user = await currentUser();
+
+        const allReceipeSuggestionsCreatedByTheUser = await primsaClientConfig.suggestReceipe.findMany({
+            where: {
+                idOfTheProfileWhoCreatedTheSuggestReceipe: user?.id
+            }
+        });
+
+        return allReceipeSuggestionsCreatedByTheUser;
+
+    } catch (error) {
+
+        console.log(error);
+
+        return {
+            message: error?.message || 'There was an error while fetching your recipe suggestions, please try again.'
+        };
+
+    }
+
+};

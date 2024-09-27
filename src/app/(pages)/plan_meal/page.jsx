@@ -1,3 +1,6 @@
+import { currentUser } from '@clerk/nextjs/server';
+import { redirect } from 'next/navigation';
+
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import {
@@ -11,7 +14,16 @@ import { Button } from '@/components/ui/button';
 import FormContainer from '@/app/_components/form/FormContainer';
 import { createNewMealPlan } from '@/server-actions/planMealServerActions';
 
-const page = () => {
+const page = async () => {
+
+  const currentLoggedInUser = await currentUser();
+
+  if(!currentLoggedInUser?.privateMetadata?.hasCompletedProfile) {
+  
+    redirect('/complete_profile');
+      
+  }
+
   return (
     <div className="mt-14">
 
@@ -36,28 +48,28 @@ const page = () => {
               </SelectTrigger>
 
               <SelectContent>
-                <SelectItem value="weight_loss">Weight Loss</SelectItem>
-                <SelectItem value="weight_gain">Weight Gain</SelectItem>
-                <SelectItem value="muscle_building">Muscle Building</SelectItem>
-                <SelectItem value="maintain_weight">
+                <SelectItem value="Weight Loss">Weight Loss</SelectItem>
+                <SelectItem value="Weight Gain">Weight Gain</SelectItem>
+                <SelectItem value="Muscle Building">Muscle Building</SelectItem>
+                <SelectItem value="Maintain Current Weight">
                   Maintain Current Weight
                 </SelectItem>
-                <SelectItem value="increase_energy">
+                <SelectItem value="Increase Energy Levels">
                   Increase Energy Levels
                 </SelectItem>
-                <SelectItem value="improve_health">
+                <SelectItem value="Improve General Health & Well-being">
                   Improve General Health & Well-being
                 </SelectItem>
-                <SelectItem value="heart_health">
+                <SelectItem value="Improve Heart Health">
                   Improve Heart Health
                 </SelectItem>
-                <SelectItem value="digestive_health">
+                <SelectItem value="Improve Digestive Health">
                   Improve Digestive Health
                 </SelectItem>
-                <SelectItem value="support_immunity">
+                <SelectItem value="Support Immunity">
                   Support Immunity
                 </SelectItem>
-                <SelectItem value="better_sleep">Better Sleep</SelectItem>
+                <SelectItem value="Better Sleep">Better Sleep</SelectItem>
               </SelectContent>
             </Select>
 
@@ -76,16 +88,16 @@ const page = () => {
               </SelectTrigger>
 
               <SelectContent>
-                <SelectItem value="vegan">Vegan</SelectItem>
-                <SelectItem value="vegetarian">Vegetarian</SelectItem>
-                <SelectItem value="gluten_free">Gluten-Free</SelectItem>
-                <SelectItem value="dairy_free">Dairy-Free</SelectItem>
-                <SelectItem value="nut_free">Nut-Free</SelectItem>
-                <SelectItem value="low_carb">Low Carb</SelectItem>
-                <SelectItem value="paleo">Paleo</SelectItem>
-                <SelectItem value="keto">Keto</SelectItem>
-                <SelectItem value="halal">Halal</SelectItem>
-                <SelectItem value="kosher">Kosher</SelectItem>
+                <SelectItem value="Vegan">Vegan</SelectItem>
+                <SelectItem value="Vegetarian">Vegetarian</SelectItem>
+                <SelectItem value="Gluten Free">Gluten-Free</SelectItem>
+                <SelectItem value="Dairy Free">Dairy-Free</SelectItem>
+                <SelectItem value="Nut Free">Nut-Free</SelectItem>
+                <SelectItem value="Low Carb">Low Carb</SelectItem>
+                <SelectItem value="Paleo">Paleo</SelectItem>
+                <SelectItem value="Keto">Keto</SelectItem>
+                <SelectItem value="Halal">Halal</SelectItem>
+                <SelectItem value="Kosher">Kosher</SelectItem>
               </SelectContent>
             </Select>
 

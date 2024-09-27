@@ -5,38 +5,6 @@ import { redirect } from 'next/navigation';
 import primsaClientConfig from '@/prismaClientConfig';
 
 
-const getAuthenticatedUser = async () => {
-
-    try {
-        
-        const user = await currentUser();
-
-
-        if (!user) {
-            throw new Error('you must be authenticated in order to access this route');
-        }
-
-        if(!user?.privateMetadata?.hasCompletedProfile) {
-            redirect('/complete_profile');
-        }
-
-
-        return user;
-
-
-    } catch (error) {
-
-        console.log(error);
-
-        return {
-            message: error?.message 
-        }
-
-    }
-
-}
-
-
 export const createProfileServerAction = async (prevState, formData) => {
 
     try {
@@ -61,8 +29,10 @@ export const createProfileServerAction = async (prevState, formData) => {
                 profileImage: currentLoggedInUser?.imageUrl,
                 age: Number(rawData.age),
                 gender: rawData.gender,
+                activityLevel: rawData?.activityLevel,
                 height: Number(rawData.height),
-                weight: Number(rawData.weight)
+                weight: Number(rawData.weight),
+                
             }
         });
 
@@ -87,3 +57,36 @@ export const createProfileServerAction = async (prevState, formData) => {
     redirect('/profile'); 
 
 };
+
+
+export const fetchWholeProfileOfUser = async () => {
+
+    try {
+
+        const user = await currentUser();
+
+        const profileOfUser = await primsaClientConfig.profile.findUnique({
+            where: {
+                clerkId: user?.id
+            }
+        });
+
+        if(!profileOfUser) {
+
+            redirect('/profile/create');
+        
+        }
+
+        return profileOfUser;
+        
+    } catch (error) {
+        
+        console.log(error);
+
+        return {
+            message: error?.message || 'there was an error while fetching your profile, please try again'
+        }
+
+    }
+
+}

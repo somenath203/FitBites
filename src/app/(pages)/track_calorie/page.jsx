@@ -1,3 +1,6 @@
+import { currentUser } from '@clerk/nextjs/server';
+import { redirect } from 'next/navigation';
+
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { Textarea } from "@/components/ui/textarea"
@@ -5,7 +8,16 @@ import FormContainer from '@/app/_components/form/FormContainer';
 import { createNewCalorieTracking } from '@/server-actions/calorieTrackerServerAction';
 
 
-const page = () => {
+const page = async () => {
+
+  const currentLoggedInUser = await currentUser();
+
+  if(!currentLoggedInUser?.privateMetadata?.hasCompletedProfile) {
+  
+    redirect('/complete_profile');
+      
+  }
+
   return (
     <div className="mt-14">
 

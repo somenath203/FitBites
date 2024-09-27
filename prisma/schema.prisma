@@ -18,6 +18,7 @@ model Profile {
   gender                      String
   height                      Int
   weight                      Int
+  activityLevel               String
   allMealPlansOfTheUser       MealPlan[]
   allTrackCaloriesOfTheUser   TrackCalorie[]
   allSuggestReceipesOfTheUser SuggestReceipe[]

@@ -1,6 +1,33 @@
 import Image from "next/image";
+import { currentUser } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
 
-const page = () => {
+import { fetchAllMealsCreatedByTheUser } from "@/server-actions/planMealServerActions";
+import { fetchWholeProfileOfUser } from "@/server-actions/userServerActions";
+
+const page = async () => {
+
+  
+  const currentLoggedInUser = await currentUser();
+
+  if(!currentLoggedInUser?.privateMetadata?.hasCompletedProfile) {
+  
+    redirect('/complete_profile');
+      
+  }
+
+
+  const user = await fetchWholeProfileOfUser();
+
+
+  const allMealsCreatedByTheUser = await fetchAllMealsCreatedByTheUser();
+
+  const latestMealCreatedByUser = allMealsCreatedByTheUser[allMealsCreatedByTheUser?.length - 1];
+
+  console.log(allMealsCreatedByTheUser);
+  
+
+
   return (
     <div className="px-16 py-10">
 
@@ -13,7 +40,7 @@ const page = () => {
         <div className="flex justify-center">
 
           <Image
-            src="/dummy_person_photo.jpg"
+            src={user?.profileImage}
             alt="profile image"
             width={100}
             height={100}
@@ -29,7 +56,7 @@ const page = () => {
 
             <span className="font-semibold">Full Name:</span>
 
-            <span>Somenath Choudhury</span>
+            <span>{user?.firstName} {user?.lastName}</span>
 
 
           </div>
@@ -39,7 +66,7 @@ const page = () => {
 
             <span className="font-semibold">Email Address:</span>
 
-            <span>somenathchoudhury80@gmail.com</span>
+            <span>{user?.email || 'Not Available'}</span>
 
           </div>
 
@@ -48,7 +75,7 @@ const page = () => {
 
             <span className="font-semibold">Age:</span>
 
-            <span>24 years</span>
+            <span>{user?.age} years</span>
 
           </div>
 
@@ -57,7 +84,7 @@ const page = () => {
 
             <span className="font-semibold">Height:</span>
 
-            <span>178 cm</span>
+            <span>{user?.height || 'Not Available'} cm</span>
 
           </div>
 
@@ -66,7 +93,7 @@ const page = () => {
 
             <span className="font-semibold">Weight:</span>
             
-            <span>82 kg</span>
+            <span>{user?.weight || 'Not Available'} kg</span>
 
           </div>
 
@@ -75,7 +102,7 @@ const page = () => {
 
             <span className="font-semibold">Dietary Preferences:</span>
 
-            <span>Vegetarian</span>
+            <span>{latestMealCreatedByUser?.dietPreference || 'Not Available'}</span>
 
           </div>
 
@@ -84,7 +111,7 @@ const page = () => {
 
             <span className="font-semibold">Activity Level:</span>
 
-            <span>Moderately Active</span>
+            <span>{user?.activityLevel || 'Not Available'}</span>
 
           </div>
 
@@ -93,7 +120,7 @@ const page = () => {
 
             <span className="font-semibold">Health Goal:</span>
 
-            <span>Weight Loss</span>
+            <span>{latestMealCreatedByUser?.healthGoal || 'Not Available'}</span>
 
           </div>
 
