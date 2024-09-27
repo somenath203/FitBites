@@ -2,10 +2,10 @@ import { currentUser } from '@clerk/nextjs/server';
 import { redirect } from 'next/navigation';
 
 import { Label } from '@/components/ui/label';
-import { Button } from '@/components/ui/button';
 import { Textarea } from "@/components/ui/textarea"
 import FormContainer from '@/app/_components/form/FormContainer';
 import { createNewCalorieTracking } from '@/server-actions/calorieTrackerServerAction';
+import SubmitButton from '@/app/_components/all_purpose_component/SubmitButton';
 
 
 const page = async () => {
@@ -71,13 +71,13 @@ const page = async () => {
           </div>
 
 
-          <Button type="submit" className="py-6 flex items-center gap-1">
+          <SubmitButton className='py-6 flex items-center gap-1'>
 
             <span className="text-2xl">✨</span>
 
             <span>Track my Calorie</span>
 
-          </Button>
+          </SubmitButton>
 
 
         </FormContainer>

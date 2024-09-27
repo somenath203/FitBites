@@ -10,9 +10,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Button } from '@/components/ui/button';
 import { createProfileServerAction } from '@/server-actions/userServerActions';
 import FormContainer from '@/app/_components/form/FormContainer';
+import SubmitButton from '@/app/_components/all_purpose_component/SubmitButton';
 
 const page = async () => {
     
@@ -123,7 +123,9 @@ const page = async () => {
 
                 </div>
 
-                <Button type="submit" className='py-6'>Create Profile</Button>
+                <SubmitButton className='py-6'>
+                    Create Profile
+                </SubmitButton>
 
             </FormContainer>
 

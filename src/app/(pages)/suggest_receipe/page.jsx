@@ -10,10 +10,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Button } from '@/components/ui/button';
 import { Textarea } from "@/components/ui/textarea"
 import FormContainer from '@/app/_components/form/FormContainer';
 import { createNewReceipeSuggestion } from '@/server-actions/suggestReceipeServerActions';
+import SubmitButton from '@/app/_components/all_purpose_component/SubmitButton';
 
 
 const page = async () => {
@@ -118,14 +118,13 @@ const page = async () => {
           </div>
 
 
-
-          <Button type="submit" className="py-6 flex items-center gap-1">
+          <SubmitButton className='py-6 flex items-center gap-1'>
 
             <span className="text-2xl">✨</span>
 
             <span>Generate Personalized Receipe Suggestion</span>
 
-          </Button>
+          </SubmitButton>
 
 
         </FormContainer>

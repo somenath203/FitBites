@@ -31,6 +31,7 @@ model MealPlan {
   healthGoal                          String
   dietPreference                      String
   calorieTarget                       String
+  mealPlanCreatedByTheGeminiModel     String
   idOfTheProfileWhoCreatedTheMealPlan String
   profile                             Profile  @relation(fields: [idOfTheProfileWhoCreatedTheMealPlan], references: [clerkId], onDelete: Cascade)
   createdAt                           DateTime @default(now())
@@ -42,6 +43,7 @@ model TrackCalorie {
   whatEatToday                            String
   nutiritonAndFitnessProgress             String
   nutrientsTakenToday                     String
+  calorieTrackCreatedByTheGeminiModel     String
   idOfTheProfileWhoCreatedTheTrackCalorie String
   profile                                 Profile  @relation(fields: [idOfTheProfileWhoCreatedTheTrackCalorie], references: [clerkId], onDelete: Cascade)
   createdAt                               DateTime @default(now())
@@ -55,6 +57,7 @@ model SuggestReceipe {
   dailyCalorieTarget                        String
   ingredientsToInclude                      String
   ingredientsToExclude                      String
+  receipeSuggestCreatedByTheGeminiModel     String
   idOfTheProfileWhoCreatedTheSuggestReceipe String
   profile                                   Profile  @relation(fields: [idOfTheProfileWhoCreatedTheSuggestReceipe], references: [clerkId], onDelete: Cascade)
   createdAt                                 DateTime @default(now())
