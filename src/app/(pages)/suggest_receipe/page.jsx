@@ -9,6 +9,8 @@ import {
 } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
 import { Textarea } from "@/components/ui/textarea"
+import FormContainer from '@/app/_components/form/FormContainer';
+import { createNewReceipeSuggestion } from '@/server-actions/suggestReceipeServerActions';
 
 
 const page = () => {
@@ -21,13 +23,13 @@ const page = () => {
           Receipe Suggestion
         </p>
 
-        <form className="flex flex-col gap-6 w-full">
+        <FormContainer className="flex flex-col gap-6 w-full" action={createNewReceipeSuggestion}>
 
           <div className="flex flex-col gap-2">
 
             <Label>Your Meal Type</Label>
 
-            <Select>
+            <Select name='mealType'>
               <SelectTrigger
                 id="meal-type"
                 className="border border-green-600"
@@ -53,6 +55,7 @@ const page = () => {
 
             <Input
               type="number"
+              name="timeThatCanBeGivenToCooking"
               placeholder="Enter time in minutes"
               min={1}
               className="border border-green-600"
@@ -66,7 +69,7 @@ const page = () => {
 
             <Input
               type="number"
-              id="caloric-target"
+              name="dailyCalorieTarget"
               placeholder="Enter your target calories"
               min="1000"
               max="5000"
@@ -80,6 +83,7 @@ const page = () => {
             <Label>Ingredients to Include</Label>
 
             <Textarea 
+              name="ingredientsToInclude"
               placeholder="List ingredients to include (e.g., chicken, spinach)" 
               rows={10} 
               className="!resize-none border border-green-600"
@@ -93,6 +97,7 @@ const page = () => {
             <Label>Ingredients to Exclude</Label>
 
             <Textarea 
+              name="ingredientsToExclude"
               placeholder="List ingredients to exclude (e.g., peanuts, dairy)"
               rows={10} 
               className="!resize-none border border-green-600"
@@ -111,7 +116,7 @@ const page = () => {
           </Button>
 
 
-        </form>
+        </FormContainer>
 
       </div>
       

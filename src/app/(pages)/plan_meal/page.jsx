@@ -8,6 +8,8 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
+import FormContainer from '@/app/_components/form/FormContainer';
+import { createNewMealPlan } from '@/server-actions/planMealServerActions';
 
 const page = () => {
   return (
@@ -19,13 +21,13 @@ const page = () => {
           Plan your Meal
         </p>
 
-        <form className="flex flex-col gap-6 w-full">
+        <FormContainer className="flex flex-col gap-6 w-full" action={createNewMealPlan}>
 
           <div className="flex flex-col gap-2">
 
             <Label>Your Health Goal</Label>
 
-            <Select>
+            <Select name='healthGoal'>
               <SelectTrigger
                 id="health-goal"
                 className="border border-green-600"
@@ -65,7 +67,7 @@ const page = () => {
 
             <Label>Diet Preference</Label>
 
-            <Select>
+            <Select name='dietPreference'>
               <SelectTrigger
                 id="diet-preference"
                 className="border border-green-600"
@@ -94,6 +96,7 @@ const page = () => {
             <Label htmlFor="caloric-target">Daily Caloric Target</Label>
 
             <Input
+              name='targetCalorie'
               type="number"
               id="caloric-target"
               placeholder="Enter your target calories"
@@ -112,7 +115,7 @@ const page = () => {
 
           </Button>
 
-        </form>
+        </FormContainer>
 
       </div>
       

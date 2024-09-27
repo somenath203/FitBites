@@ -8,16 +8,54 @@ datasource db {
 }
 
 model Profile {
-  id           String   @id @default(uuid())
-  clerkId      String   @unique
-  firstName    String
-  lastName     String
-  email        String
-  profileImage String
-  age          Int
-  gender       String
-  height       Int
-  weight       Int
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  id                          String           @id @default(uuid())
+  clerkId                     String           @unique
+  firstName                   String
+  lastName                    String
+  email                       String
+  profileImage                String
+  age                         Int
+  gender                      String
+  height                      Int
+  weight                      Int
+  allMealPlansOfTheUser       MealPlan[]
+  allTrackCaloriesOfTheUser   TrackCalorie[]
+  allSuggestReceipesOfTheUser SuggestReceipe[]
+  createdAt                   DateTime         @default(now())
+  updatedAt                   DateTime         @updatedAt
+}
+
+model MealPlan {
+  id                                  String   @id @default(uuid())
+  healthGoal                          String
+  dietPreference                      String
+  calorieTarget                       String
+  idOfTheProfileWhoCreatedTheMealPlan String
+  profile                             Profile  @relation(fields: [idOfTheProfileWhoCreatedTheMealPlan], references: [clerkId], onDelete: Cascade)
+  createdAt                           DateTime @default(now())
+  updatedAt                           DateTime @updatedAt
+}
+
+model TrackCalorie {
+  id                                      String   @id @default(uuid())
+  whatEatToday                            String
+  nutiritonAndFitnessProgress             String
+  nutrientsTakenToday                     String
+  idOfTheProfileWhoCreatedTheTrackCalorie String
+  profile                                 Profile  @relation(fields: [idOfTheProfileWhoCreatedTheTrackCalorie], references: [clerkId], onDelete: Cascade)
+  createdAt                               DateTime @default(now())
+  updatedAt                               DateTime @updatedAt
+}
+
+model SuggestReceipe {
+  id                                        String   @id @default(uuid())
+  mealType                                  String
+  timeThatCanBeGivenToCooking               String
+  dailyCalorieTarget                        String
+  ingredientsToInclude                      String
+  ingredientsToExclude                      String
+  idOfTheProfileWhoCreatedTheSuggestReceipe String
+  profile                                   Profile  @relation(fields: [idOfTheProfileWhoCreatedTheSuggestReceipe], references: [clerkId], onDelete: Cascade)
+  createdAt                                 DateTime @default(now())
+  updatedAt                                 DateTime @updatedAt
 }
