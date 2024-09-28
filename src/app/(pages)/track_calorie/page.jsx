@@ -31,13 +31,14 @@ const page = async () => {
 
           <div className="flex flex-col gap-2">
 
-            <Label>What did you eat today?</Label>
+            <Label>What did you eat today? (max 20 words)</Label>
 
             <Textarea 
               name="whatEatToday"
               placeholder="describe what you eat today in details" 
               rows={6} 
               className="!resize-none border border-green-600"
+              required
             />
 
           </div>
@@ -45,13 +46,14 @@ const page = async () => {
 
           <div className="flex flex-col gap-2">
 
-            <Label>How is your nutrition and fitness progress going?</Label>
+            <Label>How is your nutrition and fitness progress going? (max 20 words)</Label>
 
             <Textarea 
               name="nutiritonAndFitnessProgress"
               placeholder="describe briefly your thoughts on your meal plans, energy levels, or weight changes" 
               rows={6} 
               className="!resize-none border border-green-600"
+              required
             />
 
           </div>
@@ -59,13 +61,14 @@ const page = async () => {
 
           <div className="flex flex-col gap-2">
 
-            <Label>What nutrients did you have today?</Label>
+            <Label>What nutrients did you have today? (max 20 words)</Label>
 
             <Textarea 
               name="nutrientsTakenToday"
               placeholder="briefly list your carbs, proteins, fats, and vitamins" 
               rows={6} 
               className="!resize-none border border-green-600"
+              required
             />
 
           </div>

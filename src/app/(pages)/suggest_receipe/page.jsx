@@ -41,7 +41,7 @@ const page = async () => {
 
             <Label>Your Meal Type</Label>
 
-            <Select name='mealType'>
+            <Select name='mealType' required>
               <SelectTrigger
                 id="meal-type"
                 className="border border-green-600"
@@ -71,6 +71,7 @@ const page = async () => {
               placeholder="Enter time in minutes"
               min={1}
               className="border border-green-600"
+              required
             />
 
           </div>
@@ -86,6 +87,7 @@ const page = async () => {
               min="1000"
               max="5000"
               className="border border-green-600"
+              required
             />
 
           </div>
@@ -99,6 +101,7 @@ const page = async () => {
               placeholder="List ingredients to include (e.g., chicken, spinach)" 
               rows={10} 
               className="!resize-none border border-green-600"
+              required
             />
 
           </div>
@@ -113,6 +116,7 @@ const page = async () => {
               placeholder="List ingredients to exclude (e.g., peanuts, dairy)"
               rows={10} 
               className="!resize-none border border-green-600"
+              required
             />
 
           </div>

@@ -46,6 +46,7 @@ const page = async () => {
                         className='border border-green-600'
                         min={5}
                         max={100}
+                        required
                     />
 
                 </div>
@@ -82,6 +83,9 @@ const page = async () => {
                             type="number" 
                             placeholder="enter your height (in cms)" 
                             className='border border-green-600'
+                            required
+                            min={5}
+                            max={100}
                         />
 
                     </div>
@@ -95,6 +99,8 @@ const page = async () => {
                             type="number" 
                             placeholder="enter your weight (in kgs)" 
                             className='border border-green-600'
+                            required
+                            min={20}
                         />
 
                     </div>
@@ -105,7 +111,7 @@ const page = async () => {
 
                     <Label>Activity Level</Label>
 
-                    <Select name='activityLevel'>
+                    <Select name='activityLevel' required>
 
                         <SelectTrigger className='border border-green-600'>
                             <SelectValue placeholder="select your activity level" />

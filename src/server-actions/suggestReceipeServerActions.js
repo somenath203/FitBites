@@ -1,6 +1,7 @@
 'use server';
 
 import { currentUser } from '@clerk/nextjs/server';
+import { redirect } from 'next/navigation';
 
 import primsaClientConfig from '@/prismaClientConfig';
 import { chatSessionGoogleGemini } from '@/googleGeminiModelConfig';
@@ -56,10 +57,6 @@ export const createNewReceipeSuggestion = async (prevState, formData) => {
                 idOfTheProfileWhoCreatedTheSuggestReceipe: user?.id
             }
         });
-        
-        return {
-            message: 'your new receipe suggestion has been generated successfully'
-        }
 
         
     } catch (error) {
@@ -71,6 +68,8 @@ export const createNewReceipeSuggestion = async (prevState, formData) => {
         }
 
     }
+
+    redirect('/suggest_receipe_history');
 
 }
 

@@ -1,6 +1,7 @@
 'use server';
 
 import { currentUser } from '@clerk/nextjs/server';
+import { redirect } from 'next/navigation';
 
 import primsaClientConfig from '@/prismaClientConfig';
 import { chatSessionGoogleGemini } from '@/googleGeminiModelConfig';
@@ -16,6 +17,34 @@ export const createNewCalorieTracking = async (prevState, formData) => {
         const fetchAllDetailsOfUser = await fetchWholeProfileOfUser();
 
         const rawData = Object.fromEntries(formData);
+
+
+        const whatEatTodayNoOfWordsGreaterThanTwenty = rawData?.whatEatToday?.split(' ');
+
+        if(whatEatTodayNoOfWordsGreaterThanTwenty.length > 20) {
+
+            throw new Error("make sure what you wrote in 'What did you eat today?' is lesser than 20 words");
+
+        }
+
+
+        const todaysMealNoOfWordsGreaterThanTwenty = rawData?.nutiritonAndFitnessProgress?.split(' ');
+
+        if(todaysMealNoOfWordsGreaterThanTwenty.length > 20) {
+
+            throw new Error("make sure what you wrote in 'How is your nutrition and fitness progress going?' is lesser than 20 words");
+
+        }
+
+
+        const todaysNutritionTakenNoOfWordsGreaterThanTwenty = rawData?.nutrientsTakenToday?.split(' ');
+
+        if(todaysNutritionTakenNoOfWordsGreaterThanTwenty.length > 20) {
+
+            throw new Error("make sure what you wrote in 'What nutrients did you have today?' is lesser than 20 words");
+
+        }
+        
 
         const calorieTrackingPrompt = `
             You are a nutrition assistant that helps users track their calories effectively. 
@@ -52,10 +81,6 @@ export const createNewCalorieTracking = async (prevState, formData) => {
                 calorieTrackCreatedByTheGeminiModel: responseFromModel?.response?.text()
             }
         });
-        
-        return {
-            message: 'your calorie has been tracked successfully'
-        }
 
         
     } catch (error) {
@@ -67,6 +92,8 @@ export const createNewCalorieTracking = async (prevState, formData) => {
         }
 
     }
+
+    redirect('/track_calorie_history');
 
 }
 

@@ -39,7 +39,7 @@ const page = async () => {
 
             <Label>Your Health Goal</Label>
 
-            <Select name='healthGoal'>
+            <Select name='healthGoal' required>
               <SelectTrigger
                 id="health-goal"
                 className="border border-green-600"
@@ -79,7 +79,7 @@ const page = async () => {
 
             <Label>Diet Preference</Label>
 
-            <Select name='dietPreference'>
+            <Select name='dietPreference' required>
               <SelectTrigger
                 id="diet-preference"
                 className="border border-green-600"
@@ -115,6 +115,7 @@ const page = async () => {
               min="1000"
               max="5000"
               className="w-full border border-green-600"
+              required
             />
 
           </div>

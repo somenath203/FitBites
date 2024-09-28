@@ -1,6 +1,7 @@
 'use server';
 
 import { currentUser } from '@clerk/nextjs/server';
+import { redirect } from 'next/navigation';
 
 import primsaClientConfig from '@/prismaClientConfig';
 import { chatSessionGoogleGemini } from '@/googleGeminiModelConfig';
@@ -46,10 +47,6 @@ export const createNewMealPlan = async (prevState, formData) => {
                 idOfTheProfileWhoCreatedTheMealPlan: user?.id
             }
         });
-        
-        return {
-            message: 'your meal plan has been generated successfully'
-        }
 
         
     } catch (error) {
@@ -61,6 +58,8 @@ export const createNewMealPlan = async (prevState, formData) => {
         }
 
     }
+
+    redirect('/plan_meal_history');
 
 }
 
