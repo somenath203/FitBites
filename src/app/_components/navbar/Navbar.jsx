@@ -74,6 +74,30 @@ const Navbar = async () => {
 
               </DropdownMenuItem>
 
+              <DropdownMenuItem>
+
+                <Link href="/plan_meal_history" className="capitalize w-full">
+                  Plan Meal History
+                </Link>
+
+              </DropdownMenuItem>
+
+              <DropdownMenuItem>
+
+                <Link href="/suggest_receipe_history" className="capitalize w-full">
+                  Suggest Receipe History
+                </Link>
+
+              </DropdownMenuItem>
+
+              <DropdownMenuItem>
+
+                <Link href="/track_calorie_history" className="capitalize w-full">
+                  Track Calorie History
+                </Link>
+
+              </DropdownMenuItem>
+
               <DropdownMenuSeparator />
 
               <DropdownMenuItem>

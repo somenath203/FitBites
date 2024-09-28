@@ -69,3 +69,30 @@ export const createNewCalorieTracking = async (prevState, formData) => {
     }
 
 }
+
+
+export const fetchAllCalorieTrackingCreatedByTheUser = async () => {
+    
+    try {
+
+        const user = await currentUser();
+
+        const allCaloriesCreatedByTheUser = await primsaClientConfig.trackCalorie.findMany({
+            where: {
+                idOfTheProfileWhoCreatedTheTrackCalorie: user?.id
+            }
+        });
+
+        return allCaloriesCreatedByTheUser;
+
+    } catch (error) {
+
+        console.log(error);
+
+        return {
+            message: error?.message || 'There was an error while fetching your calorie trackings, please try again.'
+        };
+
+    }
+
+};
