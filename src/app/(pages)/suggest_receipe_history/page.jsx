@@ -11,6 +11,7 @@ import {
 } from '@/components/ui/table';
 import { fetchAllReceipeSuggestionsCreatedByTheUser } from "@/server-actions/suggestReceipeServerActions";
 import { Button } from "@/components/ui/button";
+import { formatDate } from "@/utils/formatDate";
 
 const page = async () => {
 
@@ -48,7 +49,8 @@ const page = async () => {
               <TableHead>Daily Calorie Target</TableHead>
               <TableHead>Ingredients to Include</TableHead>
               <TableHead>Ingredients to Exclude</TableHead>
-              <TableHead>View Receipe Suggestion</TableHead>
+              <TableHead>Created At</TableHead>
+              <TableHead>View Details</TableHead>
 
             </TableRow>
 
@@ -81,9 +83,13 @@ const page = async () => {
                 </TableCell>
 
                 <TableCell>
+                  {formatDate(receipe.createdAt)}
+                </TableCell>
+
+                <TableCell>
 
                   <Link href={`view_particular_receipe_suggestions/${receipe.id}`}>
-                    <Button>View Receipe Suggestion</Button>
+                    <Button>View Details</Button>
                   </Link>
 
                 </TableCell>

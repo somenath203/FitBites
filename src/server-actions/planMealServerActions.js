@@ -89,3 +89,26 @@ export const fetchAllMealsCreatedByTheUser = async () => {
     }
 
 };
+
+
+export const fetchParticularPropertyMealById = async (mealPlanId) => {
+
+    try {
+
+        return primsaClientConfig.mealPlan.findUnique({
+            where: {
+                id: mealPlanId
+            }
+        });
+        
+    } catch (error) {
+        
+        console.log(error);
+
+        return {
+            message: error?.message || 'something went wrong while fetching the meal, please try again'
+        }
+
+    }
+
+}

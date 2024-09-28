@@ -11,6 +11,7 @@ import {
 } from '@/components/ui/table';
 import { fetchAllCalorieTrackingCreatedByTheUser } from "@/server-actions/calorieTrackerServerAction";
 import { Button } from "@/components/ui/button";
+import { formatDate } from "@/utils/formatDate";
 
 const page = async () => {
 
@@ -46,7 +47,8 @@ const page = async () => {
               <TableHead>What Eat Today</TableHead>
               <TableHead>Nutiriton and Fitness Progress</TableHead>
               <TableHead>Nutrition Taken Today</TableHead>
-              <TableHead>View Calorie Tracking</TableHead>
+              <TableHead>Created At</TableHead>
+              <TableHead>View Details</TableHead>
 
             </TableRow>
 
@@ -59,21 +61,25 @@ const page = async () => {
               return <TableRow key={calorie.id}>
 
                 <TableCell>
-                  {calorie.whatEatToday}
+                  {calorie.whatEatToday.split(' ').length <= 3 ? calorie.whatEatToday : calorie.whatEatToday.split(' ').slice(0, 3).join(' ') + ' ...' }
                 </TableCell>
 
                 <TableCell>
-                  {calorie.nutiritonAndFitnessProgress}
+                  {calorie.nutiritonAndFitnessProgress.split(' ').length <= 3 ? calorie.nutiritonAndFitnessProgress : calorie.nutiritonAndFitnessProgress.split(' ').slice(0, 3).join(' ') + ' ...'}
                 </TableCell>
 
                 <TableCell>
-                  {calorie.nutrientsTakenToday}
+                  {calorie.nutrientsTakenToday.split(' ').length <= 3 ? calorie.nutrientsTakenToday : calorie.nutrientsTakenToday.split(' ').slice(0, 3).join(' ') + ' ...'}
+                </TableCell>
+
+                <TableCell>
+                  {formatDate(calorie.createdAt)}
                 </TableCell>
 
                 <TableCell>
 
                   <Link href={`view_particular_calorie_tracking/${calorie.id}`}>
-                    <Button>View Calorie Tracking</Button>
+                    <Button>View Details</Button>
                   </Link>
 
                 </TableCell>

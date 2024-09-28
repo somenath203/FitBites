@@ -11,6 +11,8 @@ import {
 } from '@/components/ui/table';
 import { fetchAllMealsCreatedByTheUser } from "@/server-actions/planMealServerActions";
 import { Button } from "@/components/ui/button";
+import { formatDate } from "@/utils/formatDate";
+
 
 const page = async () => {
 
@@ -29,7 +31,7 @@ const page = async () => {
   return (
     <div className="mt-14">
 
-      <div className="min-h-screen flex flex-col m-auto items-center gap-10 w-3/4">
+      <div className="min-h-screen flex flex-col m-auto items-center gap-10">
 
         <p className="text-2xl roboto-bold tracking-wider text-green-600">
           Meal History
@@ -46,7 +48,8 @@ const page = async () => {
               <TableHead>Health Goal</TableHead>
               <TableHead>Diet Preference</TableHead>
               <TableHead>Calorie Target</TableHead>
-              <TableHead>View Plan</TableHead>
+              <TableHead>Created At</TableHead>
+              <TableHead>View Details</TableHead>
 
             </TableRow>
 
@@ -71,9 +74,13 @@ const page = async () => {
                 </TableCell>
 
                 <TableCell>
+                  {formatDate(meal.createdAt)}
+                </TableCell>
+
+                <TableCell>
 
                   <Link href={`view_particular_meal/${meal.id}`}>
-                    <Button>View Meal Plan</Button>
+                    <Button>View Details</Button>
                   </Link>
 
                 </TableCell>
