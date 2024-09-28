@@ -1,8 +1,19 @@
+import { currentUser } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
+
 import MarkdownOfAiResponse from "@/app/_components/all_purpose_component/MarkdownOfAiResponse";
 import { fetchParticularMealById } from "@/server-actions/planMealServerActions";
 
 
 const page = async ({ params }) => {
+
+  const currentLoggedInUser = await currentUser();
+
+  if(!currentLoggedInUser?.privateMetadata?.hasCompletedProfile) {
+  
+    redirect('/complete_profile');
+      
+  }
 
   const meal = await fetchParticularMealById(params.id);
 
@@ -52,7 +63,7 @@ const page = async ({ params }) => {
         Your Personalized Meal Plan
       </div>
 
-      <div>
+      <div className="flex flex-col gap-4">
         <MarkdownOfAiResponse mk={meal.mealPlanCreatedByTheGeminiModel} />
       </div>
 

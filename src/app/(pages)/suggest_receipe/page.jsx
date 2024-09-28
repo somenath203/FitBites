@@ -94,7 +94,7 @@ const page = async () => {
 
           <div className="flex flex-col gap-2">
 
-            <Label>Ingredients to Include</Label>
+            <Label>Ingredients to Include (max 20 words)</Label>
 
             <Textarea 
               name="ingredientsToInclude"
@@ -109,7 +109,7 @@ const page = async () => {
 
           <div className="flex flex-col gap-2">
 
-            <Label>Ingredients to Exclude</Label>
+            <Label>Ingredients to Exclude (max 20 words)</Label>
 
             <Textarea 
               name="ingredientsToExclude"

@@ -1,9 +1,20 @@
+import { currentUser } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
+
 import MarkdownOfAiResponse from "@/app/_components/all_purpose_component/MarkdownOfAiResponse";
 import { fetchParticularReceipeSuggestionById } from "@/server-actions/suggestReceipeServerActions";
 
 
 
 const page = async ({ params }) => {
+
+  const currentLoggedInUser = await currentUser();
+
+  if(!currentLoggedInUser?.privateMetadata?.hasCompletedProfile) {
+  
+    redirect('/complete_profile');
+      
+  }
 
   const receipeSuggestion = await fetchParticularReceipeSuggestionById(params.id);
 
@@ -73,7 +84,7 @@ const page = async ({ params }) => {
         Your Personalized Receipe Suggestion
       </div>
 
-      <div>
+      <div className="flex flex-col gap-4">
         <MarkdownOfAiResponse mk={receipeSuggestion.receipeSuggestCreatedByTheGeminiModel} />
       </div>
 

@@ -21,15 +21,16 @@ export const createNewMealPlan = async (prevState, formData) => {
         const mealPlanPrompt = `
             Generate a personalized meal plan for a user based on the following details:
 
-            - Name: ${fetchAllDetailsOfUser.firstName} ${fetchAllDetailsOfUser.lastName}
-            - Age: ${fetchAllDetailsOfUser.age} years
-            - Gender: ${fetchAllDetailsOfUser.gender}
-            - Height: ${fetchAllDetailsOfUser.height} cm
-            - Weight: ${fetchAllDetailsOfUser.weight} kg
-            - Activity Level: ${fetchAllDetailsOfUser.activityLevel}
-            - Health Goal: ${rawData?.healthGoal} 
-            - Dietary Preference: ${rawData?.dietPreference} 
-            - Calorie Target: ${rawData?.targetCalorie} kcal per day
+            - Name: ${fetchAllDetailsOfUser.firstName || ''} ${fetchAllDetailsOfUser.lastName || ''}
+            - Age: ${fetchAllDetailsOfUser.age || 0} years
+            - Gender: ${fetchAllDetailsOfUser.gender || ''}
+            - Height: ${fetchAllDetailsOfUser.height || 0} cm
+            - Weight: ${fetchAllDetailsOfUser.weight || 0} kg
+            - Activity Level: ${fetchAllDetailsOfUser.activityLevel || ''}
+            - Allergies: ${fetchAllDetailsOfUser?.allergies || ''}
+            - Health Goal: ${rawData?.healthGoal || ''} 
+            - Dietary Preference: ${rawData?.dietPreference || ''} 
+            - Calorie Target: ${rawData?.targetCalorie || ''} kcal per day
 
             Create a personalized meal plan for a full day (breakfast, lunch, dinner, and snacks), ensuring it aligns with the user's calorie target, dietary preferences, and health goal. Suggest nutrient-dense foods and include macronutrient breakdown for each meal (proteins, carbohydrates, fats) and write in the form of markdown.
         `;
@@ -38,11 +39,11 @@ export const createNewMealPlan = async (prevState, formData) => {
         
         await primsaClientConfig.mealPlan.create({
             data: {
-                healthGoal: rawData?.healthGoal,
-                dietPreference: rawData?.dietPreference,
-                calorieTarget: rawData?.targetCalorie,
-                mealPlanCreatedByTheGeminiModel: responseFromModel?.response?.text(),
-                idOfTheProfileWhoCreatedTheMealPlan: user?.id
+                healthGoal: rawData?.healthGoal || '',
+                dietPreference: rawData?.dietPreference || '',
+                calorieTarget: rawData?.targetCalorie || '',
+                mealPlanCreatedByTheGeminiModel: responseFromModel?.response?.text() || '',
+                idOfTheProfileWhoCreatedTheMealPlan: user?.id || ''
             }
         });
 

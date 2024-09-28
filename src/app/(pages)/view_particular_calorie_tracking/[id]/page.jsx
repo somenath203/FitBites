@@ -1,3 +1,6 @@
+import { currentUser } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
+
 import MarkdownOfAiResponse from "@/app/_components/all_purpose_component/MarkdownOfAiResponse";
 import { fetchParticularCalorieTrackerById } from "@/server-actions/calorieTrackerServerAction";
 import { formatDate } from "@/utils/formatDate";
@@ -5,6 +8,14 @@ import { formatDate } from "@/utils/formatDate";
 
 
 const page = async ({ params }) => {
+
+  const currentLoggedInUser = await currentUser();
+
+  if(!currentLoggedInUser?.privateMetadata?.hasCompletedProfile) {
+  
+    redirect('/complete_profile');
+      
+  }
 
   const trackCalorie = await fetchParticularCalorieTrackerById(params.id);
 
@@ -53,7 +64,7 @@ const page = async ({ params }) => {
         Your Personalized Receipe Suggestion
       </div>
 
-      <div>
+      <div className="flex flex-col gap-4">
         <MarkdownOfAiResponse mk={trackCalorie.calorieTrackCreatedByTheGeminiModel} />
       </div>
 

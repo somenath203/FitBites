@@ -46,7 +46,7 @@ const page = async () => {
 
           <div className="flex flex-col gap-2">
 
-            <Label>How is your nutrition and fitness progress going? (max 20 words)</Label>
+            <Label>How is your nutrition and fitness progress going? (max 30 words)</Label>
 
             <Textarea 
               name="nutiritonAndFitnessProgress"

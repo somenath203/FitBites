@@ -18,20 +18,40 @@ export const createNewReceipeSuggestion = async (prevState, formData) => {
 
         const rawData = Object.fromEntries(formData);
 
+
+        const ingredientsToIncludeNoOfWordsGreaterThanTwenty = rawData?.ingredientsToInclude?.split(' ');
+
+        if(ingredientsToIncludeNoOfWordsGreaterThanTwenty.length > 20) {
+
+            throw new Error("make sure what you wrote in 'Ingredients to Include' is lesser than 20 words");
+
+        }
+
+
+        const ingredientsToExcludeNoOfWordsGreaterThanTwenty = rawData?.ingredientsToExclude?.split(' ');
+
+        if(ingredientsToExcludeNoOfWordsGreaterThanTwenty.length > 20) {
+
+            throw new Error("make sure what you wrote in 'Ingredients to Exclude' is lesser than 20 words");
+
+        }
+
+
         const recipeSuggestionPrompt = `
             Generate personalized recipe suggestions for a user based on the following details:
 
-            - Name: ${fetchAllDetailsOfUser.firstName} ${fetchAllDetailsOfUser.lastName}
-            - Age: ${fetchAllDetailsOfUser.age} years
-            - Gender: ${fetchAllDetailsOfUser.gender}
-            - Height: ${fetchAllDetailsOfUser.height} cm
-            - Weight: ${fetchAllDetailsOfUser.weight} kg
-            - Activity Level: ${fetchAllDetailsOfUser.activityLevel}
-            - Meal Type: ${rawData?.mealType}
-            - Time Available for Cooking (in minutes): ${rawData?.timeThatCanBeGivenToCooking}
-            - Daily Calorie Target: ${rawData?.dailyCalorieTarget} kcal
-            - Ingredients to Include: ${rawData?.ingredientsToInclude}
-            - Ingredients to Exclude: ${rawData?.ingredientsToExclude}
+            - Name: ${fetchAllDetailsOfUser.firstName || ''} ${fetchAllDetailsOfUser.lastName || ''}
+            - Age: ${fetchAllDetailsOfUser.age || 0} years
+            - Gender: ${fetchAllDetailsOfUser.gender || ''}
+            - Height: ${fetchAllDetailsOfUser.height || 0} cm
+            - Weight: ${fetchAllDetailsOfUser.weight || 0} kg
+            - Activity Level: ${fetchAllDetailsOfUser.activityLevel || ''}
+            - Allergies: ${fetchAllDetailsOfUser.allergies || ''}
+            - Meal Type: ${rawData?.mealType || ''}
+            - Time Available for Cooking (in minutes): ${rawData?.timeThatCanBeGivenToCooking || ''}
+            - Daily Calorie Target: ${rawData?.dailyCalorieTarget || ''} kcal
+            - Ingredients to Include: ${rawData?.ingredientsToInclude || ''}
+            - Ingredients to Exclude: ${rawData?.ingredientsToExclude || ''}
 
             Based on the above information, create a list of personalized recipe suggestions that the user can prepare. Each recipe should include:
             - Recipe name
@@ -46,13 +66,13 @@ export const createNewReceipeSuggestion = async (prevState, formData) => {
         
         await primsaClientConfig.suggestReceipe.create({
             data: {
-                mealType: rawData?.mealType,
-                timeThatCanBeGivenToCooking: rawData?.timeThatCanBeGivenToCooking,
-                dailyCalorieTarget: rawData?.dailyCalorieTarget, 
-                ingredientsToInclude: rawData?.ingredientsToInclude,   
-                ingredientsToExclude: rawData?.ingredientsToExclude, 
-                receipeSuggestCreatedByTheGeminiModel: responseFromModel?.response?.text(),        
-                idOfTheProfileWhoCreatedTheSuggestReceipe: user?.id
+                mealType: rawData?.mealType || '',
+                timeThatCanBeGivenToCooking: rawData?.timeThatCanBeGivenToCooking || '',
+                dailyCalorieTarget: rawData?.dailyCalorieTarget || '', 
+                ingredientsToInclude: rawData?.ingredientsToInclude || '',   
+                ingredientsToExclude: rawData?.ingredientsToExclude || '', 
+                receipeSuggestCreatedByTheGeminiModel: responseFromModel?.response?.text() || '',        
+                idOfTheProfileWhoCreatedTheSuggestReceipe: user?.id || ''
             }
         });
 

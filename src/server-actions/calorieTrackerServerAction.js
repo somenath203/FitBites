@@ -30,9 +30,9 @@ export const createNewCalorieTracking = async (prevState, formData) => {
 
         const todaysMealNoOfWordsGreaterThanTwenty = rawData?.nutiritonAndFitnessProgress?.split(' ');
 
-        if(todaysMealNoOfWordsGreaterThanTwenty.length > 20) {
+        if(todaysMealNoOfWordsGreaterThanTwenty.length > 30) {
 
-            throw new Error("make sure what you wrote in 'How is your nutrition and fitness progress going?' is lesser than 20 words");
+            throw new Error("make sure what you wrote in 'How is your nutrition and fitness progress going?' is lesser than 30 words");
 
         }
 
@@ -50,15 +50,15 @@ export const createNewCalorieTracking = async (prevState, formData) => {
             You are a nutrition assistant that helps users track their calories effectively. 
             A user has provided the following information:
 
-            - Full Name: ${fetchAllDetailsOfUser.firstName} ${fetchAllDetailsOfUser.lastName}
-            - Age: ${fetchAllDetailsOfUser.age} years
-            - Gender: ${fetchAllDetailsOfUser.gender}
-            - Height: ${fetchAllDetailsOfUser.height} cm
-            - Weight: ${fetchAllDetailsOfUser.weight} kg
-            - Activity Level: ${fetchAllDetailsOfUser.activityLevel}
-            - Today's Meals: ${rawData?.whatEatToday}
-            - Nutrition and Fitness Progress: ${rawData?.nutiritonAndFitnessProgress}
-            - Nutrients Taken Today: ${rawData?.nutrientsTakenToday}
+            - Full Name: ${fetchAllDetailsOfUser.firstName || ''} ${fetchAllDetailsOfUser.lastName || ''}
+            - Age: ${fetchAllDetailsOfUser.age || 0} years
+            - Gender: ${fetchAllDetailsOfUser.gender || ''}
+            - Height: ${fetchAllDetailsOfUser.height || 0} cm
+            - Weight: ${fetchAllDetailsOfUser.weight || 0} kg
+            - Activity Level: ${fetchAllDetailsOfUser.activityLevel || ''}
+            - Today's Meals: ${rawData?.whatEatToday || ''}
+            - Nutrition and Fitness Progress: ${rawData?.nutiritonAndFitnessProgress || ''}
+            - Nutrients Taken Today: ${rawData?.nutrientsTakenToday || ''}
 
             Based on the above whole information, generate a personalized calorie tracking plan for the user. 
             Include specific recommendations for how they can track their calorie intake effectively, 
@@ -72,11 +72,11 @@ export const createNewCalorieTracking = async (prevState, formData) => {
 
         await primsaClientConfig.trackCalorie.create({
             data: {
-                whatEatToday: rawData?.whatEatToday,                            
-                nutiritonAndFitnessProgress: rawData?.nutiritonAndFitnessProgress,             
-                nutrientsTakenToday: rawData?.nutrientsTakenToday,                     
-                idOfTheProfileWhoCreatedTheTrackCalorie: user?.id,
-                calorieTrackCreatedByTheGeminiModel: responseFromModel?.response?.text()
+                whatEatToday: rawData?.whatEatToday || '',                            
+                nutiritonAndFitnessProgress: rawData?.nutiritonAndFitnessProgress || '',             
+                nutrientsTakenToday: rawData?.nutrientsTakenToday || '',                     
+                idOfTheProfileWhoCreatedTheTrackCalorie: user?.id || '',
+                calorieTrackCreatedByTheGeminiModel: responseFromModel?.response?.text() || ''
             }
         });
 

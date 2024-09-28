@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { currentUser } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
 
 import {
   Table,
@@ -13,7 +15,16 @@ import { fetchAllReceipeSuggestionsCreatedByTheUser } from "@/server-actions/sug
 import { Button } from "@/components/ui/button";
 import { formatDate } from "@/utils/formatDate";
 
+
 const page = async () => {
+
+  const currentLoggedInUser = await currentUser();
+
+  if(!currentLoggedInUser?.privateMetadata?.hasCompletedProfile) {
+  
+    redirect('/complete_profile');
+      
+  }
 
   const allReceipesCreatedByTheCurrentlyLoggedInUser = await fetchAllReceipeSuggestionsCreatedByTheUser();
 

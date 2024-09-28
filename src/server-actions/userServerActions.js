@@ -20,18 +20,28 @@ export const createProfileServerAction = async (prevState, formData) => {
         const rawData = Object.fromEntries(formData);
         
 
+        const allergiesNoOfWordsGreaterThanTwenty = rawData?.allergies?.split(' ');
+
+        if(allergiesNoOfWordsGreaterThanTwenty.length > 20) {
+
+            throw new Error("make sure what you wrote in 'allergies' is lesser than 20 words");
+
+        }
+        
+
         await primsaClientConfig.profile.create({
             data: {
-                clerkId: currentLoggedInUser?.id, 
-                firstName: currentLoggedInUser?.firstName,
-                lastName: currentLoggedInUser?.lastName,
-                email: currentLoggedInUser?.primaryEmailAddress?.emailAddress,      
-                profileImage: currentLoggedInUser?.imageUrl,
-                age: Number(rawData.age),
-                gender: rawData.gender,
-                activityLevel: rawData?.activityLevel,
-                height: Number(rawData.height),
-                weight: Number(rawData.weight),
+                clerkId: currentLoggedInUser?.id || '', 
+                firstName: currentLoggedInUser?.firstName || '',
+                lastName: currentLoggedInUser?.lastName || '',
+                email: currentLoggedInUser?.primaryEmailAddress?.emailAddress || '',      
+                profileImage: currentLoggedInUser?.imageUrl || '',
+                age: Number(rawData.age) || 0,
+                gender: rawData.gender || '',
+                activityLevel: rawData?.activityLevel || '',
+                allergies: rawData?.allergies || '', 
+                height: Number(rawData.height) || 0,
+                weight: Number(rawData.weight) || 0,
                 
             }
         });
