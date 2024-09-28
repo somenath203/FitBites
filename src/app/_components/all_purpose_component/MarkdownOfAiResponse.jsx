@@ -3,7 +3,7 @@ import remarkGfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw';
 
 
-const MarkdownPreview = ({ mk }) => {
+const MarkdownOfAiResponse = ({ mk }) => {
   return (
     <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
         {mk}
@@ -11,4 +11,4 @@ const MarkdownPreview = ({ mk }) => {
   );
 };
 
-export default MarkdownPreview;
+export default MarkdownOfAiResponse;

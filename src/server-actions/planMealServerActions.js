@@ -32,8 +32,6 @@ export const createNewMealPlan = async (prevState, formData) => {
             - Calorie Target: ${rawData?.targetCalorie} kcal per day
 
             Create a personalized meal plan for a full day (breakfast, lunch, dinner, and snacks), ensuring it aligns with the user's calorie target, dietary preferences, and health goal. Suggest nutrient-dense foods and include macronutrient breakdown for each meal (proteins, carbohydrates, fats) and write in the form of markdown.
-
-            Generate content in Rich Text Editor Format
         `;
 
         const responseFromModel = await chatSessionGoogleGemini.sendMessage(mealPlanPrompt);
@@ -91,7 +89,7 @@ export const fetchAllMealsCreatedByTheUser = async () => {
 };
 
 
-export const fetchParticularPropertyMealById = async (mealPlanId) => {
+export const fetchParticularMealById = async (mealPlanId) => {
 
     try {
 

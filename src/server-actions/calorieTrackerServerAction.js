@@ -65,8 +65,6 @@ export const createNewCalorieTracking = async (prevState, formData) => {
             suggest types of foods they can eat, and tips to maintain their dietary goals.
 
             Please be detailed and ensure that your suggestions align with their personal health goals.
-
-            Generate content in Rich Text Editor Format
         `;
 
 
@@ -123,3 +121,26 @@ export const fetchAllCalorieTrackingCreatedByTheUser = async () => {
     }
 
 };
+
+
+export const fetchParticularCalorieTrackerById = async (trackCalorieId) => {
+
+    try {
+
+        return primsaClientConfig.trackCalorie.findUnique({
+            where: {
+                id: trackCalorieId
+            }
+        });
+        
+    } catch (error) {
+        
+        console.log(error);
+
+        return {
+            message: error?.message || 'something went wrong while fetching the calorie tracking, please try again'
+        }
+
+    }
+
+}

@@ -40,8 +40,6 @@ export const createNewReceipeSuggestion = async (prevState, formData) => {
             - Nutritional information (calories, proteins, carbohydrates, fats)
 
             Ensure the recipes align with the user’s dietary preferences, cooking time, and calorie target. Present the information in markdown format.
-
-            Generate content in Rich Text Editor Format
         `;
 
         const responseFromModel = await chatSessionGoogleGemini.sendMessage(recipeSuggestionPrompt);
@@ -99,3 +97,26 @@ export const fetchAllReceipeSuggestionsCreatedByTheUser = async () => {
     }
 
 };
+
+
+export const fetchParticularReceipeSuggestionById = async (receipeSuggestionId) => {
+
+    try {
+
+        return primsaClientConfig.suggestReceipe.findUnique({
+            where: {
+                id: receipeSuggestionId
+            }
+        });
+        
+    } catch (error) {
+        
+        console.log(error);
+
+        return {
+            message: error?.message || 'something went wrong while fetching the calorie tracking, please try again'
+        }
+
+    }
+
+}

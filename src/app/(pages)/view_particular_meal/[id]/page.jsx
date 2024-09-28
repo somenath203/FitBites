@@ -1,16 +1,22 @@
-import MarkdownPreview from "@/app/_components/all_purpose_component/RichTextEditor";
-import RichTextEditor from "@/app/_components/all_purpose_component/RichTextEditor";
-import { fetchParticularPropertyMealById } from "@/server-actions/planMealServerActions";
+import MarkdownOfAiResponse from "@/app/_components/all_purpose_component/MarkdownOfAiResponse";
+import { fetchParticularMealById } from "@/server-actions/planMealServerActions";
+
 
 const page = async ({ params }) => {
 
-  const meal = await fetchParticularPropertyMealById(params.id);
+  const meal = await fetchParticularMealById(params.id);
+
+  if(!meal) {
+    return (
+      <div className="min-h-screen flex justify-center mt-12 capitalize text-xl font-bold text-green-700">No Meal found with this ID</div>
+    )
+  }
   
   return (
-    <div className="mt-12 min-h-screen flex flex-col gap-6">
+    <div className="mt-12 min-h-screen flex flex-col gap-4 text-lg">
 
 
-      <div className="flex gap-5 text-2xl">
+      <div className="flex gap-3">
 
         <span>Goal: </span> 
 
@@ -21,7 +27,7 @@ const page = async ({ params }) => {
       </div>
 
 
-      <div className="flex gap-5 text-2xl">
+      <div className="flex gap-3">
 
         <span>Diet Preference: </span> 
 
@@ -32,22 +38,23 @@ const page = async ({ params }) => {
       </div>
 
 
-      <div className="flex gap-5 text-2xl">
+      <div className="flex gap-3">
 
         <span>Calorie Target: </span> 
 
         <span className="font-bold text-green-700">
-          {meal.calorieTarget}
+          {meal.calorieTarget} cal
         </span>
 
       </div>
 
-      <div className="mt-5">
-
-        <MarkdownPreview mk={meal.mealPlanCreatedByTheGeminiModel} />
-
+      <div className="mt-5 uppercase text-xl text-green-600 font-bold">
+        Your Personalized Meal Plan
       </div>
 
+      <div>
+        <MarkdownOfAiResponse mk={meal.mealPlanCreatedByTheGeminiModel} />
+      </div>
 
     </div>
   )
