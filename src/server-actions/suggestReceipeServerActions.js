@@ -38,30 +38,53 @@ export const createNewReceipeSuggestion = async (prevState, formData) => {
 
 
         const recipeSuggestionPrompt = `
-            Generate personalized recipe suggestions for a user based on the following details:
-
-            - Name: ${fetchAllDetailsOfUser.firstName || ''} ${fetchAllDetailsOfUser.lastName || ''}
-            - Age: ${fetchAllDetailsOfUser.age || 0} years
-            - Gender: ${fetchAllDetailsOfUser.gender || ''}
-            - Height: ${fetchAllDetailsOfUser.height || 0} cm
-            - Weight: ${fetchAllDetailsOfUser.weight || 0} kg
-            - Activity Level: ${fetchAllDetailsOfUser.activityLevel || ''}
-            - Allergies: ${fetchAllDetailsOfUser.allergies || ''}
-            - Meal Type: ${rawData?.mealType || ''}
-            - Time Available for Cooking (in minutes): ${rawData?.timeThatCanBeGivenToCooking || ''}
-            - Daily Calorie Target: ${rawData?.dailyCalorieTarget || ''} kcal
-            - Ingredients to Include: ${rawData?.ingredientsToInclude || ''}
-            - Ingredients to Exclude: ${rawData?.ingredientsToExclude || ''}
-
-            Based on the above information, create a list of personalized recipe suggestions that the user can prepare. Each recipe should include:
-            - Recipe name
-            - Ingredients
-            - Preparation instructions
-            - Nutritional information (calories, proteins, carbohydrates, fats)
-
-            Ensure the recipes align with the user’s dietary preferences, cooking time, and calorie target. Present the information in markdown format.
+            You are an expert nutrition assistant responsible for generating personalized recipe suggestions for a user based on their unique profile and preferences:
+        
+            **User Profile:**
+            - **Full Name:** ${fetchAllDetailsOfUser.firstName || ''} ${fetchAllDetailsOfUser.lastName || ''}
+            - **Age:** ${fetchAllDetailsOfUser.age || 0} years
+            - **Gender:** ${fetchAllDetailsOfUser.gender || ''}
+            - **Height:** ${fetchAllDetailsOfUser.height || 0} cm
+            - **Weight:** ${fetchAllDetailsOfUser.weight || 0} kg
+            - **Activity Level:** ${fetchAllDetailsOfUser.activityLevel || ''} (e.g., sedentary, moderately active, active)
+            - **Allergies:** ${fetchAllDetailsOfUser.allergies || 'None'} (avoid ingredients that may cause an allergic reaction)
+        
+            **Dietary and Cooking Preferences:**
+            - **Meal Type:** ${rawData?.mealType || ''} (e.g., breakfast, lunch, dinner, snacks)
+            - **Time Available for Cooking:** ${rawData?.timeThatCanBeGivenToCooking || 'No time constraint'} minutes
+            - **Daily Calorie Target:** ${rawData?.dailyCalorieTarget || ''} kcal
+            - **Ingredients to Include:** ${rawData?.ingredientsToInclude || 'None specified'}
+            - **Ingredients to Exclude:** ${rawData?.ingredientsToExclude || 'None specified'}
+        
+            **Task:**
+            Based on the user's profile and preferences, provide a list of personalized recipe suggestions. Each recipe should adhere to the user's dietary needs, calorie target, available cooking time, and ingredient preferences. For each recipe, include:
+        
+            1. **Recipe Name**: The name of the dish.
+            2. **Ingredients List**: Only include ingredients that align with the user’s preferences and exclude allergens or ingredients they wish to avoid.
+            3. **Preparation Instructions**: Ensure the instructions are simple and time-conscious, considering the time available for cooking.
+            4. **Nutritional Information**: Provide a detailed breakdown including total calories, proteins, carbohydrates, and fats for each recipe.
+            5. **Cooking Time**: Indicate how long the recipe takes to prepare and cook.
+        
+            **Example Recipe Format:**
+            ### Recipe: ${'Example Recipe Name'}
+            **Ingredients:**
+            - ${'List of ingredients here'}
+        
+            **Instructions:**
+            - Step 1: ${'Example step-by-step instructions'}
+            - Step 2: ${'Additional steps as needed'}
+        
+            **Nutritional Information (per serving):**
+            - **Calories:** ${'xxx kcal'}
+            - **Proteins:** ${'xxg'}
+            - **Carbohydrates:** ${'xxg'}
+            - **Fats:** ${'xxg'}
+        
+            **Cooking Time:** ${'xx minutes'}
+        
+            Please ensure that the recipes are varied, nutritious, and align with the user’s specific dietary preferences, goals, and available time. Present all information in markdown format.
         `;
-
+    
         const responseFromModel = await chatSessionGoogleGemini.sendMessage(recipeSuggestionPrompt);
         
         await primsaClientConfig.suggestReceipe.create({

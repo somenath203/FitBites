@@ -28,6 +28,7 @@ const page = async () => {
 
   const allCalorieTrackingCreatedByTheCurrentlyLoggedInUser = await fetchAllCalorieTrackingCreatedByTheUser();
 
+
   if(allCalorieTrackingCreatedByTheCurrentlyLoggedInUser?.length < 1) {
     return (
       <div className="min-h-screen flex justify-center text-center mt-36">
@@ -55,9 +56,11 @@ const page = async () => {
 
             <TableRow>
 
-              <TableHead>What Eat Today</TableHead>
-              <TableHead>Nutiriton and Fitness Progress</TableHead>
-              <TableHead>Nutrition Taken Today</TableHead>
+              <TableHead>Meal Type</TableHead>
+              <TableHead>Food Items Taken</TableHead>
+              <TableHead>Portion Size of Food</TableHead>
+              <TableHead>Total Calorie of Food</TableHead>
+              <TableHead>Total Macro Nutrients of Food</TableHead>
               <TableHead>Created At</TableHead>
               <TableHead>View Details</TableHead>
 
@@ -72,15 +75,23 @@ const page = async () => {
               return <TableRow key={calorie.id}>
 
                 <TableCell>
-                  {calorie.whatEatToday.split(' ').length <= 3 ? calorie.whatEatToday : calorie.whatEatToday.split(' ').slice(0, 3).join(' ') + ' ...' }
+                  {calorie. mealTypeTakenToday}
                 </TableCell>
 
                 <TableCell>
-                  {calorie.nutiritonAndFitnessProgress.split(' ').length <= 3 ? calorie.nutiritonAndFitnessProgress : calorie.nutiritonAndFitnessProgress.split(' ').slice(0, 3).join(' ') + ' ...'}
+                  {calorie.foodItemsTakenToday.split(' ').length <= 3 ? calorie.foodItemsTakenToday : calorie.foodItemsTakenToday.split(' ').slice(0, 3).join(' ') + ' ...'}
                 </TableCell>
 
                 <TableCell>
-                  {calorie.nutrientsTakenToday.split(' ').length <= 3 ? calorie.nutrientsTakenToday : calorie.nutrientsTakenToday.split(' ').slice(0, 3).join(' ') + ' ...'}
+                  {calorie.portionSizeOfEachFoodTakenToday.split(' ').length <= 3 ? calorie.portionSizeOfEachFoodTakenToday : calorie.portionSizeOfEachFoodTakenToday.split(' ').slice(0, 3).join(' ') + ' ...'}
+                </TableCell>
+
+                <TableCell>
+                  {calorie.approximateTotalCalorieOfAllTheFoodsTogetherTakenToday}
+                </TableCell>
+
+                <TableCell>
+                  {calorie.approximateTotalMacroNutrientsOfAllTheFoodsTogetherTakenToday}
                 </TableCell>
 
                 <TableCell>
