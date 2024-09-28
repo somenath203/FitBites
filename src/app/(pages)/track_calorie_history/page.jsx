@@ -13,7 +13,7 @@ import {
 } from '@/components/ui/table';
 import { fetchAllCalorieTrackingCreatedByTheUser } from "@/server-actions/calorieTrackerServerAction";
 import { Button } from "@/components/ui/button";
-import { formatDate } from "@/utils/formatDate";
+import { formatDate, formatTime } from "@/utils/formatDate";
 
 
 const page = async () => {
@@ -58,10 +58,11 @@ const page = async () => {
 
               <TableHead>Meal Type</TableHead>
               <TableHead>Food Items Taken</TableHead>
-              <TableHead>Portion Size of Food</TableHead>
-              <TableHead>Total Calorie of Food</TableHead>
-              <TableHead>Total Macro Nutrients of Food</TableHead>
-              <TableHead>Created At</TableHead>
+              <TableHead>Portion Size</TableHead>
+              <TableHead>Total Calorie</TableHead>
+              <TableHead>Total Macro Nutrients</TableHead>
+              <TableHead>Creation Date</TableHead>
+              <TableHead>Creation Time</TableHead>
               <TableHead>View Details</TableHead>
 
             </TableRow>
@@ -96,6 +97,10 @@ const page = async () => {
 
                 <TableCell>
                   {formatDate(calorie.createdAt)}
+                </TableCell>
+
+                <TableCell>
+                  {formatTime(calorie.createdAt)}
                 </TableCell>
 
                 <TableCell>

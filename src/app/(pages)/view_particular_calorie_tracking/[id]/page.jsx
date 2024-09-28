@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 
 import MarkdownOfAiResponse from "@/app/_components/all_purpose_component/MarkdownOfAiResponse";
 import { fetchParticularCalorieTrackerById } from "@/server-actions/calorieTrackerServerAction";
-import { formatDate } from "@/utils/formatDate";
+import { formatDate, formatTime } from "@/utils/formatDate";
 
 
 
@@ -30,7 +30,27 @@ const page = async ({ params }) => {
 
       <div className="flex gap-3">
 
-        <span>Meal Type Taken On {formatDate(trackCalorie.createdAt)}: </span> 
+        <span>Date at which the calorie tracking analysis was created: </span> 
+
+        <span className="font-bold text-green-700">
+          {formatDate(trackCalorie.createdAt)}
+        </span>
+
+      </div>
+
+      <div className="flex gap-3">
+
+        <span>Time at which the calorie tracking analysis was created: </span> 
+
+        <span className="font-bold text-green-700">
+          {formatTime(trackCalorie.createdAt)}
+        </span>
+
+      </div>
+
+      <div className="flex gap-3">
+
+        <span>Meal Type Taken: </span> 
 
         <span className="font-bold text-green-700">
           {trackCalorie.mealTypeTakenToday}
@@ -41,7 +61,7 @@ const page = async ({ params }) => {
 
       <div className="flex flex-col gap-2">
 
-        <span>Food Items taken on {formatDate(trackCalorie.createdAt)}: </span> 
+        <span>Food Items taken: </span> 
 
         <span className="font-bold text-green-700">
           {trackCalorie.foodItemsTakenToday}
@@ -51,7 +71,7 @@ const page = async ({ params }) => {
 
       <div className="flex flex-col gap-2">
 
-        <span>Portion Size of each food taken on {formatDate(trackCalorie.createdAt)}: </span> 
+        <span>Portion Size of each food taken: </span> 
 
         <span className="font-bold text-green-700">
           {trackCalorie.portionSizeOfEachFoodTakenToday}
@@ -62,7 +82,7 @@ const page = async ({ params }) => {
 
       <div className="flex gap-3">
 
-        <span>Approzimate total calorie of all the food taken during {trackCalorie.foodItemsTakenToday} on {formatDate(trackCalorie.createdAt)}: </span>
+        <span>Approzimate total calorie of all the food taken during {trackCalorie.foodItemsTakenToday}: </span>
 
         <span className="font-bold text-green-700">
           {trackCalorie.approximateTotalCalorieOfAllTheFoodsTogetherTakenToday}
@@ -72,7 +92,7 @@ const page = async ({ params }) => {
 
       <div className="flex gap-3">
 
-        <span>Approximate total calorie of all the food taken during {trackCalorie.mealTypeTakenToday} on {formatDate(trackCalorie.createdAt)}: </span>
+        <span>Approximate total calorie of all the food taken during {trackCalorie.mealTypeTakenToday}: </span>
 
         <span className="font-bold text-green-700">
           {trackCalorie.approximateTotalCalorieOfAllTheFoodsTogetherTakenToday} kcal
@@ -82,7 +102,7 @@ const page = async ({ params }) => {
 
       <div className="flex gap-3">
 
-        <span>Approximate total macro nutrients of all the food taken during {trackCalorie.mealTypeTakenToday} on {formatDate(trackCalorie.createdAt)}: </span>
+        <span>Approximate total macro nutrients of all the food taken during {trackCalorie.mealTypeTakenToday}: </span>
 
         <span className="font-bold text-green-700">
           {trackCalorie.approximateTotalMacroNutrientsOfAllTheFoodsTogetherTakenToday}
