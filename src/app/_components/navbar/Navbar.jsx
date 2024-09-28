@@ -60,14 +60,6 @@ const Navbar = async () => {
 
               <DropdownMenuItem>
 
-                <Link href="/dashboard" className="capitalize w-full">
-                  Dashboard
-                </Link>
-
-              </DropdownMenuItem>
-
-              <DropdownMenuItem>
-
                 <Link href="/profile" className="capitalize w-full">
                   Profile
                 </Link>

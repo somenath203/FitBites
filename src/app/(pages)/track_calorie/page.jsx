@@ -34,7 +34,7 @@ const page = async () => {
 
         <p className="text-2xl roboto-bold tracking-wider text-green-600">
 
-          Calorie Tracker Analysis for Selected Date: {new Date().toLocaleString()}
+          Calorie Tracker Analysis for Date: {new Date().toLocaleString()}
 
         </p>
 

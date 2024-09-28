@@ -1,8 +1,17 @@
 import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
+import Link from "next/link";
 
 import MarkdownOfAiResponse from "@/app/_components/all_purpose_component/MarkdownOfAiResponse";
 import { fetchParticularMealById } from "@/server-actions/planMealServerActions";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 
 
 const page = async ({ params }) => {
@@ -26,6 +35,25 @@ const page = async ({ params }) => {
   return (
     <div className="mt-12 min-h-screen flex flex-col gap-4 text-lg">
 
+      <Breadcrumb className='mb-2'>
+
+        <BreadcrumbList>
+
+          <BreadcrumbItem>
+
+            <Link href='/plan_meal_history'>Meal History</Link>
+            
+          </BreadcrumbItem>
+
+          <BreadcrumbSeparator />
+
+          <BreadcrumbItem>
+            <BreadcrumbPage>Meal ID: {meal.id}</BreadcrumbPage>
+          </BreadcrumbItem>
+
+        </BreadcrumbList>
+
+      </Breadcrumb>
 
       <div className="flex gap-3">
 

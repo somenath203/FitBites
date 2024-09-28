@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
     
       <html lang="en" suppressHydrationWarning>
         
-        <body className="min-h-screen bg-gradient-to-tr from-green-100 to-white roboto-mono">
+        <body className="min-h-screen bg-gradient-to-tr from-green-50 to-white roboto-mono">
           
           <main className="px-20">
             <NavbarDynamicComponent />
