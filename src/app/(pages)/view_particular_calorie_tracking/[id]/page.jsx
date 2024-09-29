@@ -111,7 +111,7 @@ const page = async ({ params }) => {
 
       <div className="flex gap-3">
 
-        <span>Approzimate total calorie of all the food taken during {trackCalorie.foodItemsTakenToday}: </span>
+        <span>Approximate total calorie of all the food taken during {trackCalorie.foodItemsTakenToday}: </span>
 
         <span className="font-bold text-green-700">
           {trackCalorie.approximateTotalCalorieOfAllTheFoodsTogetherTakenToday}
@@ -141,7 +141,7 @@ const page = async ({ params }) => {
 
 
       <div className="mt-5 uppercase text-xl text-green-600 font-bold">
-        Your Personalized Receipe Suggestion
+        Your Personalized Calorie Tracking Analysis
       </div>
 
       <div className="flex flex-col gap-4">

@@ -4,7 +4,14 @@ import Link from "next/link";
 
 import MarkdownOfAiResponse from "@/app/_components/all_purpose_component/MarkdownOfAiResponse";
 import { fetchParticularReceipeSuggestionById } from "@/server-actions/suggestReceipeServerActions";
-
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 
 
 const page = async ({ params }) => {

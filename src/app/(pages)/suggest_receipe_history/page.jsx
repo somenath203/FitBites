@@ -86,11 +86,11 @@ const page = async () => {
                 </TableCell>
 
                 <TableCell>
-                  {receipe.ingredientsToInclude}
+                  {receipe.ingredientsToInclude.split(' ').length <= 3 ? receipe.ingredientsToInclude : receipe.ingredientsToInclude.split(' ').slice(0, 3).join(' ') + ' ...'}
                 </TableCell>
 
                 <TableCell>
-                  {receipe.ingredientsToExclude}
+                  {receipe.ingredientsToExclude.split(' ').length <= 3 ? receipe.ingredientsToExclude : receipe.ingredientsToExclude.split(' ').slice(0, 3).join(' ') + ' ...'}
                 </TableCell>
 
                 <TableCell>
