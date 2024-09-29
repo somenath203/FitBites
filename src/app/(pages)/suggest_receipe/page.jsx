@@ -29,9 +29,9 @@ const page = async () => {
   return (
     <div className="mt-14">
 
-      <div className="flex flex-col m-auto items-center gap-5 w-5/6">
+      <div className="flex flex-col m-auto items-center gap-5 w-11/12 lg:w-5/6">
 
-        <p className="text-2xl roboto-bold tracking-wider text-green-600">
+        <p className="text-xl lg:text-2xl text-center roboto-bold tracking-wider text-green-600">
           Receipe Suggestion
         </p>
 
@@ -122,12 +122,8 @@ const page = async () => {
           </div>
 
 
-          <SubmitButton className='py-6 flex items-center gap-1'>
-
-            <span className="text-2xl">✨</span>
-
-            <span>Generate Personalized Receipe Suggestion</span>
-
+          <SubmitButton className='py-5 lg:py-7'>
+            Suggest Receipe
           </SubmitButton>
 
 

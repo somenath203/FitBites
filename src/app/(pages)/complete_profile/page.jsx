@@ -28,9 +28,9 @@ const page = async () => {
   return (
     <div className="mt-14">
 
-        <div className="flex flex-col m-auto items-center gap-5 w-5/6">
+        <div className="flex flex-col m-auto items-center gap-5 w-11/12 lg:w-5/6">
 
-            <p className="text-2xl roboto-bold tracking-wider text-green-600">
+            <p className="text-xl lg:text-2xl roboto-bold tracking-wider text-green-600">
                 Complete your Profile
             </p>
 
@@ -136,7 +136,7 @@ const page = async () => {
 
                     <Textarea 
                         name="allergies"
-                        placeholder="briefly mention your allergies(optional)" 
+                        placeholder="briefly mention your allergies(write 'not applicable' in case you don't have any allergy)" 
                         rows={6} 
                         className="!resize-none border border-green-600"
                         required
@@ -144,7 +144,7 @@ const page = async () => {
 
                 </div>
 
-                <SubmitButton className='py-6'>
+                <SubmitButton className='py-5 lg:py-7'>
                     Create Profile
                 </SubmitButton>
 

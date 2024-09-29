@@ -5,26 +5,25 @@ import { useFormStatus } from 'react-dom';
 
 import { Button } from "@/components/ui/button";
 
-
-const SubmitButton = ({ className, size='lg', children }) => {
-  
-
+const SubmitButton = ({ className, children }) => {
   const { pending } = useFormStatus();
 
   return (
     <Button 
-        size={size}
         type="submit" 
         disabled={pending} 
         className={`capitalize ${className}`}
-    >{pending ? <>
-
-        <ReloadIcon className='mr-2 h-4 w-4 animate-spin' />
-
-        <span>please wait...</span>
-        
-    </> : children}</Button>
-  )
-}
+    >
+      {pending ? (
+        <>
+          <ReloadIcon className='mr-2 h-4 w-4 animate-spin' />
+          <span className="text-sm sm:text-base">Please wait...</span>
+        </>
+      ) : (
+          <span className="text-sm sm:text-base">{children}</span>
+      )}
+    </Button>
+  );
+};
 
 export default SubmitButton;
