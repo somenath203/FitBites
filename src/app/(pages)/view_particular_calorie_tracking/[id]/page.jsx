@@ -57,7 +57,7 @@ const page = async ({ params }) => {
       </Breadcrumb>
 
 
-      <div className="flex gap-3">
+      <div className="flex flex-col lg:flex-row gap-2 lg:gap-3">
 
         <span>Date at which the calorie tracking analysis was created: </span> 
 
@@ -67,7 +67,7 @@ const page = async ({ params }) => {
 
       </div>
 
-      <div className="flex gap-3">
+      <div className="flex flex-col lg:flex-row gap-2 lg:gap-3">
 
         <span>Time at which the calorie tracking analysis was created: </span> 
 
@@ -77,7 +77,7 @@ const page = async ({ params }) => {
 
       </div>
 
-      <div className="flex gap-3">
+      <div className="flex flex-col lg:flex-row gap-2 lg:gap-3">
 
         <span>Meal Type Taken: </span> 
 
@@ -109,7 +109,7 @@ const page = async ({ params }) => {
       </div>
 
 
-      <div className="flex gap-3">
+      <div className="flex flex-col lg:flex-row gap-2 lg:gap-3">
 
         <span>Approximate total calorie of all the food taken during {trackCalorie.foodItemsTakenToday}: </span>
 
@@ -119,7 +119,7 @@ const page = async ({ params }) => {
 
       </div>
 
-      <div className="flex gap-3">
+      <div className="flex flex-col lg:flex-row gap-2 lg:gap-3">
 
         <span>Approximate total calorie of all the food taken during {trackCalorie.mealTypeTakenToday}: </span>
 
@@ -129,7 +129,7 @@ const page = async ({ params }) => {
 
       </div>
 
-      <div className="flex gap-3">
+      <div className="flex flex-col lg:flex-row gap-2 lg:gap-3">
 
         <span>Approximate total macro nutrients of all the food taken during {trackCalorie.mealTypeTakenToday}: </span>
 

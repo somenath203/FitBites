@@ -55,7 +55,7 @@ const page = async ({ params }) => {
 
       </Breadcrumb>
 
-      <div className="flex gap-3">
+      <div className="flex flex-col lg:flex-row gap-2 lg:gap-3">
 
         <span>Goal: </span> 
 
@@ -66,7 +66,7 @@ const page = async ({ params }) => {
       </div>
 
 
-      <div className="flex gap-3">
+      <div className="flex flex-col lg:flex-row gap-2 lg:gap-3">
 
         <span>Diet Preference: </span> 
 
@@ -77,7 +77,7 @@ const page = async ({ params }) => {
       </div>
 
 
-      <div className="flex gap-3">
+      <div className="flex flex-col lg:flex-row gap-2 lg:gap-3">
 
         <span>Calorie Target: </span> 
 

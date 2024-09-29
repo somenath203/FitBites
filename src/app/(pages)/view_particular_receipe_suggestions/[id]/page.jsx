@@ -55,7 +55,7 @@ const page = async ({ params }) => {
 
       </Breadcrumb>
 
-      <div className="flex gap-3">
+      <div className="flex flex-col lg:flex-row gap-2 lg:gap-3">
 
         <span>Meal Type: </span> 
 
@@ -66,7 +66,7 @@ const page = async ({ params }) => {
       </div>
 
 
-      <div className="flex gap-3">
+      <div className="flex flex-col lg:flex-row gap-2 lg:gap-3">
 
         <span>Time can be given for cooking: </span> 
 
@@ -77,7 +77,7 @@ const page = async ({ params }) => {
       </div>
 
 
-      <div className="flex gap-3">
+      <div className="flex flex-col lg:flex-row gap-2 lg:gap-3">
 
         <span>Daily Calorie Target: </span> 
 
@@ -111,7 +111,7 @@ const page = async ({ params }) => {
         Your Personalized Receipe Suggestion
       </div>
 
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-3 lg:gap-4">
         <MarkdownOfAiResponse mk={receipeSuggestion.receipeSuggestCreatedByTheGeminiModel} />
       </div>
 
