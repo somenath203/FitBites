@@ -100,3 +100,82 @@ export const fetchWholeProfileOfUser = async () => {
     }
 
 }
+
+
+export const editUserProfile = async (prevState, formData) => {
+
+    try {
+
+        const user = await currentUser();
+
+
+        const rawData = Object.fromEntries(formData);
+
+
+        const firstName = rawData?.firstName;
+
+        const lastName = rawData?.lastName;
+
+        const email = rawData?.email;
+
+        const age = rawData?.age;
+
+        const gender = rawData?.gender;
+
+        const height = rawData?.height;
+
+        const weight = rawData?.weight;
+
+        const activityLevel = rawData?.activityLevel;
+
+        const allergies = rawData?.allergies;
+
+        const idOfTheMeal = rawData?.mealId;
+
+        const healthGoal = rawData?.healthGoal;
+
+        const dietPreference = rawData?.dietPreference;
+
+
+        await primsaClientConfig.profile.update({
+            where: {
+                clerkId: user.id
+            },
+            data: {
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                age: Number(age),
+                gender: gender,
+                height: Number(height),
+                weight: Number(weight),
+                activityLevel: activityLevel,
+                allergies: allergies
+            }
+        });
+
+        await primsaClientConfig.mealPlan.update({
+            where: {
+                id: idOfTheMeal,
+                idOfTheProfileWhoCreatedTheMealPlan: user.id
+            },
+            data: {
+                healthGoal: healthGoal,
+                dietPreference: dietPreference
+            }
+        });
+
+        
+    } catch (error) {
+        
+        console.log(error);
+
+        return {
+            message: error?.message || 'there was an error while editing your profile, please try again'
+        }
+
+    }
+
+    redirect('/profile');
+
+}

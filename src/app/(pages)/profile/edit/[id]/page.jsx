@@ -11,7 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { createProfileServerAction, fetchWholeProfileOfUser } from '@/server-actions/userServerActions';
+import { editUserProfile, fetchWholeProfileOfUser } from '@/server-actions/userServerActions';
 import FormContainer from '@/app/_components/form/FormContainer';
 import SubmitButton from '@/app/_components/all_purpose_component/SubmitButton';
 import { fetchAllMealsCreatedByTheUser } from '@/server-actions/planMealServerActions';
@@ -44,9 +44,11 @@ const page = async ({ params }) => {
           Edit your Profile
         </p>
 
-        <FormContainer>
+        <FormContainer action={editUserProfile}>
 
         <div className="flex flex-col lg:flex-row items-center gap-7 lg:gap-5 w-full">
+
+            <input type="hidden" name='mealId' defaultValue={latestMealCreatedByUser.id} />
 
             <div className="w-full flex flex-col gap-2">
 
