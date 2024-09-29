@@ -73,7 +73,7 @@ const page = async () => {
                 </div>
 
 
-                <div className="flex items-center gap-5 w-full">
+                <div className="flex flex-col lg:flex-row items-center gap-7 lg:gap-5 w-full">
 
                     <div className='w-full flex flex-col gap-2'>
 
