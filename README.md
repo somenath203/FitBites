@@ -18,7 +18,6 @@ FitBites is a personalized nutrition and diet web app that helps users plan meal
 
 ### 2. **Plan Meal**
    - Users can generate personalized meal plans based on their health goals, preferences, and dietary needs.
-   - Meals are dynamically crafted using the power of the Google Gemini 1.5 Pro model.
 
 ### 3. **Suggest Recipe**
    - Get personalized recipe suggestions tailored to the time of day, meal type, and available ingredients.
