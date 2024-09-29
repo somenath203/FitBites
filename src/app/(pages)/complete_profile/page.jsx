@@ -56,7 +56,7 @@ const page = async () => {
 
                     <Label>Gender</Label>
 
-                    <Select name='gender'>
+                    <Select name='gender' required>
 
                         <SelectTrigger className='border border-green-600'>
                             <SelectValue placeholder="select your gender" />

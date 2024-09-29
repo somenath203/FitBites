@@ -1,9 +1,12 @@
 import Image from "next/image";
 import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
+import Link from "next/link";
 
 import { fetchAllMealsCreatedByTheUser } from "@/server-actions/planMealServerActions";
 import { fetchWholeProfileOfUser } from "@/server-actions/userServerActions";
+import { Button } from "@/components/ui/button";
+
 
 const page = async () => {
 
@@ -23,9 +26,6 @@ const page = async () => {
   const allMealsCreatedByTheUser = await fetchAllMealsCreatedByTheUser();
 
   const latestMealCreatedByUser = allMealsCreatedByTheUser[allMealsCreatedByTheUser?.length - 1];
-
-  console.log(allMealsCreatedByTheUser);
-  
 
 
   return (
@@ -124,8 +124,11 @@ const page = async () => {
 
           </div>
 
-
         </div>
+
+        <Link href={`/profile/edit/${user.id}`} className="w-full">
+          <Button className='py-5 lg:py-7 capitalize w-full'>Edit Profile</Button>
+        </Link>
 
       </div>
       
