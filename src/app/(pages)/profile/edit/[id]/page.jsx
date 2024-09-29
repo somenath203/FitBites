@@ -19,7 +19,9 @@ import { fetchAllMealsCreatedByTheUser } from '@/server-actions/planMealServerAc
 
 const page = async ({ params }) => {
 
+
     const currentLoggedInUser = await currentUser();
+
 
     if(!currentLoggedInUser?.privateMetadata?.hasCompletedProfile) {
 
@@ -27,10 +29,23 @@ const page = async ({ params }) => {
 
     }
 
-    const user = await fetchWholeProfileOfUser(params.id);
+
+    const user = await fetchWholeProfileOfUser();
+
+
+    if(user.id !== params.id) {
+      return (
+        <div className="min-h-screen flex justify-center text-center mt-36">
+            
+          <p className="text-2xl tracking-wider text-green-700 font-bold">No User found with this ID.</p>
+    
+        </div>
+      )
+    }
 
 
     const allMealsCreatedByTheUser = await fetchAllMealsCreatedByTheUser();
+
 
     const latestMealCreatedByUser = allMealsCreatedByTheUser[allMealsCreatedByTheUser?.length - 1];
     

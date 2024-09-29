@@ -35,7 +35,7 @@ const page = async () => {
         Profile
       </p>
 
-      <div className="flex flex-col gap-5 lg:gap-10 mt-10 text-lg">
+      <div className="flex flex-col gap-3 lg:gap-10 mt-10 text-lg">
 
         <div className="flex justify-center">
 
@@ -49,7 +49,7 @@ const page = async () => {
 
         </div>
 
-        <div className="flex flex-col gap-8 lg:gap-5">
+        <div className="flex flex-col gap-8 lg:gap-5 text-lg lg:text-xl">
 
 
           <div className="text-center flex flex-col gap-2 lg:flex-row lg:gap-0 lg:justify-between">
@@ -135,8 +135,8 @@ const page = async () => {
 
         </div>
 
-        <Link href={`/profile/edit/${user.id}`} className="w-full">
-          <Button className='py-5 lg:py-7 capitalize w-full'>Edit Profile</Button>
+        <Link href={`/profile/edit/${user.id}`} className="w-full mt-4 lg:mt-0">
+          <Button className='py-8 lg:py-7 capitalize w-full'>Edit Profile</Button>
         </Link>
 
       </div>
