@@ -35,7 +35,7 @@ const page = async () => {
         Profile
       </p>
 
-      <div className="flex flex-col gap-10 mt-10 text-lg">
+      <div className="flex flex-col gap-5 lg:gap-10 mt-10 text-lg">
 
         <div className="flex justify-center">
 
@@ -76,6 +76,15 @@ const page = async () => {
             <span className="font-semibold">Age:</span>
 
             <span>{user?.age} years</span>
+
+          </div>
+
+
+          <div className="text-center flex flex-col gap-2 lg:flex-row lg:gap-0 lg:justify-between">
+
+            <span className="font-semibold">Gender:</span>
+
+            <span>{user?.gender}</span>
 
           </div>
 
