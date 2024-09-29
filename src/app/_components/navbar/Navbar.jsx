@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { IoFitnessSharp } from 'react-icons/io5';
+import { GiHamburgerMenu } from "react-icons/gi";
 import { SignedIn, SignedOut, SignInButton, SignUpButton } from '@clerk/nextjs';
 import { currentUser } from '@clerk/nextjs/server';
 
@@ -12,7 +13,16 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
 import SignOutLink from './SignOutLink';
+
 
 const Navbar = async () => {
 
@@ -21,7 +31,7 @@ const Navbar = async () => {
   return (
     <nav className="border-b roboto-mono">
 
-      <div className="py-6 flex items-center justify-between">
+      <div className="py-6 flex flex-col gap-3 lg:gap-0 lg:flex-row items-center justify-between">
 
         <Link href="/" className="flex items-center gap-2">
 
@@ -33,7 +43,7 @@ const Navbar = async () => {
 
         <SignedIn>
 
-          <div className="flex text-lg items-center justify-center gap-10">
+          <div className="hidden lg:flex text-lg items-center justify-center gap-10">
 
             <Link href="/plan_meal">Plan Meal</Link>
 
@@ -43,62 +53,102 @@ const Navbar = async () => {
 
           </div>
 
-          <DropdownMenu>
+          <div className='flex items-center gap-4'>
 
-            <DropdownMenuTrigger asChild>
+            <DropdownMenu>
 
-              <Image
-                src={user?.imageUrl}
-                className="w-10 h-10 rounded-full object-cover cursor-pointer"
-                width={100}
-                height={100}
-              />
+              <DropdownMenuTrigger asChild>
 
-            </DropdownMenuTrigger>
+                <Image
+                  src={user?.imageUrl}
+                  className="w-10 h-10 rounded-full object-cover cursor-pointer"
+                  width={100}
+                  height={100}
+                />
 
-            <DropdownMenuContent align="start" sideOffSet={10}>
+              </DropdownMenuTrigger>
 
-              <DropdownMenuItem>
+              <DropdownMenuContent align="start" sideOffSet={10}>
 
-                <Link href="/profile" className="capitalize w-full">
-                  Profile
-                </Link>
+                <DropdownMenuItem>
 
-              </DropdownMenuItem>
+                  <Link href="/profile" className="capitalize w-full">
+                    Profile
+                  </Link>
 
-              <DropdownMenuItem>
+                </DropdownMenuItem>
 
-                <Link href="/plan_meal_history" className="capitalize w-full">
-                  Plan Meal History
-                </Link>
+                <DropdownMenuItem>
 
-              </DropdownMenuItem>
+                  <Link href="/plan_meal_history" className="capitalize w-full">
+                    Plan Meal History
+                  </Link>
 
-              <DropdownMenuItem>
+                </DropdownMenuItem>
 
-                <Link href="/suggest_receipe_history" className="capitalize w-full">
-                  Suggest Receipe History
-                </Link>
+                <DropdownMenuItem>
 
-              </DropdownMenuItem>
+                  <Link href="/suggest_receipe_history" className="capitalize w-full">
+                    Suggest Receipe History
+                  </Link>
 
-              <DropdownMenuItem>
+                </DropdownMenuItem>
 
-                <Link href="/track_calorie_history" className="capitalize w-full">
-                  Track Calorie History
-                </Link>
+                <DropdownMenuItem>
 
-              </DropdownMenuItem>
+                  <Link href="/track_calorie_history" className="capitalize w-full">
+                    Track Calorie History
+                  </Link>
 
-              <DropdownMenuSeparator />
+                </DropdownMenuItem>
 
-              <DropdownMenuItem>
-                <SignOutLink />
-              </DropdownMenuItem>
+                <DropdownMenuSeparator />
 
-            </DropdownMenuContent>
+                <DropdownMenuItem>
+                  <SignOutLink />
+                </DropdownMenuItem>
 
-          </DropdownMenu>
+              </DropdownMenuContent>
+
+            </DropdownMenu>
+
+            <div className='block lg:hidden'> 
+
+              <Sheet>
+
+                <SheetTrigger>
+
+                  <GiHamburgerMenu size={30} />
+
+                </SheetTrigger>
+
+                <SheetContent className='flex justify-center'>
+
+                  <SheetHeader>
+
+                    <SheetDescription>
+
+                      <div className='flex flex-col items-center gap-8 mt-52 text-xl tracking-wider'>
+
+                        <Link href="/plan_meal">Plan Meal</Link>
+
+                        <Link href="/suggest_receipe">Suggest Receipe</Link>
+
+                        <Link href="/track_calorie">Track Calorie</Link>
+
+                      </div>
+
+                    </SheetDescription>
+
+                  </SheetHeader>
+
+                </SheetContent>
+
+              </Sheet>
+
+            </div>
+
+          </div>
 
         </SignedIn>
 

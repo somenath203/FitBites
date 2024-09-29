@@ -41,7 +41,7 @@ const FeaturesOfApplication = () => {
   ];
 
   return (
-    <div className="mt-24 mb-10 grid grid-cols-3 gap-10">
+    <div className="mt-24 mb-10 grid grid-cols-1 lg:grid-cols-3 gap-10">
       {cardContent.map((card) => {
 
         const IconComponent = card.icon; 

@@ -13,7 +13,7 @@ const Page = () => {
 
     <>
     
-      <HeroSectionDynamicComponent />
+      {/* <HeroSectionDynamicComponent /> */}
 
       <FeaturesDynamicComponent />
 

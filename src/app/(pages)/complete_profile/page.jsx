@@ -132,13 +132,14 @@ const page = async () => {
 
                 <div className="flex flex-col gap-2">
 
-                    <Label>Briefly mention the allergies you have (max 20 words (optional field))</Label>
+                    <Label>Briefly mention the allergies you have (max 20 words (write "no allergies" in case you have no allegies))</Label>
 
                     <Textarea 
                         name="allergies"
                         placeholder="briefly mention your allergies(optional)" 
                         rows={6} 
                         className="!resize-none border border-green-600"
+                        required
                     />
 
                 </div>
