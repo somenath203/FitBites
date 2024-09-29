@@ -2,6 +2,12 @@
 
 FitBites is a personalized nutrition and diet web app that helps users plan meals, suggest recipes, and track their daily calorie intake. Powered by Google Gemini API, FitBites generates customized meal plans and recipe suggestions based on user preferences and tracks detailed caloric progress to support health goals.
 
+## Demo video of the overall project
+
+![Screenshot (712)](https://github.com/user-attachments/assets/63110cd6-ea64-4dd2-82aa-b7dc61a06d81)
+
+https://www.youtube.com/watch?v=Mn0L4Ph6tXs
+
 ## Features
 
 ### 1. **Profile Setup**
@@ -10,6 +16,7 @@ FitBites is a personalized nutrition and diet web app that helps users plan meal
 
 ### 2. **Plan Meal**
    - Users can generate personalized meal plans based on their health goals, preferences, and dietary needs.
+   - Meals are dynamically crafted using the power of the Google Gemini 1.5 Pro model.
 
 ### 3. **Suggest Recipe**
    - Get personalized recipe suggestions tailored to the time of day, meal type, and available ingredients.
