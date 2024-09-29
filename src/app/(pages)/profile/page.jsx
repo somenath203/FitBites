@@ -49,10 +49,10 @@ const page = async () => {
 
         </div>
 
-        <div className="flex flex-col gap-5">
+        <div className="flex flex-col gap-8 lg:gap-5">
 
 
-          <div className="flex justify-between">
+          <div className="text-center flex flex-col gap-2 lg:flex-row lg:gap-0 lg:justify-between">
 
             <span className="font-semibold">Full Name:</span>
 
@@ -62,16 +62,16 @@ const page = async () => {
           </div>
 
 
-          <div className="flex justify-between">
+          <div className="text-center flex flex-col gap-2 lg:flex-row lg:gap-0 lg:justify-between">
 
             <span className="font-semibold">Email Address:</span>
 
-            <span>{user?.email || 'Not Available'}</span>
+            <span className="break-words">{user?.email || 'Not Available'}</span>
 
           </div>
 
 
-          <div className="flex justify-between">
+          <div className="text-center flex flex-col gap-2 lg:flex-row lg:gap-0 lg:justify-between">
 
             <span className="font-semibold">Age:</span>
 
@@ -80,7 +80,7 @@ const page = async () => {
           </div>
 
 
-          <div className="flex justify-between">
+          <div className="text-center flex flex-col gap-2 lg:flex-row lg:gap-0 lg:justify-between">
 
             <span className="font-semibold">Height:</span>
 
@@ -89,7 +89,7 @@ const page = async () => {
           </div>
 
 
-          <div className="flex justify-between">
+          <div className="text-center flex flex-col gap-2 lg:flex-row lg:gap-0 lg:justify-between">
 
             <span className="font-semibold">Weight:</span>
             
@@ -98,7 +98,7 @@ const page = async () => {
           </div>
 
 
-          <div className="flex justify-between">
+          <div className="text-center flex flex-col gap-2 lg:flex-row lg:gap-0 lg:justify-between">
 
             <span className="font-semibold">Dietary Preferences:</span>
 
@@ -107,7 +107,7 @@ const page = async () => {
           </div>
 
 
-          <div className="flex justify-between">
+          <div className="text-center flex flex-col gap-2 lg:flex-row lg:gap-0 lg:justify-between">
 
             <span className="font-semibold">Activity Level:</span>
 
@@ -116,7 +116,7 @@ const page = async () => {
           </div>
 
 
-          <div className="flex justify-between">
+          <div className="text-center flex flex-col gap-2 lg:flex-row lg:gap-0 lg:justify-between">
 
             <span className="font-semibold">Health Goal:</span>
 
