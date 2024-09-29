@@ -40,3 +40,8 @@ FitBites is a personalized nutrition and diet web app that helps users plan meal
 - **Tailwind CSS**: A utility-first CSS framework used to style the application for a clean and responsive design.
 - **Prisma ORM**: Database ORM used to interact with the Neon PostgreSQL database seamlessly.
 - **Neon PostgreSQL**: A cloud-based PostgreSQL database used for storing user data, meal plans, recipes, and calorie logs.
+
+
+## Disclaimer
+
+The creator of this application is not responsible for any incorrect content created as Google Gemini API's functioning is beyond the creator's control.
