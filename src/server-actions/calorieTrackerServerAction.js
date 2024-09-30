@@ -37,36 +37,24 @@ export const createNewCalorieTracking = async (prevState, formData) => {
 
         }
 
+
         const calorieTrackingPrompt = `
-            You are a highly experienced nutrition assistant who specializes in helping users track and optimize their daily calorie intake. 
-            A user has provided the following details about their health, meals, and nutrition for today:
-        
-            - **Full Name:** ${fetchAllDetailsOfUser.firstName || ''} ${fetchAllDetailsOfUser.lastName || ''}
-            - **Age:** ${fetchAllDetailsOfUser.age || 0} years
-            - **Gender:** ${fetchAllDetailsOfUser.gender || ''}
-            - **Height:** ${fetchAllDetailsOfUser.height || 0} cm
-            - **Weight:** ${fetchAllDetailsOfUser.weight || 0} kg
-            - **Activity Level:** ${fetchAllDetailsOfUser.activityLevel || ''} (e.g., sedentary, light exercise, moderate exercise, etc.)
-            
-            **Meal Information for Today:**
-            - **Meal Type(s):** ${rawData?.mealTypeTakenToday || ''} (e.g., breakfast, lunch, dinner, snacks)
-            - **Foods Consumed Today:** ${rawData?.foodItemsTakenToday || ''} (list of food items consumed throughout the day)
-            - **Portion Sizes:** ${rawData?.portionSizeOfEachFoodTakenToday || ''} (e.g., 1 cup, 150 grams, etc.)
+            Generate a personalized meal plan for a user based on the following details:
+
+            - Name: ${fetchAllDetailsOfUser.firstName} ${fetchAllDetailsOfUser.lastName}
+            - Age: ${fetchAllDetailsOfUser.age} years
+            - Gender: ${fetchAllDetailsOfUser.gender}
+            - Height: ${fetchAllDetailsOfUser.height} cm
+            - Weight: ${fetchAllDetailsOfUser.weight} kg
+            - Activity Level: ${fetchAllDetailsOfUser.activityLevel}
+            - **Meal Type Taken Today:** ${rawData?.mealTypeTakenToday || ''} 
+            - **Foods Consumed Today:** ${rawData?.foodItemsTakenToday || ''} 
+            - **Portion Sizes:** ${rawData?.portionSizeOfEachFoodTakenToday || ''}
             - **Approximate Total Calorie Intake:** ${rawData?.approximateTotalCalorieOfAllTheFoodsTogetherTakenToday || ''} kcal
             - **Approximate Macronutrient Breakdown:** ${rawData?.approximateTotalMacroNutrientsOfAllTheFoodsTogetherTakenToday || ''} (e.g., grams of proteins, carbohydrates, and fats)
-        
-            Using the provided information, generate a personalized calorie tracking and optimization plan for the user. 
-            The plan should include:
-            
-            1. **Detailed analysis** of today's calorie intake, compared to the recommended intake for someone of their profile (age, weight, activity level, etc.).
-            2. **Suggestions for calorie balance** to meet their health goals (whether it's weight loss, maintenance, or gain).
-            3. **Food recommendations** to improve nutrient intake, such as incorporating more proteins, healthy fats, or reducing excess carbs/fats.
-            4. **Tips for better calorie tracking**, including methods for accurately estimating portion sizes and nutritional information.
-            5. **Suggestions for long-term dietary strategies**, such as healthier food swaps, meal planning tips, and mindful eating practices.
-        
-            Ensure your recommendations are specific, actionable, and tailored to the user’s individual needs, dietary goals, and preferences.
+
+            Based on this information, generate a personalized calorie tracking plan for the user. Include specific recommendations for how they can track their calorie intake effectively, suggest types of foods they can eat, and tips to maintain their dietary goals. Please be detailed and ensure that your suggestions align with their personal health goals.
         `;
-    
 
 
         const responseFromModel = await chatSessionGoogleGemini.sendMessage(calorieTrackingPrompt);
