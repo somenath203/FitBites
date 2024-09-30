@@ -43,7 +43,9 @@ FitBites is a personalized nutrition and diet web app that helps users plan meal
 - **Neon PostgreSQL**: A cloud-based PostgreSQL database used for storing user data, meal plans, recipes, and calorie logs.
 - **Axios**: Used in the frontend to make API requests to the FastAPI backend.
 
-## Deployments
+## Deployment
+
+The Next.js frontend of FitBites is deployed on Vercel, while the FastAPI backend is hosted on Hugging Face Spaces for seamless integration between the frontend and backend services.
 
 Website Link: https://fitbites-som.vercel.app/
 
