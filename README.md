@@ -53,4 +53,4 @@ FastAPI Backend API: https://som11-fitbitesbackendfastapi.hf.space
 
 ## Disclaimer
 
-The creator of this application is not responsible for any incorrect content created as the Groq API's functioning is beyond the creator's control.
+The creator of this application is not responsible for any incorrect content created as the Groq API and Llama3-8b-8192 model's functioning is beyond the creator's control.
