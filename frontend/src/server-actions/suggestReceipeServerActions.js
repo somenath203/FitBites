@@ -38,7 +38,7 @@ export const createNewReceipeSuggestion = async (prevState, formData) => {
 
 
         const recipeSuggestionPrompt = `
-            Generate a personalized meal plan for a user based on the following details:
+            Generate a personalized receipe suggestion for a user based on the following details:
 
             - Name: ${fetchAllDetailsOfUser.firstName} ${fetchAllDetailsOfUser.lastName}
             - Age: ${fetchAllDetailsOfUser.age} years
