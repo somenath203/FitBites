@@ -136,7 +136,7 @@ const page = async () => {
 
                     <Textarea 
                         name="allergies"
-                        placeholder="briefly mention your allergies(write 'not applicable' in case you don't have any allergy)" 
+                        placeholder="briefly mention your allergies(write 'no allergies' in case you don't have any allergy)" 
                         rows={6} 
                         className="!resize-none border border-green-600"
                         required
