@@ -85,11 +85,6 @@
   resolved "https://registry.yarnpkg.com/@floating-ui/utils/-/utils-0.2.8.tgz#21a907684723bbbaa5f0974cf7730bd797eb8e62"
   integrity sha512-kym7SodPp8/wloecOpcmSnWJsK7M0E5Wg8UcFA+uO4B9s5d0ywXOEro/8HM9x0rW+TljRzul/14UYz3TleT3ig==
 
-"@google/generative-ai@^0.20.0":
-  version "0.20.0"
-  resolved "https://registry.yarnpkg.com/@google/generative-ai/-/generative-ai-0.20.0.tgz#c270f60bf50255f15d489eb2acab169fbbd50e12"
-  integrity sha512-uJQNDr1sihvBJ9w8B0ESpNdX9aEueAMXgwnTuhTo+LnI7DD0M1KHnOWzxb2l6cM1rRHzvkdgJNNfeybcqg7uVg==
-
 "@isaacs/cliui@^8.0.2":
   version "8.0.2"
   resolved "https://registry.yarnpkg.com/@isaacs/cliui/-/cliui-8.0.2.tgz#b37667b7bc181c168782259bab42474fbf52b550"

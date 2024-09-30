@@ -5,7 +5,6 @@ import { redirect } from 'next/navigation';
 import axios from 'axios';
 
 import primsaClientConfig from '@/prismaClientConfig';
-import { chatSessionGoogleGemini } from '@/googleGeminiModelConfig';
 import { fetchWholeProfileOfUser } from './userServerActions';
 
 
