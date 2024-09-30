@@ -49,11 +49,11 @@ export const createNewCalorieTracking = async (prevState, formData) => {
             - Weight: ${fetchAllDetailsOfUser.weight} kg
             - Activity Level: ${fetchAllDetailsOfUser.activityLevel}
             - Allergies: ${fetchAllDetailsOfUser.allergies}
-            - Meal Type Taken Today: ${rawData?.mealTypeTakenToday || ''} 
-            - Foods Consumed Today: ${rawData?.foodItemsTakenToday || ''} 
-            - Portion Sizes: ${rawData?.portionSizeOfEachFoodTakenToday || ''}
-            - Approximate Total Calorie Intake: ${rawData?.approximateTotalCalorieOfAllTheFoodsTogetherTakenToday || ''} kcal
-            - Approximate Macronutrient Breakdown: ${rawData?.approximateTotalMacroNutrientsOfAllTheFoodsTogetherTakenToday || ''} (e.g., grams of proteins, carbohydrates, and fats)
+            - Meal Type Taken: ${rawData?.mealTypeTakenToday || ''} 
+            - Foods consumed in ${rawData?.mealTypeTakenToday}: ${rawData?.foodItemsTakenToday || ''} 
+            - Portion Sizes of each food consumed in ${rawData?.mealTypeTakenToday}: ${rawData?.portionSizeOfEachFoodTakenToday || ''}
+            - Approximate Total Calorie Intake of each food consumed in ${rawData?.mealTypeTakenToday}: ${rawData?.approximateTotalCalorieOfAllTheFoodsTogetherTakenToday || ''} kcal
+            - Approximate Macronutrient Breakdown of each food consumed in ${rawData?.mealTypeTakenToday}: ${rawData?.approximateTotalMacroNutrientsOfAllTheFoodsTogetherTakenToday || ''} (e.g., grams of proteins, carbohydrates, and fats)
 
             Now, based on the above information, generate a personalized calorie tracking plan for the user.
         `;
@@ -62,9 +62,9 @@ export const createNewCalorieTracking = async (prevState, formData) => {
             textFromNextJSFrontend: calorieTrackingPrompt
         });
 
-        if(!data?.success) {
+        if(data?.success) {
 
-            const responseFromModel = data?.response_from_model.content;
+            const responseFromModel = data?.response_from_model?.content;
         
             await primsaClientConfig.trackCalorieOfTheDay.create({
                 data: {
@@ -74,7 +74,7 @@ export const createNewCalorieTracking = async (prevState, formData) => {
                     approximateTotalCalorieOfAllTheFoodsTogetherTakenToday: rawData?.approximateTotalCalorieOfAllTheFoodsTogetherTakenToday || '',                     
                     approximateTotalMacroNutrientsOfAllTheFoodsTogetherTakenToday: rawData?.approximateTotalMacroNutrientsOfAllTheFoodsTogetherTakenToday || '',                     
                     idOfTheProfileWhoCreatedTheTrackCalorie: user?.id || '',
-                    calorieTrackCreatedByTheGeminiModel: responseFromModel?.response?.text() || '',
+                    calorieTrackCreatedByTheGeminiModel: responseFromModel || '',
                     dateOfCreation: rawData?.dateOfCreation || '',
                     timeOfCreation: rawData?.timeOfCreation || ''
                 }

@@ -67,11 +67,11 @@ const page = async () => {
 
           <div className="flex flex-col gap-2">
 
-            <Label>Write all the foods you took today (max 20 words)</Label>
+            <Label>Write all the foods you took in the selected meal type (max 20 words)</Label>
 
             <Textarea 
               name="foodItemsTakenToday"
-              placeholder="write about all the foods you took today" 
+              placeholder="write about all the foods you took in the selected meal type" 
               rows={6} 
               className="!resize-none border border-green-600"
               required

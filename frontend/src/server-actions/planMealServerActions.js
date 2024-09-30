@@ -2,6 +2,7 @@
 
 import { currentUser } from '@clerk/nextjs/server';
 import { redirect } from 'next/navigation';
+import axios from 'axios';
 
 import primsaClientConfig from '@/prismaClientConfig';
 import { chatSessionGoogleGemini } from '@/googleGeminiModelConfig';
@@ -33,28 +34,27 @@ export const createNewMealPlan = async (prevState, formData) => {
         `;
 
 
-        const responseFromModel = await chatSessionGoogleGemini.sendMessage(mealPlanPrompt);
-
-        if(!responseFromModel) {
-
-            throw new Error("SOMETHING WENT WRONG OR THE GOOGLE GEMINI MODEL IS OVERLOADED AND IS NOT ABLE TO TAKE ANY RESPONSES RIGHT NOW. PLEASE TRY AGAIN LATER AFTER SOMETIME");
-
-        }
-        
-        await primsaClientConfig.mealPlan.create({
-            data: {
-                healthGoal: rawData?.healthGoal || '',
-                dietPreference: rawData?.dietPreference || '',
-                calorieTarget: rawData?.targetCalorie || '',
-                mealPlanCreatedByTheGeminiModel: responseFromModel?.response?.text() || '',
-                idOfTheProfileWhoCreatedTheMealPlan: user?.id || '',
-                dateOfCreation: rawData?.dateOfCreation || '',
-                timeOfCreation: rawData?.timeOfCreation || ''
-            }
+        const { data } = await axios.post(`${process.env.BACKEND_FAST_API_BASE_URL}/predict`, {
+            textFromNextJSFrontend: mealPlanPrompt
         });
 
-        return {
-            message: 'personalized meal plan created successfully'
+
+        if(data?.success) {
+
+            const responseFromModel = data?.response_from_model?.content;
+        
+            await primsaClientConfig.mealPlan.create({
+                data: {
+                    healthGoal: rawData?.healthGoal || '',
+                    dietPreference: rawData?.dietPreference || '',
+                    calorieTarget: rawData?.targetCalorie || '',
+                    mealPlanCreatedByTheGeminiModel: responseFromModel || '',
+                    idOfTheProfileWhoCreatedTheMealPlan: user?.id || '',
+                    dateOfCreation: rawData?.dateOfCreation || '',
+                    timeOfCreation: rawData?.timeOfCreation || ''
+                }
+            });
+            
         }
         
     } catch (error) {
@@ -66,6 +66,8 @@ export const createNewMealPlan = async (prevState, formData) => {
         }
 
     }
+
+    redirect('/plan_meal_history');
 
 }
 

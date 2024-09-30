@@ -2,6 +2,7 @@
 
 import { currentUser } from '@clerk/nextjs/server';
 import { redirect } from 'next/navigation';
+import axios from 'axios';
 
 import primsaClientConfig from '@/prismaClientConfig';
 import { chatSessionGoogleGemini } from '@/googleGeminiModelConfig';
@@ -55,35 +56,32 @@ export const createNewReceipeSuggestion = async (prevState, formData) => {
 
              Based on the above information, create a personalized recipe suggestions that the user can prepare.
         `;
-    
-        const responseFromModel = await chatSessionGoogleGemini.sendMessage(recipeSuggestionPrompt);
 
-        if(!responseFromModel) {
-            
-            throw new Error("SOMETHING WENT WRONG OR THE GOOGLE GEMINI MODEL IS OVERLOADED AND IS NOT ABLE TO TAKE ANY RESPONSES RIGHT NOW. PLEASE TRY AGAIN LATER AFTER SOMETIME");
-
-        }
-        
-        await primsaClientConfig.suggestReceipe.create({
-            data: {
-                mealType: rawData?.mealType || '',
-                timeThatCanBeGivenToCooking: rawData?.timeThatCanBeGivenToCooking || '',
-                dailyCalorieTarget: rawData?.dailyCalorieTarget || '', 
-                ingredientsToInclude: rawData?.ingredientsToInclude || '',   
-                ingredientsToExclude: rawData?.ingredientsToExclude || '', 
-                receipeSuggestCreatedByTheGeminiModel: responseFromModel?.response?.text() || '',        
-                idOfTheProfileWhoCreatedTheSuggestReceipe: user?.id || '',
-                dateOfCreation: rawData?.dateOfCreation || '',
-                timeOfCreation: rawData?.timeOfCreation || ''
-            }
+        const { data } = await axios.post(`${process.env.BACKEND_FAST_API_BASE_URL}/predict`, {
+            textFromNextJSFrontend: recipeSuggestionPrompt
         });
 
 
-        return {
-            message: 'personalized meal suggestion created successfully'
+        if(data?.success) {
+
+            const responseFromModel = data?.response_from_model?.content;
+        
+            await primsaClientConfig.suggestReceipe.create({
+                data: {
+                    mealType: rawData?.mealType || '',
+                    timeThatCanBeGivenToCooking: rawData?.timeThatCanBeGivenToCooking || '',
+                    dailyCalorieTarget: rawData?.dailyCalorieTarget || '', 
+                    ingredientsToInclude: rawData?.ingredientsToInclude || '',   
+                    ingredientsToExclude: rawData?.ingredientsToExclude || '', 
+                    receipeSuggestCreatedByTheGeminiModel: responseFromModel || '',        
+                    idOfTheProfileWhoCreatedTheSuggestReceipe: user?.id || '',
+                    dateOfCreation: rawData?.dateOfCreation || '',
+                    timeOfCreation: rawData?.timeOfCreation || ''
+                }
+            });
+            
         }
 
-        
     } catch (error) {
         
         console.log(error);
@@ -93,6 +91,8 @@ export const createNewReceipeSuggestion = async (prevState, formData) => {
         }
 
     }
+
+    redirect('/suggest_receipe_history');
 
 }
 
