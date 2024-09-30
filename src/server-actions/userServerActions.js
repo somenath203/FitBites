@@ -24,7 +24,7 @@ export const createProfileServerAction = async (prevState, formData) => {
 
         if(allergiesNoOfWordsGreaterThanTwenty.length > 20) {
 
-            throw new Error("make sure what you wrote in 'allergies' is lesser than 20 words");
+            throw new Error("make sure what you wrote in 'allergies' is lesser than or equals to 20 words");
 
         }
         
@@ -110,6 +110,15 @@ export const editUserProfile = async (prevState, formData) => {
 
 
         const rawData = Object.fromEntries(formData);
+
+
+        const allergiesNoOfWordsGreaterThanTwenty = rawData?.allergies?.split(' ');
+
+        if(allergiesNoOfWordsGreaterThanTwenty.length > 20) {
+
+            throw new Error("make sure what you wrote in 'allergies' is lesser than or equals to 20 words");
+
+        }
 
 
         const firstName = rawData?.firstName;
