@@ -62,7 +62,7 @@ export const createNewCalorieTracking = async (prevState, formData) => {
 
         if(!responseFromModel) {
 
-            throw new Error("SOMETHING WENT WRONG OR THE MODEL IS OVERLOADED AND IS NOT ABLE TO TAKE ANY RESPONSES RIGHT NOW. PLEASE TRY AGAIN LATER AFTER SOMETIME");
+            throw new Error("SOMETHING WENT WRONG OR THE GOOGLE GEMINI MODEL IS OVERLOADED AND IS NOT ABLE TO TAKE ANY RESPONSES RIGHT NOW. PLEASE TRY AGAIN LATER AFTER SOMETIME");
 
         }
 
