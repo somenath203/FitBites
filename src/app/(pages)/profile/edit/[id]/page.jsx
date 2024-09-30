@@ -14,7 +14,6 @@ import {
 import { editUserProfile, fetchWholeProfileOfUser } from '@/server-actions/userServerActions';
 import FormContainer from '@/app/_components/form/FormContainer';
 import SubmitButton from '@/app/_components/all_purpose_component/SubmitButton';
-import { fetchAllMealsCreatedByTheUser } from '@/server-actions/planMealServerActions';
 
 
 const page = async ({ params }) => {
@@ -42,12 +41,6 @@ const page = async ({ params }) => {
         </div>
       )
     }
-
-
-    // const allMealsCreatedByTheUser = await fetchAllMealsCreatedByTheUser();
-
-
-    // const latestMealCreatedByUser = allMealsCreatedByTheUser[allMealsCreatedByTheUser?.length - 1];
     
 
   return (
@@ -63,7 +56,6 @@ const page = async ({ params }) => {
 
         <div className="flex flex-col lg:flex-row items-center gap-7 lg:gap-5 w-full">
 
-            {/* <input type="hidden" name='mealId' defaultValue={latestMealCreatedByUser.id} /> */}
 
             <div className="w-full flex flex-col gap-2">
 
@@ -218,75 +210,6 @@ const page = async ({ params }) => {
               required
             />
           </div>
-
-          {/* <div className="flex flex-col gap-2">
-
-                <Label>Your Health Goal</Label>
-
-                <Select name='healthGoal' defaultValue={latestMealCreatedByUser?.healthGoal} required>
-                    <SelectTrigger
-                        id="health-goal"
-                        className="border border-green-600"
-                    >
-                        <SelectValue placeholder="Select your health goal" />
-                    </SelectTrigger>
-
-                    <SelectContent>
-                        <SelectItem value="Weight Loss">Weight Loss</SelectItem>
-                        <SelectItem value="Weight Gain">Weight Gain</SelectItem>
-                        <SelectItem value="Muscle Building">Muscle Building</SelectItem>
-                        <SelectItem value="Maintain Current Weight">
-                        Maintain Current Weight
-                        </SelectItem>
-                        <SelectItem value="Increase Energy Levels">
-                        Increase Energy Levels
-                        </SelectItem>
-                        <SelectItem value="Improve General Health & Well-being">
-                        Improve General Health & Well-being
-                        </SelectItem>
-                        <SelectItem value="Improve Heart Health">
-                        Improve Heart Health
-                        </SelectItem>
-                        <SelectItem value="Improve Digestive Health">
-                        Improve Digestive Health
-                        </SelectItem>
-                        <SelectItem value="Support Immunity">
-                        Support Immunity
-                        </SelectItem>
-                        <SelectItem value="Better Sleep">Better Sleep</SelectItem>
-                    </SelectContent>
-                </Select>
-
-            </div> */}
-
-
-            {/* <div className="flex flex-col gap-2">
-
-                <Label>Diet Preference</Label>
-
-                <Select name='dietPreference' defaultValue={latestMealCreatedByUser?.dietPreference} required>
-                    <SelectTrigger
-                        id="diet-preference"
-                        className="border border-green-600"
-                    >
-                        <SelectValue placeholder="Select your diet preference" />
-                    </SelectTrigger>
-
-                    <SelectContent>
-                        <SelectItem value="Vegan">Vegan</SelectItem>
-                        <SelectItem value="Vegetarian">Vegetarian</SelectItem>
-                        <SelectItem value="Gluten Free">Gluten-Free</SelectItem>
-                        <SelectItem value="Dairy Free">Dairy-Free</SelectItem>
-                        <SelectItem value="Nut Free">Nut-Free</SelectItem>
-                        <SelectItem value="Low Carb">Low Carb</SelectItem>
-                        <SelectItem value="Paleo">Paleo</SelectItem>
-                        <SelectItem value="Keto">Keto</SelectItem>
-                        <SelectItem value="Halal">Halal</SelectItem>
-                        <SelectItem value="Kosher">Kosher</SelectItem>
-                    </SelectContent>
-                </Select>
-
-            </div> */}
 
           <SubmitButton className="py-5 lg:py-7">Edit Profile</SubmitButton>
 

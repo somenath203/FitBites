@@ -130,12 +130,6 @@ export const editUserProfile = async (prevState, formData) => {
 
         const allergies = rawData?.allergies;
 
-        const idOfTheMeal = rawData?.mealId;
-
-        // const healthGoal = rawData?.healthGoal;
-
-        // const dietPreference = rawData?.dietPreference;
-
 
         await primsaClientConfig.profile.update({
             where: {
@@ -153,17 +147,6 @@ export const editUserProfile = async (prevState, formData) => {
                 allergies: allergies
             }
         });
-
-        // await primsaClientConfig.mealPlan.update({
-        //     where: {
-        //         id: idOfTheMeal,
-        //         idOfTheProfileWhoCreatedTheMealPlan: user.id
-        //     },
-        //     data: {
-        //         healthGoal: healthGoal,
-        //         dietPreference: dietPreference
-        //     }
-        // });
 
         
     } catch (error) {
