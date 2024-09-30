@@ -3,7 +3,6 @@ import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 
-import { fetchAllMealsCreatedByTheUser } from "@/server-actions/planMealServerActions";
 import { fetchWholeProfileOfUser } from "@/server-actions/userServerActions";
 import { Button } from "@/components/ui/button";
 
@@ -21,11 +20,6 @@ const page = async () => {
 
 
   const user = await fetchWholeProfileOfUser();
-
-
-  const allMealsCreatedByTheUser = await fetchAllMealsCreatedByTheUser();
-
-  const latestMealCreatedByUser = allMealsCreatedByTheUser[allMealsCreatedByTheUser?.length - 1];
 
 
   return (
@@ -103,15 +97,6 @@ const page = async () => {
             <span className="font-semibold">Weight:</span>
             
             <span>{user?.weight || 'Not Available'} kg</span>
-
-          </div>
-
-
-          <div className="text-center flex flex-col gap-2 lg:flex-row lg:gap-0 lg:justify-between">
-
-            <span className="font-semibold">Dietary Preferences:</span>
-
-            <span>{latestMealCreatedByUser?.dietPreference || 'Not Available'}</span>
 
           </div>
 
