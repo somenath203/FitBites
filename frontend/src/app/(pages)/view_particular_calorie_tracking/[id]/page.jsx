@@ -106,17 +106,6 @@ const page = async ({ params }) => {
 
       </div>
 
-
-      <div className="flex flex-col lg:flex-row gap-2 lg:gap-3">
-
-        <span>Approximate total calorie of all the food taken during {trackCalorie.foodItemsTakenToday}: </span>
-
-        <span className="font-bold text-green-700">
-          {trackCalorie.approximateTotalCalorieOfAllTheFoodsTogetherTakenToday}
-        </span>
-
-      </div>
-
       <div className="flex flex-col lg:flex-row gap-2 lg:gap-3">
 
         <span>Approximate total calorie of all the food taken during {trackCalorie.mealTypeTakenToday}: </span>
