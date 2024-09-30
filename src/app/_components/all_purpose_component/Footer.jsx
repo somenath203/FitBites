@@ -1,3 +1,5 @@
+'use client';
+
 const Footer = () => {
   return (
     <footer className="mt-16 flex items-center justify-center py-10 border-t">
