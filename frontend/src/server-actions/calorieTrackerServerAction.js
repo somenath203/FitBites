@@ -2,6 +2,7 @@
 
 import { currentUser } from '@clerk/nextjs/server';
 import { redirect } from 'next/navigation';
+import axios from 'axios';
 
 import primsaClientConfig from '@/prismaClientConfig';
 import { chatSessionGoogleGemini } from '@/googleGeminiModelConfig';
@@ -31,15 +32,15 @@ export const createNewCalorieTracking = async (prevState, formData) => {
 
         const allPortionSizeOfEachFoodTakenTodayGreaterThanThirty = rawData?.portionSizeOfEachFoodTakenToday?.split(' ');
 
-        if(allPortionSizeOfEachFoodTakenTodayGreaterThanThirty.length > 20) {
+        if(allPortionSizeOfEachFoodTakenTodayGreaterThanThirty.length > 40) {
 
-            throw new Error("make sure what you wrote in 'Write about the portion size of each food you took today' is lesser tha or equals to 20 words");
+            throw new Error("make sure what you wrote in 'Write about the portion size of each food you took today' is lesser tha or equals to 40 words");
 
         }
 
 
         const calorieTrackingPrompt = `
-            Generate a personalized meal plan for a user based on the following details:
+            Below are the information:
 
             - Name: ${fetchAllDetailsOfUser.firstName} ${fetchAllDetailsOfUser.lastName}
             - Age: ${fetchAllDetailsOfUser.age} years
@@ -54,40 +55,32 @@ export const createNewCalorieTracking = async (prevState, formData) => {
             - Approximate Total Calorie Intake: ${rawData?.approximateTotalCalorieOfAllTheFoodsTogetherTakenToday || ''} kcal
             - Approximate Macronutrient Breakdown: ${rawData?.approximateTotalMacroNutrientsOfAllTheFoodsTogetherTakenToday || ''} (e.g., grams of proteins, carbohydrates, and fats)
 
-            Based on this information, generate a personalized calorie tracking plan for the user.
+            Now, based on the above information, generate a personalized calorie tracking plan for the user.
         `;
 
-
-        const responseFromModel = await chatSessionGoogleGemini.sendMessage(calorieTrackingPrompt);
-
-        if(!responseFromModel) {
-
-            console.log("something went wrong");
-            
-
-            throw new Error("SOMETHING WENT WRONG OR THE GOOGLE GEMINI MODEL IS OVERLOADED AND IS NOT ABLE TO TAKE ANY RESPONSES RIGHT NOW. PLEASE TRY AGAIN LATER AFTER SOMETIME");
-
-        }
-
-        await primsaClientConfig.trackCalorieOfTheDay.create({
-            data: {
-                mealTypeTakenToday: rawData?.mealTypeTakenToday || '',                            
-                foodItemsTakenToday: rawData?.foodItemsTakenToday || '',             
-                portionSizeOfEachFoodTakenToday: rawData?.portionSizeOfEachFoodTakenToday || '',                     
-                approximateTotalCalorieOfAllTheFoodsTogetherTakenToday: rawData?.approximateTotalCalorieOfAllTheFoodsTogetherTakenToday || '',                     
-                approximateTotalMacroNutrientsOfAllTheFoodsTogetherTakenToday: rawData?.approximateTotalMacroNutrientsOfAllTheFoodsTogetherTakenToday || '',                     
-                idOfTheProfileWhoCreatedTheTrackCalorie: user?.id || '',
-                calorieTrackCreatedByTheGeminiModel: responseFromModel?.response?.text() || '',
-                dateOfCreation: rawData?.dateOfCreation || '',
-                timeOfCreation: rawData?.timeOfCreation || ''
-            }
+        const { data } = await axios.post(`${process.env.BACKEND_FAST_API_BASE_URL}/predict`, {
+            textFromNextJSFrontend: calorieTrackingPrompt
         });
 
+        if(!data?.success) {
 
-        return {
-            message: 'personalized calorie tracking analysis created successfully'
+            const responseFromModel = data?.response_from_model.content;
+        
+            await primsaClientConfig.trackCalorieOfTheDay.create({
+                data: {
+                    mealTypeTakenToday: rawData?.mealTypeTakenToday || '',                            
+                    foodItemsTakenToday: rawData?.foodItemsTakenToday || '',             
+                    portionSizeOfEachFoodTakenToday: rawData?.portionSizeOfEachFoodTakenToday || '',                     
+                    approximateTotalCalorieOfAllTheFoodsTogetherTakenToday: rawData?.approximateTotalCalorieOfAllTheFoodsTogetherTakenToday || '',                     
+                    approximateTotalMacroNutrientsOfAllTheFoodsTogetherTakenToday: rawData?.approximateTotalMacroNutrientsOfAllTheFoodsTogetherTakenToday || '',                     
+                    idOfTheProfileWhoCreatedTheTrackCalorie: user?.id || '',
+                    calorieTrackCreatedByTheGeminiModel: responseFromModel?.response?.text() || '',
+                    dateOfCreation: rawData?.dateOfCreation || '',
+                    timeOfCreation: rawData?.timeOfCreation || ''
+                }
+            });
+            
         }
-
         
     } catch (error) {
         
@@ -98,6 +91,8 @@ export const createNewCalorieTracking = async (prevState, formData) => {
         }
 
     }
+
+    redirect('/track_calorie_history')
 
 }
 
