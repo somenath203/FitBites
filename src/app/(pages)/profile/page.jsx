@@ -100,6 +100,14 @@ const page = async () => {
 
           </div>
 
+          <div className="text-center flex flex-col gap-2 lg:flex-row lg:gap-0 lg:justify-between">
+
+            <span className="font-semibold">Activity Level:</span>
+            
+            <span>{user?.activityLevel || 'Not Available'}</span>
+
+          </div>
+
         </div>
 
         <Link href={`/profile/edit/${user.id}`} className="w-full mt-4 lg:mt-0">
