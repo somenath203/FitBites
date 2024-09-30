@@ -47,13 +47,13 @@ export const createNewCalorieTracking = async (prevState, formData) => {
             - Height: ${fetchAllDetailsOfUser.height} cm
             - Weight: ${fetchAllDetailsOfUser.weight} kg
             - Activity Level: ${fetchAllDetailsOfUser.activityLevel}
-            - **Meal Type Taken Today:** ${rawData?.mealTypeTakenToday || ''} 
-            - **Foods Consumed Today:** ${rawData?.foodItemsTakenToday || ''} 
-            - **Portion Sizes:** ${rawData?.portionSizeOfEachFoodTakenToday || ''}
-            - **Approximate Total Calorie Intake:** ${rawData?.approximateTotalCalorieOfAllTheFoodsTogetherTakenToday || ''} kcal
-            - **Approximate Macronutrient Breakdown:** ${rawData?.approximateTotalMacroNutrientsOfAllTheFoodsTogetherTakenToday || ''} (e.g., grams of proteins, carbohydrates, and fats)
+            - Meal Type Taken Today: ${rawData?.mealTypeTakenToday || ''} 
+            - Foods Consumed Today: ${rawData?.foodItemsTakenToday || ''} 
+            - Portion Sizes: ${rawData?.portionSizeOfEachFoodTakenToday || ''}
+            - Approximate Total Calorie Intake: ${rawData?.approximateTotalCalorieOfAllTheFoodsTogetherTakenToday || ''} kcal
+            - Approximate Macronutrient Breakdown: ${rawData?.approximateTotalMacroNutrientsOfAllTheFoodsTogetherTakenToday || ''} (e.g., grams of proteins, carbohydrates, and fats)
 
-            Based on this information, generate a personalized calorie tracking plan for the user. Include specific recommendations for how they can track their calorie intake effectively, suggest types of foods they can eat, and tips to maintain their dietary goals. Please be detailed and ensure that your suggestions align with their personal health goals.
+            Based on this information, generate a personalized calorie tracking plan for the user.
         `;
 
 

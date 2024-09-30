@@ -46,11 +46,11 @@ export const createNewReceipeSuggestion = async (prevState, formData) => {
             - Height: ${fetchAllDetailsOfUser.height} cm
             - Weight: ${fetchAllDetailsOfUser.weight} kg
             - Activity Level: ${fetchAllDetailsOfUser.activityLevel}
-            - **Meal Type:** ${rawData?.mealType || ''} 
-            - **Time Available for Cooking:** ${rawData?.timeThatCanBeGivenToCooking || 'No time constraint'} minutes
-            - **Daily Calorie Target:** ${rawData?.dailyCalorieTarget || ''} kcal
-            - **Ingredients to Include:** ${rawData?.ingredientsToInclude || 'None specified'}
-            - **Ingredients to Exclude:** ${rawData?.ingredientsToExclude || 'None specified'}
+            - Meal Type: ${rawData?.mealType || ''} 
+            - Time Available for Cooking: ${rawData?.timeThatCanBeGivenToCooking || 'No time constraint'} minutes
+            - Daily Calorie Target: ${rawData?.dailyCalorieTarget || ''} kcal
+            - Ingredients to Include: ${rawData?.ingredientsToInclude || 'None specified'}
+            - Ingredients to Exclude: ${rawData?.ingredientsToExclude || 'None specified'}
 
              Based on the above information, create a personalized recipe suggestions that the user can prepare.
         `;
