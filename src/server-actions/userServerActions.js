@@ -132,9 +132,9 @@ export const editUserProfile = async (prevState, formData) => {
 
         const idOfTheMeal = rawData?.mealId;
 
-        const healthGoal = rawData?.healthGoal;
+        // const healthGoal = rawData?.healthGoal;
 
-        const dietPreference = rawData?.dietPreference;
+        // const dietPreference = rawData?.dietPreference;
 
 
         await primsaClientConfig.profile.update({
@@ -154,16 +154,16 @@ export const editUserProfile = async (prevState, formData) => {
             }
         });
 
-        await primsaClientConfig.mealPlan.update({
-            where: {
-                id: idOfTheMeal,
-                idOfTheProfileWhoCreatedTheMealPlan: user.id
-            },
-            data: {
-                healthGoal: healthGoal,
-                dietPreference: dietPreference
-            }
-        });
+        // await primsaClientConfig.mealPlan.update({
+        //     where: {
+        //         id: idOfTheMeal,
+        //         idOfTheProfileWhoCreatedTheMealPlan: user.id
+        //     },
+        //     data: {
+        //         healthGoal: healthGoal,
+        //         dietPreference: dietPreference
+        //     }
+        // });
 
         
     } catch (error) {

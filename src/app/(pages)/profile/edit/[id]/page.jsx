@@ -44,10 +44,10 @@ const page = async ({ params }) => {
     }
 
 
-    const allMealsCreatedByTheUser = await fetchAllMealsCreatedByTheUser();
+    // const allMealsCreatedByTheUser = await fetchAllMealsCreatedByTheUser();
 
 
-    const latestMealCreatedByUser = allMealsCreatedByTheUser[allMealsCreatedByTheUser?.length - 1];
+    // const latestMealCreatedByUser = allMealsCreatedByTheUser[allMealsCreatedByTheUser?.length - 1];
     
 
   return (
@@ -219,7 +219,7 @@ const page = async ({ params }) => {
             />
           </div>
 
-          <div className="flex flex-col gap-2">
+          {/* <div className="flex flex-col gap-2">
 
                 <Label>Your Health Goal</Label>
 
@@ -257,10 +257,10 @@ const page = async ({ params }) => {
                     </SelectContent>
                 </Select>
 
-            </div>
+            </div> */}
 
 
-            <div className="flex flex-col gap-2">
+            {/* <div className="flex flex-col gap-2">
 
                 <Label>Diet Preference</Label>
 
@@ -286,7 +286,7 @@ const page = async ({ params }) => {
                     </SelectContent>
                 </Select>
 
-            </div>
+            </div> */}
 
           <SubmitButton className="py-5 lg:py-7">Edit Profile</SubmitButton>
 

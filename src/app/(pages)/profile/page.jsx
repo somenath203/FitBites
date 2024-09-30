@@ -116,7 +116,7 @@ const page = async () => {
           </div>
 
 
-          <div className="text-center flex flex-col gap-2 lg:flex-row lg:gap-0 lg:justify-between">
+          {/* <div className="text-center flex flex-col gap-2 lg:flex-row lg:gap-0 lg:justify-between">
 
             <span className="font-semibold">Activity Level:</span>
 
@@ -131,7 +131,7 @@ const page = async () => {
 
             <span>{latestMealCreatedByUser?.healthGoal || 'Not Available'}</span>
 
-          </div>
+          </div> */}
 
         </div>
 
