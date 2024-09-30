@@ -41,7 +41,7 @@ const page = async ({ params }) => {
 
           <BreadcrumbItem>
 
-            <Link href='/plan_meal_history'>Meal History</Link>
+            <Link href='/plan_meal_history'>Meal Plan History</Link>
             
           </BreadcrumbItem>
 

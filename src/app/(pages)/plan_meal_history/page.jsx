@@ -43,7 +43,7 @@ const page = async () => {
       <div className="min-h-screen flex flex-col m-auto items-center gap-10">
 
         <p className="text-2xl roboto-bold tracking-wider text-green-600">
-          Meal History
+          Meal Plan History
         </p>
 
         <Table>

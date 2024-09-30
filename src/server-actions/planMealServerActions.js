@@ -32,7 +32,7 @@ export const createNewMealPlan = async (prevState, formData) => {
         `;
 
 
-        const responseFromModel = await chatSessionGoogleGemini.sendMessageStream(mealPlanPrompt);
+        const responseFromModel = await chatSessionGoogleGemini.sendMessage(mealPlanPrompt);
         
         await primsaClientConfig.mealPlan.create({
             data: {
