@@ -59,8 +59,6 @@ export const createNewReceipeSuggestion = async (prevState, formData) => {
         const responseFromModel = await chatSessionGoogleGemini.sendMessage(recipeSuggestionPrompt);
 
         if(!responseFromModel) {
-
-            console.log("something went wrong");
             
             throw new Error("SOMETHING WENT WRONG OR THE GOOGLE GEMINI MODEL IS OVERLOADED AND IS NOT ABLE TO TAKE ANY RESPONSES RIGHT NOW. PLEASE TRY AGAIN LATER AFTER SOMETIME");
 
@@ -80,6 +78,11 @@ export const createNewReceipeSuggestion = async (prevState, formData) => {
             }
         });
 
+
+        return {
+            message: 'personalized meal suggestion created successfully'
+        }
+
         
     } catch (error) {
         
@@ -90,8 +93,6 @@ export const createNewReceipeSuggestion = async (prevState, formData) => {
         }
 
     }
-
-    redirect('/suggest_receipe_history');
 
 }
 

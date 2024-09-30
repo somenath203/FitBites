@@ -37,8 +37,6 @@ export const createNewMealPlan = async (prevState, formData) => {
 
         if(!responseFromModel) {
 
-            console.log("something went wrong");
-
             throw new Error("SOMETHING WENT WRONG OR THE GOOGLE GEMINI MODEL IS OVERLOADED AND IS NOT ABLE TO TAKE ANY RESPONSES RIGHT NOW. PLEASE TRY AGAIN LATER AFTER SOMETIME");
 
         }
@@ -54,6 +52,10 @@ export const createNewMealPlan = async (prevState, formData) => {
                 timeOfCreation: rawData?.timeOfCreation || ''
             }
         });
+
+        return {
+            message: 'personalized meal plan created successfully'
+        }
         
     } catch (error) {
         
@@ -64,8 +66,6 @@ export const createNewMealPlan = async (prevState, formData) => {
         }
 
     }
-
-    redirect('/plan_meal_history');
 
 }
 

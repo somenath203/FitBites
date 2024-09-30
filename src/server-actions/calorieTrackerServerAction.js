@@ -83,6 +83,11 @@ export const createNewCalorieTracking = async (prevState, formData) => {
             }
         });
 
+
+        return {
+            message: 'personalized calorie tracking analysis created successfully'
+        }
+
         
     } catch (error) {
         
@@ -93,8 +98,6 @@ export const createNewCalorieTracking = async (prevState, formData) => {
         }
 
     }
-
-    redirect('/track_calorie_history');
 
 }
 
