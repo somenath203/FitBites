@@ -11,9 +11,9 @@ const DateTimeComponent = () => {
 
   return <>
 
-    <input type='hidden' defaultValue={currentDate} name='dateOfCreation' />
+    <input type='hidden' defaultValue={currentDate} name='dateOfCreation' readOnly />
 
-    <input type='hidden' defaultValue={currentTime} name='timeOfCreation' />
+    <input type='hidden' defaultValue={currentTime} name='timeOfCreation' readOnly />
 
   </>
 };
