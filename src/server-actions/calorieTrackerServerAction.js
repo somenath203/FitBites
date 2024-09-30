@@ -24,7 +24,7 @@ export const createNewCalorieTracking = async (prevState, formData) => {
 
         if(allFoodsEatenTodayGreaterThanThirty.length > 20) {
 
-            throw new Error("make sure what you wrote in 'Write all the foods you took today (max 20 words)' is lesser than 30 words");
+            throw new Error("make sure what you wrote in 'Write all the foods you took today (max 20 words)' is lesser than or equals to 20 words");
 
         }
 
@@ -33,7 +33,7 @@ export const createNewCalorieTracking = async (prevState, formData) => {
 
         if(allPortionSizeOfEachFoodTakenTodayGreaterThanThirty.length > 20) {
 
-            throw new Error("make sure what you wrote in 'Write about the portion size of each food you took today' is lesser than 20 words");
+            throw new Error("make sure what you wrote in 'Write about the portion size of each food you took today' is lesser tha or equals to 20 words");
 
         }
 

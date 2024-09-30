@@ -32,7 +32,7 @@ export const createNewReceipeSuggestion = async (prevState, formData) => {
 
         if(ingredientsToExcludeNoOfWordsGreaterThanTwenty.length > 20) {
 
-            throw new Error("make sure what you wrote in 'Ingredients to Exclude' is lesser than 20 words");
+            throw new Error("make sure what you wrote in 'Ingredients to Exclude' is lesser than or equals to 20 words");
 
         }
 
