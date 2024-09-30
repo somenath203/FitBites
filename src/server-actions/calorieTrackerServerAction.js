@@ -47,6 +47,7 @@ export const createNewCalorieTracking = async (prevState, formData) => {
             - Height: ${fetchAllDetailsOfUser.height} cm
             - Weight: ${fetchAllDetailsOfUser.weight} kg
             - Activity Level: ${fetchAllDetailsOfUser.activityLevel}
+            - Allergies: ${fetchAllDetailsOfUser.allergies}
             - Meal Type Taken Today: ${rawData?.mealTypeTakenToday || ''} 
             - Foods Consumed Today: ${rawData?.foodItemsTakenToday || ''} 
             - Portion Sizes: ${rawData?.portionSizeOfEachFoodTakenToday || ''}
@@ -58,6 +59,12 @@ export const createNewCalorieTracking = async (prevState, formData) => {
 
 
         const responseFromModel = await chatSessionGoogleGemini.sendMessage(calorieTrackingPrompt);
+
+        if(!responseFromModel) {
+
+            throw new Error("SOMETHING WENT WRONG OR THE MODEL IS OVERLOADED AND IS NOT ABLE TO TAKE ANY RESPONSES RIGHT NOW. PLEASE TRY AGAIN LATER AFTER SOMETIME");
+
+        }
 
         await primsaClientConfig.trackCalorieOfTheDay.create({
             data: {

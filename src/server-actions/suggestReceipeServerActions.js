@@ -46,6 +46,7 @@ export const createNewReceipeSuggestion = async (prevState, formData) => {
             - Height: ${fetchAllDetailsOfUser.height} cm
             - Weight: ${fetchAllDetailsOfUser.weight} kg
             - Activity Level: ${fetchAllDetailsOfUser.activityLevel}
+            - Allergies: ${fetchAllDetailsOfUser.allergies}
             - Meal Type: ${rawData?.mealType || ''} 
             - Time Available for Cooking: ${rawData?.timeThatCanBeGivenToCooking || 'No time constraint'} minutes
             - Daily Calorie Target: ${rawData?.dailyCalorieTarget || ''} kcal
@@ -56,6 +57,12 @@ export const createNewReceipeSuggestion = async (prevState, formData) => {
         `;
     
         const responseFromModel = await chatSessionGoogleGemini.sendMessage(recipeSuggestionPrompt);
+
+        if(!responseFromModel) {
+
+            throw new Error("SOMETHING WENT WRONG OR THE MODEL IS OVERLOADED AND IS NOT ABLE TO TAKE ANY RESPONSES RIGHT NOW. PLEASE TRY AGAIN LATER AFTER SOMETIME");
+
+        }
         
         await primsaClientConfig.suggestReceipe.create({
             data: {

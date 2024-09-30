@@ -27,12 +27,19 @@ export const createNewMealPlan = async (prevState, formData) => {
             - Height: ${fetchAllDetailsOfUser.height} cm
             - Weight: ${fetchAllDetailsOfUser.weight} kg
             - Activity Level: ${fetchAllDetailsOfUser.activityLevel}
+            - Allergies: ${fetchAllDetailsOfUser.allergies}
 
              Create a personalized meal plan for a full day (breakfast, lunch, dinner, and snacks), ensuring it aligns with the user's calorie target, dietary preferences, and health goal. Suggest nutrient-dense foods and include macronutrient breakdown for each meal (proteins, carbohydrates, fats).
         `;
 
 
         const responseFromModel = await chatSessionGoogleGemini.sendMessage(mealPlanPrompt);
+
+        if(!responseFromModel) {
+
+            throw new Error("SOMETHING WENT WRONG OR THE MODEL IS OVERLOADED AND IS NOT ABLE TO TAKE ANY RESPONSES RIGHT NOW. PLEASE TRY AGAIN LATER AFTER SOMETIME");
+
+        }
         
         await primsaClientConfig.mealPlan.create({
             data: {
