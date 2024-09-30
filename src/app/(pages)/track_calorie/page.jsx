@@ -14,6 +14,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
+import DateTimeComponent from '@/app/_components/all_purpose_component/DateTimeComponent';
 
 
 const page = async () => {
@@ -34,7 +35,7 @@ const page = async () => {
 
         <p className="text-lg lg:text-2xl text-center roboto-bold tracking-wider text-green-600">
 
-          Calorie Tracker Analysis for Date: {new Date().toLocaleString()}
+          Calorie Tracker Analysis
 
         </p>
 
@@ -124,6 +125,8 @@ const page = async () => {
             />
 
           </div>
+
+          <DateTimeComponent />
 
 
           <SubmitButton className='py-5 lg:py-7'>

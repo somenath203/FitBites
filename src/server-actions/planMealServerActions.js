@@ -97,10 +97,11 @@ export const createNewMealPlan = async (prevState, formData) => {
                 dietPreference: rawData?.dietPreference || '',
                 calorieTarget: rawData?.targetCalorie || '',
                 mealPlanCreatedByTheGeminiModel: responseFromModel?.response?.text() || '',
-                idOfTheProfileWhoCreatedTheMealPlan: user?.id || ''
+                idOfTheProfileWhoCreatedTheMealPlan: user?.id || '',
+                dateOfCreation: rawData?.dateOfCreation || '',
+                timeOfCreation: rawData?.timeOfCreation || ''
             }
         });
-
         
     } catch (error) {
         

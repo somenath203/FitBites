@@ -35,6 +35,8 @@ model MealPlan {
   mealPlanCreatedByTheGeminiModel     String
   idOfTheProfileWhoCreatedTheMealPlan String
   profile                             Profile  @relation(fields: [idOfTheProfileWhoCreatedTheMealPlan], references: [clerkId], onDelete: Cascade)
+  dateOfCreation                      String
+  timeOfCreation                      String
   createdAt                           DateTime @default(now())
   updatedAt                           DateTime @updatedAt
 }
@@ -49,6 +51,8 @@ model TrackCalorieOfTheDay {
   calorieTrackCreatedByTheGeminiModel                           String
   idOfTheProfileWhoCreatedTheTrackCalorie                       String
   profile                                                       Profile  @relation(fields: [idOfTheProfileWhoCreatedTheTrackCalorie], references: [clerkId], onDelete: Cascade)
+  dateOfCreation                                                String
+  timeOfCreation                                                String
   createdAt                                                     DateTime @default(now())
   updatedAt                                                     DateTime @updatedAt
 }
@@ -63,6 +67,8 @@ model SuggestReceipe {
   receipeSuggestCreatedByTheGeminiModel     String
   idOfTheProfileWhoCreatedTheSuggestReceipe String
   profile                                   Profile  @relation(fields: [idOfTheProfileWhoCreatedTheSuggestReceipe], references: [clerkId], onDelete: Cascade)
+  dateOfCreation                            String
+  timeOfCreation                            String
   createdAt                                 DateTime @default(now())
   updatedAt                                 DateTime @updatedAt
 }

@@ -13,7 +13,6 @@ import {
 } from '@/components/ui/table';
 import { fetchAllMealsCreatedByTheUser } from "@/server-actions/planMealServerActions";
 import { Button } from "@/components/ui/button";
-import { formatDate } from "@/utils/formatDate";
 
 
 const page = async () => {
@@ -58,7 +57,8 @@ const page = async () => {
               <TableHead>Health Goal</TableHead>
               <TableHead>Diet Preference</TableHead>
               <TableHead>Calorie Target</TableHead>
-              <TableHead>Created At</TableHead>
+              <TableHead>Creation Date</TableHead>
+              <TableHead>Creatation Time</TableHead>
               <TableHead>View Details</TableHead>
 
             </TableRow>
@@ -84,7 +84,11 @@ const page = async () => {
                 </TableCell>
 
                 <TableCell>
-                  {formatDate(meal.createdAt)}
+                  {meal.dateOfCreation}
+                </TableCell>
+
+                <TableCell>
+                  {meal.timeOfCreation}
                 </TableCell>
 
                 <TableCell>

@@ -79,7 +79,9 @@ export const createNewCalorieTracking = async (prevState, formData) => {
                 approximateTotalCalorieOfAllTheFoodsTogetherTakenToday: rawData?.approximateTotalCalorieOfAllTheFoodsTogetherTakenToday || '',                     
                 approximateTotalMacroNutrientsOfAllTheFoodsTogetherTakenToday: rawData?.approximateTotalMacroNutrientsOfAllTheFoodsTogetherTakenToday || '',                     
                 idOfTheProfileWhoCreatedTheTrackCalorie: user?.id || '',
-                calorieTrackCreatedByTheGeminiModel: responseFromModel?.response?.text() || ''
+                calorieTrackCreatedByTheGeminiModel: responseFromModel?.response?.text() || '',
+                dateOfCreation: rawData?.dateOfCreation || '',
+                timeOfCreation: rawData?.timeOfCreation || ''
             }
         });
 

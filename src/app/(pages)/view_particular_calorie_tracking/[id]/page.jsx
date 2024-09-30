@@ -4,11 +4,9 @@ import Link from "next/link";
 
 import MarkdownOfAiResponse from "@/app/_components/all_purpose_component/MarkdownOfAiResponse";
 import { fetchParticularCalorieTrackerById } from "@/server-actions/calorieTrackerServerAction";
-import { formatDate, formatTime } from "@/utils/formatDate";
 import {
   Breadcrumb,
   BreadcrumbItem,
-  BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
@@ -62,7 +60,7 @@ const page = async ({ params }) => {
         <span>Date at which the calorie tracking analysis was created: </span> 
 
         <span className="font-bold text-green-700">
-          {formatDate(trackCalorie.createdAt)}
+          {trackCalorie.dateOfCreation}
         </span>
 
       </div>
@@ -72,7 +70,7 @@ const page = async ({ params }) => {
         <span>Time at which the calorie tracking analysis was created: </span> 
 
         <span className="font-bold text-green-700">
-          {formatTime(trackCalorie.createdAt)}
+          {trackCalorie.timeOfCreation}
         </span>
 
       </div>

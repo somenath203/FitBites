@@ -95,7 +95,9 @@ export const createNewReceipeSuggestion = async (prevState, formData) => {
                 ingredientsToInclude: rawData?.ingredientsToInclude || '',   
                 ingredientsToExclude: rawData?.ingredientsToExclude || '', 
                 receipeSuggestCreatedByTheGeminiModel: responseFromModel?.response?.text() || '',        
-                idOfTheProfileWhoCreatedTheSuggestReceipe: user?.id || ''
+                idOfTheProfileWhoCreatedTheSuggestReceipe: user?.id || '',
+                dateOfCreation: rawData?.dateOfCreation || '',
+                timeOfCreation: rawData?.timeOfCreation || ''
             }
         });
 

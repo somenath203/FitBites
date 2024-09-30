@@ -13,6 +13,7 @@ import {
 import FormContainer from '@/app/_components/form/FormContainer';
 import { createNewMealPlan } from '@/server-actions/planMealServerActions';
 import SubmitButton from '@/app/_components/all_purpose_component/SubmitButton';
+import DateTimeComponent from '@/app/_components/all_purpose_component/DateTimeComponent';
 
 const page = async () => {
 
@@ -117,6 +118,8 @@ const page = async () => {
             />
 
           </div>
+
+          <DateTimeComponent />
 
           <SubmitButton className='py-5 lg:py-7'>
             Generate Meal Plan
