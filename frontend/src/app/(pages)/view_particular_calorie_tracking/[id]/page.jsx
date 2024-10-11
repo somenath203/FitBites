@@ -111,7 +111,7 @@ const page = async ({ params }) => {
         <span>Approximate total calorie of all the food taken during {trackCalorie.mealTypeTakenToday}: </span>
 
         <span className="font-bold text-green-700">
-          {trackCalorie.approximateTotalCalorieOfAllTheFoodsTogetherTakenToday} kcal
+          {trackCalorie.approximateTotalCalorieOfAllTheFoodsTogetherTakenToday} cal
         </span>
 
       </div>
