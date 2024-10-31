@@ -56,7 +56,7 @@ export const createNewReceipeSuggestion = async (prevState, formData) => {
              Based on the above information, create a personalized recipe suggestions that the user can prepare.
         `;
 
-        const { data } = await axios.post(`${process.env.BACKEND_FAST_API_BASE_URL}/predict`, {
+        const { data } = await axios.post(`${process.env.BACKEND_FAST_API_BASE_URL}/generateanswer`, {
             textFromNextJSFrontend: recipeSuggestionPrompt
         });
 
