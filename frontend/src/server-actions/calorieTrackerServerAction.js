@@ -57,7 +57,7 @@ export const createNewCalorieTracking = async (prevState, formData) => {
             Now, based on the above information, generate a personalized calorie tracking plan for the user.
         `;
 
-        const { data } = await axios.post(`${process.env.BACKEND_FAST_API_BASE_URL}/predict`, {
+        const { data } = await axios.post(`${process.env.BACKEND_FAST_API_BASE_URL}/generateanswer`, {
             textFromNextJSFrontend: calorieTrackingPrompt
         });
 
