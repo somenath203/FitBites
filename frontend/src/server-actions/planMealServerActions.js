@@ -33,7 +33,7 @@ export const createNewMealPlan = async (prevState, formData) => {
         `;
 
 
-        const { data } = await axios.post(`${process.env.BACKEND_FAST_API_BASE_URL}/predict`, {
+        const { data } = await axios.post(`${process.env.BACKEND_FAST_API_BASE_URL}/generateanswer`, {
             textFromNextJSFrontend: mealPlanPrompt
         });
 
