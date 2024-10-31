@@ -47,7 +47,7 @@ def welcome():
     }
 
 
-@app.post('/predict')
+@app.post('/generateanswer')
 async def predict(incomingTextFromFrontend: textFromFrontendModel):
 
     prompt_text = incomingTextFromFrontend.textFromNextJSFrontend
