@@ -40,8 +40,7 @@ FitBites is a personalized nutrition and diet web app designed to help users ach
 ## 🛠️ **Technologies Used**  
 
 - **Next.js**: 🖥️ Framework for fast, server-rendered web applications.  
-- **Groq API with Llama3-8b-8192 model**: 🤖 AI-powered solution for personalized meal plans, recipes, and calorie tracking.  
-- **FastAPI**: ⚡ Modern backend framework for interacting with the Groq model.  
+- **Groq API with Llama3-8b-8192 model**: 🤖 AI-powered solution for personalized meal plans, recipes, and calorie tracking.    
 - **ShadCN UI**: 🎨 Component library for building sleek user interfaces.  
 - **Tailwind CSS**: 💅 Utility-first CSS framework for responsive styling.  
 - **Prisma ORM**: 🗄️ Efficient database interaction with Neon PostgreSQL.  

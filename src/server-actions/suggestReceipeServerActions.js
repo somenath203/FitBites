@@ -2,7 +2,8 @@
 
 import { currentUser } from '@clerk/nextjs/server';
 import { redirect } from 'next/navigation';
-import axios from 'axios';
+import { ChatGroq } from "@langchain/groq";
+import { PromptTemplate } from '@langchain/core/prompts';
 
 import primsaClientConfig from '@/prismaClientConfig';
 import { fetchWholeProfileOfUser } from './userServerActions';
@@ -56,14 +57,25 @@ export const createNewReceipeSuggestion = async (prevState, formData) => {
              Based on the above information, create a personalized recipe suggestions that the user can prepare.
         `;
 
-        const { data } = await axios.post(`${process.env.BACKEND_FAST_API_BASE_URL}/generateanswer`, {
-            textFromNextJSFrontend: recipeSuggestionPrompt
+
+        const llmModel = new ChatGroq({
+            model: "Llama3-8b-8192", 
+            apiKey: process.env.GROQ_API_KEY,
         });
 
 
-        if(data?.success) {
+        const promptTemplate = PromptTemplate.fromTemplate(`
+            {text}
+        `);
+          
+        const formattedTemplate = await promptTemplate.format({ text: recipeSuggestionPrompt });
+        
+        const res = await llmModel.invoke(formattedTemplate);
 
-            const responseFromModel = data?.response_from_model?.content;
+
+        if(res) {
+
+            const responseFromModel = res?.content;
         
             await primsaClientConfig.suggestReceipe.create({
                 data: {
@@ -108,7 +120,7 @@ export const fetchAllReceipeSuggestionsCreatedByTheUser = async () => {
             }
         });
 
-        return allReceipeSuggestionsCreatedByTheUser;
+        return allReceipeSuggestionsCreatedByTheUser.reverse();
 
     } catch (error) {
 

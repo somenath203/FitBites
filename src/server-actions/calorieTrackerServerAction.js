@@ -2,7 +2,8 @@
 
 import { currentUser } from '@clerk/nextjs/server';
 import { redirect } from 'next/navigation';
-import axios from 'axios';
+import { ChatGroq } from "@langchain/groq";
+import { PromptTemplate } from '@langchain/core/prompts';
 
 import primsaClientConfig from '@/prismaClientConfig';
 import { fetchWholeProfileOfUser } from './userServerActions';
@@ -57,13 +58,25 @@ export const createNewCalorieTracking = async (prevState, formData) => {
             Now, based on the above information, generate a personalized calorie tracking plan for the user.
         `;
 
-        const { data } = await axios.post(`${process.env.BACKEND_FAST_API_BASE_URL}/generateanswer`, {
-            textFromNextJSFrontend: calorieTrackingPrompt
+
+        const llmModel = new ChatGroq({
+            model: "Llama3-8b-8192", 
+            apiKey: process.env.GROQ_API_KEY,
         });
 
-        if(data?.success) {
 
-            const responseFromModel = data?.response_from_model?.content;
+        const promptTemplate = PromptTemplate.fromTemplate(`
+            {text}
+        `);
+          
+        const formattedTemplate = await promptTemplate.format({ text: calorieTrackingPrompt });
+        
+        const res = await llmModel.invoke(formattedTemplate);
+
+
+        if(res) {
+
+            const responseFromModel = res?.content;
         
             await primsaClientConfig.trackCalorieOfTheDay.create({
                 data: {
@@ -108,7 +121,7 @@ export const fetchAllCalorieTrackingCreatedByTheUser = async () => {
             }
         });
 
-        return allCaloriesCreatedByTheUser;
+        return allCaloriesCreatedByTheUser.reverse();
 
     } catch (error) {
 
