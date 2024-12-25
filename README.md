@@ -54,8 +54,7 @@ FitBites is a personalized nutrition and diet web app designed to help users ach
 
 The **Next.js frontend** of FitBites is deployed on **Vercel** for a seamless user experience, while the **FastAPI backend** is hosted on **Hugging Face Spaces**, ensuring smooth interaction between the frontend and backend.  
 
-- **Website Link:** 🔗 [FitBites](https://fitbites-som.vercel.app/)  
-- **FastAPI Backend API:** 🔗 [FitBites Backend](https://som11-fitbitesbackendfastapi.hf.space)  
+- **Website Link:** 🔗 [FitBites](https://fit-bites-som.vercel.app/)  
 
 ---
 
