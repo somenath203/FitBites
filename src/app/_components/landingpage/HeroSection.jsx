@@ -33,7 +33,7 @@ const HeroSection = async () => {
           </p>
 
           {user ? (
-            <Link href='/profile'>
+            <Link href='/plan_meal'>
               <Button className='px-8 py-8 text-lg flex items-center gap-2'>Get Started <span className="text-2xl">🚀</span> </Button>
             </Link>
           ) : (
