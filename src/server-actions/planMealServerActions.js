@@ -35,7 +35,7 @@ export const createNewMealPlan = async (prevState, formData) => {
 
 
         const llmModel = new ChatGroq({
-            model: "Llama3-8b-8192", 
+            model: "llama-3.1-8b-instant", 
             apiKey: process.env.GROQ_API_KEY,
         });
 
