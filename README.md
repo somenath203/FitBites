@@ -204,4 +204,6 @@ FitBites uses **Google Gemini 3.1 Flash Lite** to generate AI-powered meal plans
 
 The generated responses are intended for informational purposes only and may not always be completely accurate. They should not be considered professional medical, nutritional, or dietary advice.
 
+While FitBites provides the prompts and user inputs to the AI model, the generated content is produced by Google Gemini. The creator of this project cannot guarantee the accuracy, completeness, or suitability of every AI-generated response.
+
 Always consult a qualified healthcare professional or registered dietitian before making important health or nutrition decisions.
