@@ -159,14 +159,6 @@ Every history item stores:
 
 ---
 
-## ⚡ Streaming AI Responses
-
-FitBites uses **streaming responses** from Google Gemini, allowing AI-generated content to appear gradually instead of waiting for the complete response.
-
-This provides a smoother and more interactive user experience.
-
----
-
 # 🛠️ Technologies Used
 
 ### Frontend
