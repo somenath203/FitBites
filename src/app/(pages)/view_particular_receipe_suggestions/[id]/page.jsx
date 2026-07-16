@@ -96,7 +96,7 @@ const Page = async ({ params }) => {
         <div className="flex items-center gap-3">
           <div className="h-8 w-1.5 rounded-full bg-green-600" />
           <h2 className="text-xl font-bold text-green-700 underline decoration-green-600 decoration-2 underline-offset-4">
-            {'Your Personalized Receipe Suggestion'.toUpperCase()}
+            {'Your Personalized Recipe Suggestion'.toUpperCase()}
           </h2>
         </div>
 

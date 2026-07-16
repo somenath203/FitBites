@@ -31,7 +31,7 @@ const page = async () => {
     return (
       <div className="min-h-screen flex justify-center text-center mt-36">
         
-        <p className="text-2xl tracking-wider text-green-700 font-bold">No Receipe Suggestions Found. Please Create One.</p>
+        <p className="text-2xl tracking-wider text-green-700 font-bold">No Recipe Suggestions Found. Please Create One.</p>
 
       </div>
     )
@@ -43,12 +43,12 @@ const page = async () => {
       <div className="min-h-screen flex flex-col m-auto items-center gap-10">
 
         <p className="text-2xl roboto-bold tracking-wider text-green-600">
-          Receipe Suggestion History
+          Recipe Suggestion History
         </p>
 
         <Table>
 
-          <TableCaption>A list of your recent receipe suggestions</TableCaption>
+          <TableCaption>A list of your recent recipe suggestions</TableCaption>
 
           <TableHeader>
 

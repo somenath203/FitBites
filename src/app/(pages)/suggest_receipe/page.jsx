@@ -32,7 +32,7 @@ const page = async () => {
       <div className="flex flex-col m-auto items-center gap-5 w-11/12 lg:w-5/6">
 
         <p className="text-xl lg:text-2xl text-center roboto-bold tracking-wider text-green-600">
-          Receipe Suggestion
+          Recipe Suggestion
         </p>
 
         <FormContainer className="flex flex-col gap-6 w-full" action={createNewReceipeSuggestion}>
@@ -129,7 +129,7 @@ const page = async () => {
 
 
           <SubmitButton className='py-5 lg:py-7'>
-            Suggest Receipe
+            Suggest Recipe
           </SubmitButton>
 
 
