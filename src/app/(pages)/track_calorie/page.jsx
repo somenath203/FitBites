@@ -2,7 +2,6 @@ import { currentUser } from '@clerk/nextjs/server';
 import { redirect } from 'next/navigation';
 
 import { Label } from '@/components/ui/label';
-import { Textarea } from "@/components/ui/textarea"
 import FormContainer from '@/app/_components/form/FormContainer';
 import { createNewCalorieTracking } from '@/server-actions/calorieTrackerServerAction';
 import SubmitButton from '@/app/_components/all_purpose_component/SubmitButton';
@@ -48,6 +47,7 @@ const page = async () => {
               <Select name='mealTypeTakenToday' required>
                 <SelectTrigger
                   className="border border-green-600"
+                  id="meal-type-taken-today"
                 >
                   <SelectValue placeholder="Please select your meal type for today" />
                 </SelectTrigger>
@@ -67,43 +67,14 @@ const page = async () => {
 
           <div className="flex flex-col gap-2">
 
-            <Label>Write all the foods you took in the selected meal type (max 20 words)</Label>
-
-            <Textarea 
-              name="foodItemsTakenToday"
-              placeholder="write about all the foods you took in the selected meal type" 
-              rows={6} 
-              className="!resize-none border border-green-600"
-              required
-            />
-
-          </div>
-
-
-          <div className="flex flex-col gap-2">
-
-            <Label>Write about the portion size of each food you took today (max 40 words)</Label>
-
-            <Textarea 
-              name="portionSizeOfEachFoodTakenToday"
-              placeholder="briefly list your carbs, proteins, fats, and vitamins" 
-              rows={6} 
-              className="!resize-none border border-green-600"
-              required
-            />
-
-          </div>
-
-
-          <div className="flex flex-col gap-2">
-
-            <Label>Approximate Total Calorie of all the Foods for today</Label>
+            <Label>
+              Foods You Ate in This Meal (Up to 8 foods, separated by commas.)
+            </Label>
 
             <Input
-              type="number"
-              name="approximateTotalCalorieOfAllTheFoodsTogetherTakenToday"
-              placeholder="enter approximate total calorie of all the foods taken together"
-              min={1}
+              name="foodItemsTakenToday"
+              placeholder="e.g., Chicken Butter Masala, Rice, Salad"
+              id="food-item-taken-today"
               className="border border-green-600"
               required
             />
@@ -113,13 +84,46 @@ const page = async () => {
 
           <div className="flex flex-col gap-2">
 
-            <Label>Approximate Total Macronutrients of all the Foods taken today</Label>
+            <Label>
+              Portion Size for Each Food Listed Above (Up to 8, separated by commas.)
+            </Label>
 
             <Input
-              type="number"
+              name="portionSizeOfEachFoodTakenToday"
+              placeholder="e.g., Chicken: 2 pieces, Rice: 1 plate, Salad: 1 bowl"
+              id="portion-size"
+              className="border border-green-600"
+              required
+            />
+
+          </div>
+
+
+          <div className="flex flex-col gap-2">
+
+            <Label>Approximate Total Calories for This Meal (Type "No Idea" if you don't know.)</Label>
+
+            <Input
+              type="text"
+              name="approximateTotalCalorieOfAllTheFoodsTogetherTakenToday"
+              placeholder="enter approximate total calorie of all the foods taken together"
+              id="total-calories"
+              className="border border-green-600"
+              required
+            />
+
+          </div>
+
+
+          <div className="flex flex-col gap-2">
+
+            <Label>Approximate Total Macronutrients for This Meal (Type "No Idea" if you don't know.)</Label>
+
+            <Input
+              type="text"
               name="approximateTotalMacroNutrientsOfAllTheFoodsTogetherTakenToday"
               placeholder="enter approximate total macronutrients of all the foods taken together"
-              min={1}
+              id="total-macronutrient"
               className="border border-green-600"
               required
             />

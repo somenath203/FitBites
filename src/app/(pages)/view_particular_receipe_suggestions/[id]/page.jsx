@@ -7,116 +7,106 @@ import { fetchParticularReceipeSuggestionById } from "@/server-actions/suggestRe
 import {
   Breadcrumb,
   BreadcrumbItem,
-  BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 
-
-const page = async ({ params }) => {
+const Page = async ({ params }) => {
 
   const currentLoggedInUser = await currentUser();
 
-  if(!currentLoggedInUser?.privateMetadata?.hasCompletedProfile) {
-  
+  if (!currentLoggedInUser?.privateMetadata?.hasCompletedProfile) {
     redirect('/complete_profile');
-      
   }
 
   const receipeSuggestion = await fetchParticularReceipeSuggestionById(params.id);
 
-  if(!receipeSuggestion) {
+  if (!receipeSuggestion) {
     return (
-      <div className="min-h-screen flex justify-center mt-12 capitalize text-xl font-bold text-green-700">No Receipe Suggestion found with this ID</div>
-    )
+      <div className="min-h-screen flex justify-center items-start mt-12 capitalize text-xl font-bold text-green-700">
+        No Recipe Suggestion found with this ID
+      </div>
+    );
   }
-  
+
+  const stats = [
+    { label: "Meal Type", value: receipeSuggestion.mealType },
+    { label: "Cooking Time", value: `${receipeSuggestion.timeThatCanBeGivenToCooking} minutes` },
+    { label: "Daily Calorie Target", value: `${receipeSuggestion.dailyCalorieTarget}` },
+  ];
+
+  const ingredientNotes = [
+    { label: "Ingredients to Include", value: receipeSuggestion.ingredientsToInclude },
+    { label: "Ingredients to Exclude", value: receipeSuggestion.ingredientsToExclude },
+  ];
+
   return (
-    <div className="mt-12 min-h-screen flex flex-col gap-4 text-lg">
+    <div className="min-h-screen max-w-4xl mx-auto mt-12 mb-16 flex flex-col gap-6">
 
-      <Breadcrumb className='mb-2'>
-
+      <Breadcrumb>
         <BreadcrumbList>
-
           <BreadcrumbItem>
-            
-            <Link href="/suggest_receipe_history">Receipe Suggestion History</Link>
-
+            <Link href="/suggest_receipe_history" className="text-slate-500 hover:text-green-700 transition-colors">
+              Receipe Suggestion History
+            </Link>
           </BreadcrumbItem>
-
           <BreadcrumbSeparator />
-
           <BreadcrumbItem>
-            <BreadcrumbPage>Receipe Suggestion ID: {receipeSuggestion.id}</BreadcrumbPage>
+            <BreadcrumbPage className="text-slate-700">
+              Receipe Suggestion ID: {receipeSuggestion.id}
+            </BreadcrumbPage>
           </BreadcrumbItem>
-
         </BreadcrumbList>
-
       </Breadcrumb>
 
-      <div className="flex flex-col lg:flex-row gap-2 lg:gap-3">
-
-        <span>Meal Type: </span> 
-
-        <span className="font-bold text-green-700">
-          {receipeSuggestion.mealType}
-        </span>
-
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {stats.map((stat) => (
+          <div
+            key={stat.label}
+            className="bg-white border-2 border-green-500 rounded-xl shadow-sm px-5 py-4 flex flex-col gap-1"
+          >
+            <span className="text-sm font-medium text-slate-500 uppercase tracking-wide">
+              {stat.label}
+            </span>
+            <span className="text-xl font-bold text-green-700">
+              {stat.value}
+            </span>
+          </div>
+        ))}
       </div>
 
-
-      <div className="flex flex-col lg:flex-row gap-2 lg:gap-3">
-
-        <span>Time can be given for cooking: </span> 
-
-        <span className="font-bold text-green-700">
-          {receipeSuggestion.timeThatCanBeGivenToCooking} minutes
-        </span>
-
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {ingredientNotes.map((note) => (
+          <div
+            key={note.label}
+            className="bg-white border-2 border-green-500 rounded-xl shadow-sm px-5 py-4 flex flex-col gap-1"
+          >
+            <span className="text-sm font-medium text-slate-500 uppercase tracking-wide">
+              {note.label}
+            </span>
+            <span className="font-bold text-green-700">
+              {note.value}
+            </span>
+          </div>
+        ))}
       </div>
 
+      <div className="bg-white border-2 border-green-600 rounded-xl shadow-lg shadow-green-100 p-6 sm:p-10 flex flex-col gap-5">
+        <div className="flex items-center gap-3">
+          <div className="h-8 w-1.5 rounded-full bg-green-600" />
+          <h2 className="text-xl font-bold text-green-700 underline decoration-green-600 decoration-2 underline-offset-4">
+            {'Your Personalized Receipe Suggestion'.toUpperCase()}
+          </h2>
+        </div>
 
-      <div className="flex flex-col lg:flex-row gap-2 lg:gap-3">
-
-        <span>Daily Calorie Target: </span> 
-
-        <span className="font-bold text-green-700">
-          {receipeSuggestion.dailyCalorieTarget} cal
-        </span>
-
-      </div>
-
-      <div className="flex flex-col gap-2">
-
-        <span>Ingredients to include: </span> 
-
-        <span className="font-bold text-green-700">
-          {receipeSuggestion.ingredientsToInclude} 
-        </span>
-
-      </div>
-
-      <div className="flex flex-col gap-2">
-
-        <span>Ingredients to Exclude: </span> 
-
-        <span className="font-bold text-green-700">
-          {receipeSuggestion.ingredientsToExclude} 
-        </span>
-
-      </div>
-
-      <div className="mt-5 uppercase text-xl text-green-600 font-bold">
-        Your Personalized Receipe Suggestion
-      </div>
-
-      <div className="flex flex-col gap-3 lg:gap-4">
-        <MarkdownOfAiResponse mk={receipeSuggestion.receipeSuggestCreatedByTheGeminiModel} />
+        <div className="text-slate-700 text-base leading-relaxed">
+          <MarkdownOfAiResponse mk={receipeSuggestion.receipeSuggestCreatedByTheModel} />
+        </div>
       </div>
 
     </div>
-  )
-}
+  );
+};
 
-export default page;
+export default Page;

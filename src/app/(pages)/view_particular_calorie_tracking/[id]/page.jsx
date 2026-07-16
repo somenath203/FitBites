@@ -12,131 +12,128 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 
-
-const page = async ({ params }) => {
+const Page = async ({ params }) => {
 
   const currentLoggedInUser = await currentUser();
 
-  if(!currentLoggedInUser?.privateMetadata?.hasCompletedProfile) {
-  
+  if (!currentLoggedInUser?.privateMetadata?.hasCompletedProfile) {
     redirect('/complete_profile');
-      
   }
 
   const trackCalorie = await fetchParticularCalorieTrackerById(params.id);
 
-  if(!trackCalorie) {
+  if (!trackCalorie) {
     return (
-      <div className="min-h-screen flex justify-center mt-12 capitalize text-xl font-bold text-green-700">No Track Calorie with this ID</div>
-    )
+      <div className="min-h-screen flex justify-center items-start mt-12 capitalize text-xl font-bold text-green-700">
+        No Calorie Tracking found with this ID
+      </div>
+    );
   }
-  
+
+  const stats = [
+    { label: "Tracking Date", value: trackCalorie.dateOfCreation },
+    { label: "Tracking Time", value: trackCalorie.timeOfCreation },
+    { label: "Meal Type", value: trackCalorie.mealTypeTakenToday },
+  ];
+
+  const foodDetails = [
+    { label: "Food Items Taken", value: trackCalorie.foodItemsTakenToday },
+    { label: "Portion Size of Each Food", value: trackCalorie.portionSizeOfEachFoodTakenToday },
+  ];
+
+  const totals = [
+    {
+      label: `Total Calories (${trackCalorie.mealTypeTakenToday})`,
+      value: `${trackCalorie.approximateTotalCalorieOfAllTheFoodsTogetherTakenToday}`,
+    },
+    {
+      label: `Total Macronutrients (${trackCalorie.mealTypeTakenToday})`,
+      value: trackCalorie.approximateTotalMacroNutrientsOfAllTheFoodsTogetherTakenToday,
+    },
+  ];
+
   return (
-    <div className="mt-12 min-h-screen flex flex-col gap-6 text-lg">
+    <div className="min-h-screen max-w-4xl mx-auto mt-12 mb-16 flex flex-col gap-6">
 
-      <Breadcrumb className='mb-2'>
-
+      <Breadcrumb>
         <BreadcrumbList>
-
           <BreadcrumbItem>
-
-            <Link href='/track_calorie_history'>Calorie History</Link>
-
+            <Link href="/track_calorie_history" className="text-slate-500 hover:text-green-700 transition-colors">
+              Calorie History
+            </Link>
           </BreadcrumbItem>
-
           <BreadcrumbSeparator />
-
           <BreadcrumbItem>
-            <BreadcrumbPage>Calorie Tracking ID: {trackCalorie.id}</BreadcrumbPage>
+            <BreadcrumbPage className="text-slate-700">
+              Calorie Tracking ID: {trackCalorie.id}
+            </BreadcrumbPage>
           </BreadcrumbItem>
-
         </BreadcrumbList>
-
       </Breadcrumb>
 
-
-      <div className="flex flex-col lg:flex-row gap-2 lg:gap-3">
-
-        <span>Date at which the calorie tracking analysis was created: </span> 
-
-        <span className="font-bold text-green-700">
-          {trackCalorie.dateOfCreation}
-        </span>
-
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {stats.map((stat) => (
+          <div
+            key={stat.label}
+            className="bg-white border-2 border-green-500 rounded-xl shadow-sm px-5 py-4 flex flex-col gap-1"
+          >
+            <span className="text-sm font-medium text-slate-500 uppercase tracking-wide">
+              {stat.label}
+            </span>
+            <span className="text-xl font-bold text-green-700">
+              {stat.value}
+            </span>
+          </div>
+        ))}
       </div>
 
-      <div className="flex flex-col lg:flex-row gap-2 lg:gap-3">
-
-        <span>Time at which the calorie tracking analysis was created: </span> 
-
-        <span className="font-bold text-green-700">
-          {trackCalorie.timeOfCreation}
-        </span>
-
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {foodDetails.map((detail) => (
+          <div
+            key={detail.label}
+            className="bg-white border-2 border-green-500 rounded-xl shadow-sm px-5 py-4 flex flex-col gap-1"
+          >
+            <span className="text-sm font-medium text-slate-500 uppercase tracking-wide">
+              {detail.label}
+            </span>
+            <span className="font-bold text-green-700">
+              {detail.value}
+            </span>
+          </div>
+        ))}
       </div>
 
-      <div className="flex flex-col lg:flex-row gap-2 lg:gap-3">
-
-        <span>Meal Type Taken: </span> 
-
-        <span className="font-bold text-green-700">
-          {trackCalorie.mealTypeTakenToday}
-        </span>
-
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {totals.map((total) => (
+          <div
+            key={total.label}
+            className="bg-white border-2 border-green-500 rounded-xl shadow-sm px-5 py-4 flex flex-col gap-1"
+          >
+            <span className="text-sm font-medium text-slate-500 uppercase tracking-wide">
+              {total.label}
+            </span>
+            <span className="text-xl font-bold text-green-700">
+              {total.value}
+            </span>
+          </div>
+        ))}
       </div>
 
+      <div className="bg-white border-2 border-green-600 rounded-xl shadow-lg shadow-green-100 p-6 sm:p-10 flex flex-col gap-5">
+        <div className="flex items-center gap-3">
+          <div className="h-8 w-1.5 rounded-full bg-green-600" />
+          <h2 className="text-xl font-bold text-green-700 underline decoration-green-600 decoration-2 underline-offset-4">
+            {'Your Personalized Calorie Tracking Analysis'.toUpperCase()}
+          </h2>
+        </div>
 
-      <div className="flex flex-col gap-2">
-
-        <span>Food Items taken: </span> 
-
-        <span className="font-bold text-green-700">
-          {trackCalorie.foodItemsTakenToday}
-        </span>
-
-      </div>
-
-      <div className="flex flex-col gap-2">
-
-        <span>Portion Size of each food taken: </span> 
-
-        <span className="font-bold text-green-700">
-          {trackCalorie.portionSizeOfEachFoodTakenToday}
-        </span>
-
-      </div>
-
-      <div className="flex flex-col lg:flex-row gap-2 lg:gap-3">
-
-        <span>Approximate total calorie of all the food taken during {trackCalorie.mealTypeTakenToday}: </span>
-
-        <span className="font-bold text-green-700">
-          {trackCalorie.approximateTotalCalorieOfAllTheFoodsTogetherTakenToday} cal
-        </span>
-
-      </div>
-
-      <div className="flex flex-col lg:flex-row gap-2 lg:gap-3">
-
-        <span>Approximate total macro nutrients of all the food taken during {trackCalorie.mealTypeTakenToday}: </span>
-
-        <span className="font-bold text-green-700">
-          {trackCalorie.approximateTotalMacroNutrientsOfAllTheFoodsTogetherTakenToday}
-        </span>
-
-      </div>
-
-
-      <div className="mt-5 uppercase text-xl text-green-600 font-bold">
-        Your Personalized Calorie Tracking Analysis
-      </div>
-
-      <div className="flex flex-col gap-4">
-        <MarkdownOfAiResponse mk={trackCalorie.calorieTrackCreatedByTheGeminiModel} />
+        <div className="text-slate-700 text-base leading-relaxed">
+          <MarkdownOfAiResponse mk={trackCalorie.calorieTrackCreatedByTheModel} />
+        </div>
       </div>
 
     </div>
-  )
-}
+  );
+};
 
-export default page;
+export default Page;

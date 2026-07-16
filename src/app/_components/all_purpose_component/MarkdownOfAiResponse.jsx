@@ -5,7 +5,7 @@ import rehypeRaw from 'rehype-raw';
 
 const MarkdownOfAiResponse = ({ mk }) => {
   return (
-    <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
+    <Markdown className='markdown' remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
         {mk}
     </Markdown>
   );

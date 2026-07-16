@@ -10,7 +10,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Textarea } from "@/components/ui/textarea"
 import FormContainer from '@/app/_components/form/FormContainer';
 import { createNewReceipeSuggestion } from '@/server-actions/suggestReceipeServerActions';
 import SubmitButton from '@/app/_components/all_purpose_component/SubmitButton';
@@ -70,6 +69,7 @@ const page = async () => {
               type="number"
               name="timeThatCanBeGivenToCooking"
               placeholder="Enter time in minutes"
+              id="cooking-time"
               min={1}
               className="border border-green-600"
               required
@@ -79,14 +79,13 @@ const page = async () => {
 
           <div className="flex flex-col gap-2">
 
-            <Label htmlFor="caloric-target">Daily Caloric Target</Label>
+            <Label htmlFor="caloric-target">Daily Calorie Target (Enter "No Idea" if you don't know your daily calorie target.)</Label>
 
             <Input
-              type="number"
+              type="text"
               name="dailyCalorieTarget"
               placeholder="Enter your target calories"
-              min="1000"
-              max="5000"
+              id="daily-caloric-target"
               className="border border-green-600"
               required
             />
@@ -95,31 +94,35 @@ const page = async () => {
 
           <div className="flex flex-col gap-2">
 
-            <Label>Ingredients to Include (max 20 words)</Label>
+            <Label>
+              Ingredients You Want to Include (Up to 5 ingredients. Enter "None" if there are no specific ingredients.)
+            </Label>
 
-            <Textarea 
+            <Input
+              type="text"
               name="ingredientsToInclude"
-              placeholder="List ingredients to include (e.g., chicken, spinach)" 
-              rows={10} 
-              className="!resize-none border border-green-600"
+              placeholder="e.g., Chicken, Rice, Spinach"
+              id="ingredients-to-include"
+              className="border border-green-600"
               required
             />
-
           </div>
 
 
           <div className="flex flex-col gap-2">
 
-            <Label>Ingredients to Exclude (max 20 words)</Label>
+            <Label>
+              Ingredients You Want to Exclude (Up to 5 ingredients. Enter "None" if there are no specific ingredients.)
+            </Label>
 
-            <Textarea 
+            <Input
+              type="text"
               name="ingredientsToExclude"
-              placeholder="List ingredients to exclude (e.g., peanuts, dairy)"
-              rows={10} 
+              placeholder="e.g., Peanuts, Dairy, Mushrooms"
+              id="ingredients-to-exclude"
               className="!resize-none border border-green-600"
               required
             />
-
           </div>
 
           <DateTimeComponent />
