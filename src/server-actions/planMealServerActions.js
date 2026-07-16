@@ -131,35 +131,35 @@ export const createNewMealPlan = async (prevState, formData) => {
 
             All meals below are strictly vegetarian and free from brinjal and seafood.
 
-            ## Breakfast: Oats and Greek Yogurt Bowl
+            ### Breakfast: Oats and Greek Yogurt Bowl
             *   **Food Items:** 40g rolled oats cooked with water, topped with 100g low-fat Greek yogurt, 1 tablespoon of chia seeds, and 1/2 cup of blueberries.
             *   **Estimated Calories:** 350 kcal
             *   **Protein:** 15g
             *   **Carbohydrates:** 55g
             *   **Fat:** 7g
 
-            ## Morning Snack: Apple and Almonds
+            ### Morning Snack: Apple and Almonds
             *   **Food Items:** 1 medium-sized apple and 10 raw almonds.
             *   **Estimated Calories:** 160 kcal
             *   **Protein:** 3g
             *   **Carbohydrates:** 25g
             *   **Fat:** 6g
 
-            ## Lunch: Paneer and Vegetable Stir-fry with Brown Rice
+            ### Lunch: Paneer and Vegetable Stir-fry with Brown Rice
             *   **Food Items:** 100g paneer cubes sautéed with broccoli, carrots, and bell peppers (using 1 tsp olive oil), served with 1 cup cooked brown rice.
             *   **Estimated Calories:** 600 kcal
             *   **Protein:** 25g
             *   **Carbohydrates:** 70g
             *   **Fat:** 22g
 
-            ## Evening Snack: Roasted Chana (Chickpeas)
+            ### Evening Snack: Roasted Chana (Chickpeas)
             *   **Food Items:** 1 cup of roasted chickpeas (dry roasted).
             *   **Estimated Calories:** 250 kcal
             *   **Protein:** 12g
             *   **Carbohydrates:** 35g
             *   **Fat:** 7g
 
-            ## Dinner: Lentil Soup (Dal) and Multigrain Roti
+            ### Dinner: Lentil Soup (Dal) and Multigrain Roti
             *   **Food Items:** 1.5 cups of yellow dal (lentil soup) tempered with spices, 2 small multigrain rotis, and a side of cucumber and tomato salad.
             *   **Estimated Calories:** 640 kcal
             *   **Protein:** 25g
@@ -168,7 +168,7 @@ export const createNewMealPlan = async (prevState, formData) => {
 
             ***
 
-            ## Daily Totals
+            ### Daily Totals
             *   **Total Estimated Daily Calories:** 2,000 kcal
             *   **Total Protein:** 80g
             *   **Total Carbohydrates:** 280g
