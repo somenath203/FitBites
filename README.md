@@ -248,7 +248,6 @@ This allows users to revisit previous analyses and monitor their nutrition journ
 | 🗄️ **Database**                | Neon PostgreSQL                                                              |
 | 🤖 **Artificial Intelligence** | Google Gemini 3.1 Flash Lite, Google GenAI SDK                               |
 | ☁️ **Deployment**              | Vercel                                                                       |
-| 🛡️ **Security**                | pnpm, `minimumReleaseAge`, `blockExoticSubdeps`, Trusted dependency policies |
 
 ---
 
