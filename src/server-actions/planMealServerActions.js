@@ -32,6 +32,14 @@ export const createNewMealPlan = async (prevState, formData) => {
       throw new Error("You can enter a maximum of 5 food preferences.");
     }
 
+    for (const preference of preferences) {
+      if (preference.length > 25) {
+        throw new Error(
+          "Each food preference cannot be longer than 25 characters.",
+        );
+      }
+    }
+
     const mealPlanPrompt = `
         Generate a personalized meal plan for the following user.
 

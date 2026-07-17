@@ -1,5 +1,9 @@
 # FitBites 🍎🥗
 
+> ### 🥗 Your All-in-One Nutrition Hub
+
+---
+
 ## 📚 Contents
 
 - [🎥 Demo Video](#-demo-video)
@@ -22,11 +26,11 @@
 
 # ✨ Introduction
 
-FitBites is an AI-powered personalized nutrition and diet web application that helps users make healthier food choices based on their personal profile and health goals.
+FitBites is an **AI-powered personalized nutrition and diet web application** that helps users make healthier food choices based on their **personal profile, dietary preferences, and health goals**.
 
-Using **Google Gemini 3.1 Flash Lite**, FitBites generates personalized meal plans, recipe suggestions, and calorie analysis by understanding each user's profile, dietary preferences, allergies, and nutritional requirements.
+Powered by **Google Gemini 3.1 Flash Lite**, FitBites generates **personalized meal plans**, **recipe suggestions**, and **calorie analysis** by understanding each user's health profile and nutritional requirements.
 
-The application is designed to make healthy eating simple, personalized, and easy to follow.
+> 💡 **The application is designed to make healthy eating simple, personalized, and easy to follow.**
 
 ---
 
@@ -34,13 +38,13 @@ The application is designed to make healthy eating simple, personalized, and eas
 
 Many people want to eat healthier but often struggle with questions like:
 
-- What should I eat today?
-- Which recipe matches my diet?
-- How many calories am I eating?
-- Is my meal nutritionally balanced?
-- Which foods will help me achieve my health goal?
+- 🥗 What should I eat today?
+- 🍳 Which recipe matches my diet?
+- 🔥 How many calories am I eating?
+- ⚖️ Is my meal nutritionally balanced?
+- 🎯 Which foods will help me achieve my health goal?
 
-FitBites solves these problems by using Artificial Intelligence to generate personalized nutrition recommendations based on each user's profile and food choices.
+**FitBites solves these problems by using Artificial Intelligence to generate personalized nutrition recommendations based on each user's health profile and food choices.**
 
 ---
 
@@ -48,9 +52,11 @@ FitBites solves these problems by using Artificial Intelligence to generate pers
 
 ## 👤 Profile Setup
 
-- Secure authentication using Clerk.
+> **Complete your health profile to unlock all AI-powered features.**
+
+- Secure authentication using **Clerk**.
 - Users must complete their health profile before accessing the application's AI features.
-- Stores important health information including:
+- Stores important health information, including:
   - First Name
   - Last Name
   - Age
@@ -64,146 +70,204 @@ FitBites solves these problems by using Artificial Intelligence to generate pers
 
 ## 🍽️ AI Meal Planner
 
-Generate a personalized one-day meal plan based on:
+> **Generate a personalized one-day meal plan tailored to your health profile.**
+
+Generate a personalized one-day meal plan using:
+
+### 👤 User Profile
+
+- Name
+- Age
+- Gender
+- Height
+- Weight
+- Activity Level
+- Allergies
+
+### 🎯 User Requirements
 
 - Health Goal
 - Diet Preference
 - Daily Calorie Target
 - Food Preferences
-- Personal Health Profile
-- Allergies
 
 The generated meal plan includes:
 
-- Breakfast
-- Morning Snack
-- Lunch
-- Evening Snack
-- Dinner
-- Estimated Calories
-- Protein
-- Carbohydrates
-- Fat
-- Total Daily Nutrition Summary
+- 🍳 Breakfast
+- 🍎 Morning Snack
+- 🍛 Lunch
+- 🥜 Evening Snack
+- 🍽️ Dinner
+- 🔥 Estimated Calories
+- 💪 Estimated Protein
+- 🌾 Estimated Carbohydrates
+- 🥑 Estimated Fat
+- 📊 Total Daily Nutrition Summary
 
-If the user enters **"No Idea"** for the calorie target, FitBites automatically estimates an appropriate daily calorie target.
+**Additional features**
+
+- Automatically estimates an appropriate daily calorie target if the user enters **"No Idea"**.
+- Respects the user's allergies and food preferences.
+- Generates practical, balanced meals that are easy to prepare.
+- Presents the meal plan using headings and bullet points for better readability.
 
 ---
 
 ## 🍳 AI Recipe Suggestion
 
+> **Receive personalized recipes that match your dietary needs and cooking preferences.**
+
 Generate a personalized recipe using:
 
-- Meal Type
-- Cooking Time
-- Ingredients to Include
-- Ingredients to Exclude
-- Daily Calorie Target
-- Personal Health Profile
+### 👤 User Profile
+
+- Name
+- Age
+- Gender
+- Height
+- Weight
+- Activity Level
 - Allergies
 
-Each recipe includes:
+### 🎯 User Requirements
 
-- Recipe Name
-- Preparation Time
-- Cooking Time
-- Estimated Calories
-- Ingredients
-- Step-by-step Cooking Instructions
-- Protein
-- Carbohydrates
-- Fat
-- Healthy Tips
+- Meal Type
+- Time Available for Cooking
+- Daily Calorie Target
+- Ingredients to Include
+- Ingredients to Exclude
 
-If the user enters **"No Idea"** for the calorie target, FitBites automatically estimates an appropriate calorie target before generating the recipe.
+Each generated recipe includes:
+
+- 🍽️ Recipe Name
+- ⏱️ Estimated Preparation Time
+- 👨‍🍳 Estimated Cooking Time
+- 🔥 Estimated Total Calories
+- 🥦 Ingredients
+- 📖 Step-by-step Cooking Instructions
+- 💪 Estimated Protein
+- 🌾 Estimated Carbohydrates
+- 🥑 Estimated Fat
+- 💡 Healthy Tips or Alternatives
+
+**Additional features**
+
+- Automatically estimates an appropriate calorie target if the user enters **"No Idea"**.
+- Ensures recipes respect allergies and excluded ingredients.
+- Generates recipes that fit within the selected cooking time.
+- Presents recipes using headings and bullet points without tables.
 
 ---
 
 ## 🔥 AI Calorie Tracker
 
-Analyze any meal by providing:
+> **Analyze your meals and receive personalized nutritional feedback.**
+
+Analyze a meal using:
+
+### 👤 User Profile
+
+- Name
+- Age
+- Gender
+- Height
+- Weight
+- Activity Level
+- Allergies
+
+### 🍽️ User Meal Information
 
 - Meal Type
 - Foods Eaten
 - Portion Size of Each Food
-- Approximate Calories
-- Approximate Macronutrients
+- Approximate Total Calories
+- Approximate Total Macronutrients
 
 The AI provides:
 
-- Estimated Calories
-- Estimated Macronutrients
-- Nutritional Analysis
-- Healthy Recommendations
-- Areas for Improvement
-- Personalized Suggestions
+- 🔥 Estimated Total Calories
+- 💪 Estimated Total Macronutrients
+- 📊 Nutritional Analysis
+- ✅ Healthy Recommendations
+- 📈 Areas for Improvement
+- 🎯 Personalized Suggestions
 
-If the user enters **"No Idea"** for calories or macronutrients, FitBites estimates them automatically.
+**Additional features**
+
+- Automatically estimates calories and macronutrients if the user enters **"No Idea"**.
+- Uses the user's complete health profile to generate personalized nutritional feedback.
+- Provides practical suggestions to help improve future meals.
+
+---
+
+## ✅ Input Validation
+
+> **Every user input is validated before being sent to the AI model.**
+
+FitBites validates user inputs before sending them to the AI model.
+
+Some of the validations include:
+
+- Limits on the number of food preferences and ingredients.
+- Character limits to keep prompts concise and meaningful.
+- Validation for food count and portion sizes.
+- Automatic handling of **"No Idea"** inputs for calorie and macronutrient estimation.
+- Server-side validation using Next.js Server Actions.
 
 ---
 
 ## 📂 History
 
-Users can view their complete history of:
+> **Never lose track of your previous AI-generated nutrition records.**
+
+Users can view the complete history of their:
 
 - Meal Plans
 - Recipe Suggestions
 - Calorie Tracking
 
-Every history item stores:
+Every history entry stores:
 
-- User Inputs
-- AI-generated Response
-- Date of Creation
-- Time of Creation
+| 📁 Feature           | 📌 Saved Information                                     |
+| :------------------- | :------------------------------------------------------- |
+| 🍽️ Meal Planner      | User Inputs, AI-generated Response                       |
+| 🍳 Recipe Suggestion | User Inputs, AI-generated Response                       |
+| 🔥 Calorie Tracker   | User Inputs, AI-generated Response, Creation Date & Time |
+
+This allows users to revisit previous analyses and monitor their nutrition journey over time.
 
 ---
 
 # 🛠️ Technologies Used
 
-### Frontend
-
-- Next.js 16
-- React 19
-- Tailwind CSS
-- ShadCN UI
-
-### Backend
-
-- Next.js Server Actions
-- Prisma ORM
-
-### Authentication
-
-- Clerk Authentication
-
-### Database
-
-- Neon PostgreSQL
-
-### Artificial Intelligence
-
-- Google Gemini 3.1 Flash Lite
-- Google GenAI SDK
-
-### Deployment
-
-- Vercel
+| Category                       | Technologies                                                                 |
+| :----------------------------- | :--------------------------------------------------------------------------- |
+| 🎨 **Frontend**                | Next.js 16, React 19, Tailwind CSS, ShadCN UI                                |
+| ⚙️ **Backend**                 | Next.js Server Actions, Prisma ORM                                           |
+| 🔐 **Authentication**          | Clerk Authentication                                                         |
+| 🗄️ **Database**                | Neon PostgreSQL                                                              |
+| 🤖 **Artificial Intelligence** | Google Gemini 3.1 Flash Lite, Google GenAI SDK                               |
+| ☁️ **Deployment**              | Vercel                                                                       |
+| 🛡️ **Security**                | pnpm, `minimumReleaseAge`, `blockExoticSubdeps`, Trusted dependency policies |
 
 ---
 
 # 🌐 Live Website
 
-🔗 **Website:** https://fit-bites-prod.vercel.app/
+🚀 **Try FitBites here:**
+
+🔗 **https://fit-bites-prod.vercel.app/**
 
 ---
 
 # ⚠️ Disclaimer
 
+> **Important**
+
 FitBites uses **Google Gemini 3.1 Flash Lite** to generate AI-powered meal plans, recipe suggestions, and calorie analysis.
 
-The generated responses are intended for informational purposes only and may not always be completely accurate. They should not be considered professional medical, nutritional, or dietary advice.
+The generated responses are intended for **informational purposes only** and may not always be completely accurate. They should **not** be considered professional medical, nutritional, or dietary advice.
 
-While FitBites provides the prompts and user inputs to the AI model, the generated content is produced by Google Gemini. The creator of this project cannot guarantee the accuracy, completeness, or suitability of every AI-generated response.
+While FitBites provides the prompts and user inputs to the AI model, the generated content is produced by **Google Gemini**. The creator of this project has **no control** over the responses generated by the AI model and cannot guarantee the accuracy, completeness, or suitability of every response.
 
-Always consult a qualified healthcare professional or registered dietitian before making important health or nutrition decisions.
+**Always consult a qualified healthcare professional or registered dietitian before making important health or nutrition decisions.**

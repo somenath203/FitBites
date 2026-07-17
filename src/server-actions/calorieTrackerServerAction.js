@@ -19,19 +19,50 @@ export const createNewCalorieTracking = async (prevState, formData) => {
 
     const rawData = Object.fromEntries(formData);
 
-
-    const allFoodsEatenToday = rawData?.foodItemsTakenToday?.split(",").map((food) => food.trim()).filter((food) => food !== "");
+    const allFoodsEatenToday = rawData?.foodItemsTakenToday
+      ?.split(",")
+      .map((food) => food.trim())
+      .filter((food) => food !== "");
 
     if (allFoodsEatenToday?.length > 8) {
       throw new Error("You can enter a maximum of 8 foods.");
     }
 
-    const allPortionSizeOfEachFoodTakenToday = rawData?.portionSizeOfEachFoodTakenToday?.split(",").map((food) => food.trim()).filter((food) => food !== "");
+    for (const food of allFoodsEatenToday) {
+      if (food.length > 25) {
+        throw new Error("Each food cannot be longer than 25 characters.");
+      }
+    }
+
+    const allPortionSizeOfEachFoodTakenToday =
+      rawData?.portionSizeOfEachFoodTakenToday
+        ?.split(",")
+        .map((food) => food.trim())
+        .filter((food) => food !== "");
 
     if (allPortionSizeOfEachFoodTakenToday?.length > 8) {
       throw new Error("You can enter portion sizes for a maximum of 8 foods.");
     }
-    
+
+    for (const portionSize of allPortionSizeOfEachFoodTakenToday) {
+      if (portionSize.length > 25) {
+        throw new Error(
+          "Each portion size cannot be longer than 25 characters.",
+        );
+      }
+    }
+
+    if (rawData?.approximateTotalCalorieOfAllTheFoodsTogetherTakenToday?.trim().length > 15) {
+      throw new Error(
+        "Approximate total calories cannot be longer than 15 characters.",
+      );
+    }
+
+    if (rawData?.approximateTotalMacroNutrientsOfAllTheFoodsTogetherTakenToday?.trim().length > 30) {
+      throw new Error(
+        "Approximate total macronutrients cannot be longer than 30 characters.",
+      );
+    }
 
     const calorieTrackingPrompt = `
             Generate a personalized calorie and nutrition analysis for the following user.
@@ -190,24 +221,26 @@ export const createNewCalorieTracking = async (prevState, formData) => {
       }
     }
 
-    if(markdownResponse) {
-
-        createdTracking = await primsaClientConfig.trackCalorieOfTheDay.create({
-            data: {
-                mealTypeTakenToday: rawData?.mealTypeTakenToday || '',
-                foodItemsTakenToday: rawData?.foodItemsTakenToday || '',
-                portionSizeOfEachFoodTakenToday: rawData?.portionSizeOfEachFoodTakenToday || '',
-                approximateTotalCalorieOfAllTheFoodsTogetherTakenToday: rawData?.approximateTotalCalorieOfAllTheFoodsTogetherTakenToday || '',
-                approximateTotalMacroNutrientsOfAllTheFoodsTogetherTakenToday: rawData?.approximateTotalMacroNutrientsOfAllTheFoodsTogetherTakenToday || '',
-                idOfTheProfileWhoCreatedTheTrackCalorie: user?.id || '',
-                calorieTrackCreatedByTheModel: markdownResponse || '',
-                dateOfCreation: rawData?.dateOfCreation || '',
-                timeOfCreation: rawData?.timeOfCreation || ''
-            }
-        });
-
+    if (markdownResponse) {
+      createdTracking = await primsaClientConfig.trackCalorieOfTheDay.create({
+        data: {
+          mealTypeTakenToday: rawData?.mealTypeTakenToday || "",
+          foodItemsTakenToday: rawData?.foodItemsTakenToday || "",
+          portionSizeOfEachFoodTakenToday:
+            rawData?.portionSizeOfEachFoodTakenToday || "",
+          approximateTotalCalorieOfAllTheFoodsTogetherTakenToday:
+            rawData?.approximateTotalCalorieOfAllTheFoodsTogetherTakenToday ||
+            "",
+          approximateTotalMacroNutrientsOfAllTheFoodsTogetherTakenToday:
+            rawData?.approximateTotalMacroNutrientsOfAllTheFoodsTogetherTakenToday ||
+            "",
+          idOfTheProfileWhoCreatedTheTrackCalorie: user?.id || "",
+          calorieTrackCreatedByTheModel: markdownResponse || "",
+          dateOfCreation: rawData?.dateOfCreation || "",
+          timeOfCreation: rawData?.timeOfCreation || "",
+        },
+      });
     }
-
   } catch (error) {
     console.log(error);
 
@@ -218,7 +251,7 @@ export const createNewCalorieTracking = async (prevState, formData) => {
     };
   }
 
-  redirect(`/view_particular_calorie_tracking/${createdTracking.id}`)
+  redirect(`/view_particular_calorie_tracking/${createdTracking.id}`);
 };
 
 export const fetchAllCalorieTrackingCreatedByTheUser = async () => {

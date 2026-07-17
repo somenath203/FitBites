@@ -19,18 +19,38 @@ export const createNewReceipeSuggestion = async (prevState, formData) => {
 
     const rawData = Object.fromEntries(formData);
 
-
-    const ingredientsToIncludeInReceipe = rawData?.ingredientsToInclude?.split(",").map((ingredient) => ingredient.trim()).filter((ingredient) => ingredient !== "");
+    const ingredientsToIncludeInReceipe = rawData?.ingredientsToInclude
+      ?.split(",")
+      .map((ingredient) => ingredient.trim())
+      .filter((ingredient) => ingredient !== "");
 
     if (ingredientsToIncludeInReceipe?.length > 5) {
-      throw new Error("You can enter a maximum of 5 ingredients that you want to include.");
+      throw new Error(
+        "You can enter a maximum of 5 ingredients that you want to include.",
+      );
     }
 
+    for (const ingredient of ingredientsToIncludeInReceipe) {
+      if (ingredient.length > 25) {
+        throw new Error("Each ingredient cannot be longer than 25 characters.");
+      }
+    }
 
-    const ingredientsToExcludeInReceipe = rawData?.ingredientsToExclude?.split(",").map((ingredient) => ingredient.trim()).filter((ingredient) => ingredient !== "");
+    const ingredientsToExcludeInReceipe = rawData?.ingredientsToExclude
+      ?.split(",")
+      .map((ingredient) => ingredient.trim())
+      .filter((ingredient) => ingredient !== "");
 
     if (ingredientsToExcludeInReceipe?.length > 5) {
-      throw new Error("You can enter a maximum of 5 ingredients that you want to exclude.");
+      throw new Error(
+        "You can enter a maximum of 5 ingredients that you want to exclude.",
+      );
+    }
+
+    for (const ingredient of ingredientsToExcludeInReceipe) {
+      if (ingredient.length > 25) {
+        throw new Error("Each ingredient cannot be longer than 25 characters.");
+      }
     }
 
     const receipeSuggestionPrompt = `
@@ -209,12 +229,12 @@ export const createNewReceipeSuggestion = async (prevState, formData) => {
     }
 
     if (markdownResponse) {
-
       createdNewReceipeSuggestion =
         await primsaClientConfig.suggestReceipe.create({
           data: {
             mealType: rawData?.mealType || "",
-            timeThatCanBeGivenToCooking: rawData?.timeThatCanBeGivenToCooking || "",
+            timeThatCanBeGivenToCooking:
+              rawData?.timeThatCanBeGivenToCooking || "",
             dailyCalorieTarget: rawData?.dailyCalorieTarget || "",
             ingredientsToInclude: rawData?.ingredientsToInclude || "",
             ingredientsToExclude: rawData?.ingredientsToExclude || "",
@@ -225,7 +245,6 @@ export const createNewReceipeSuggestion = async (prevState, formData) => {
           },
         });
     }
-
   } catch (error) {
     console.log(error);
 
