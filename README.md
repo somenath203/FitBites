@@ -20,7 +20,7 @@
 
 🎬 **Click the thumbnail below to watch the complete demo video of FitBites on YouTube.**
 
-[![FitBites Demo](https://github.com/user-attachments/assets/63110cd6-ea64-4dd2-82aa-b7dc61a06d81)](https://www.youtube.com/watch?v=f5BVZJVF8mQ)
+[![FitBites Demo Video](https://github.com/user-attachments/assets/64c95a61-bf34-422f-9d59-35e4b79633ea)](https://www.youtube.com/watch?v=f5BVZJVF8mQ)
 
 ---
 
